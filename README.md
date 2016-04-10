@@ -1,5 +1,7 @@
 # Not Yo Mama's Library
-Repository for our Software Engineering project.
+Repository for our Software Engineering project. 
+
+Instructor: Lili Hai
 
 ## Use cases ##
 
