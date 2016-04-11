@@ -1,33 +1,85 @@
 # Not Yo Mama's Library
-Repository for our Software Engineering project. 
 
-Instructor: Lili Hai
+## Description ##
 
-## Use cases ##
+Repository for project in a Software Engineering class at [SUNY Old Westbury](http://oldwestbury.edu) for spring/2016 coordinated by [Prof. Lili Hai](mailto:hail@oldwestbury.edu). Our goal is to develop a complete Library Management System in which users will be able to browse, borrow. renew, reserve materials, etc. The group has 10 members and is further divided into 3 smaller teams as following.
 
-__Account Management Subsystem:__
+#### Team #1 ####
 
-* EditAccount
-* DeleteAccount (_admin only!_)
-* LoginToAccount
-* LogoutOfAccount
-* ViewAccount 
+* [Jeff Godoy](jgodoy@oldwestbury.edu) (_team leader_)
+* [Benny Pena](mailto:bpena5@oldwestbury.edu)
+* [Junaid Farooq](mailto:jfarooq@oldwestbuyr.edu)
 
-__Monetary Transactions Subsystem:__
+#### Team #2 ####
 
-* ???
+* [Jéssica Carneiro](mailto:jessicaccarneiro91@gmail.com) (_team leader_)
+* [Abdul Basit](mailto:abasit1@oldwestbury.edu)
+* [Adil Imam](mailto:aimam1@oldwestbury.edu)
 
-__Media Management Subsystem:__
+#### Team #3 ####
 
-* AddMedia
-* BrowseMedia (_may be deleted_)
-* CheckInMedia
-* CheckOutMedia
-* EditMedia
-* RenewMedia
-* ReserveMedia
-* SearchMedia
+* [Elbin Martinez](mailto:emarti45@oldwestbury.edu) (_team leader_)
+* [Adnan Alam](mailto:aalam29@gmail.com)
+* [Brett Landau](mailto:blandau@oldwestbury.edu)
+* [Khiyau Alvi](mailto:kalvi@oldwestbury.edu)
 
-__Notification Subsystem:__
+## Subsystems ##
 
-* ???
+### Account Management Subsystem: ###
+
+__Team in charge:__ team #1
+
+#### Entity classes ####
+
+* __Account__ class:
+	* ApplyPayment (_librarian only!_)
+	* DeleteAccount (_admin only!_)
+	* EditAccount
+	* LoginToAccount
+	* LogoutOfAccount
+	* MakePayment (_patron only!_)
+	* ViewAccount
+
+### Media Management Subsystem: ###
+
+__Team in charge:__ team #2
+
+#### Entity classes ####
+
+* __Cancellation List__ class:
+	* ViewCancellationList
+
+* __Checked Out Media__ class:
+	* CheckInMedia
+	* RenewMedia
+
+* __Media__ class:
+	* AddMedia
+	* CheckOutMedia
+	* EditMedia
+	* ReserveMedia
+	* SearchMedia
+
+* __Reservation List__ class:
+  * ViewReservationList
+
+### Monetary Transactions Subsystem: ###
+
+__Team in charge:__ team #3
+
+#### Entity classes ####
+
+* __Library Funds__ class:
+	* ApplyLateFee
+	* BillAccount
+	* MakeDonation
+	* ShowLibraryIncome
+
+### Notification Subsystem: ###
+
+__Team in charge:__ team #3
+
+#### Entity classes ####
+
+* Not sure (?)
+	* SendLateNotification
