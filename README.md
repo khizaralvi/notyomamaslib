@@ -2,11 +2,11 @@
 
 ## Description ##
 
-Repository for project in a Software Engineering class at [SUNY Old Westbury](http://oldwestbury.edu) for spring/2016 coordinated by [Prof. Lili Hai](mailto:hail@oldwestbury.edu). Our goal is to develop a complete Library Management System in which users will be able to browse, borrow. renew, reserve materials, etc. The group has 10 members and is further divided into 3 smaller teams as following.
+Repository for project in a Software Engineering class at [SUNY Old Westbury](http://oldwestbury.edu) for spring/2016 coordinated by [Prof. Lili Hai](mailto:hail@oldwestbury.edu). Our goal is to develop a complete Library Management System in which users will be able to browse, borrow, renew, reserve materials, etc. The group has 10 members and is further divided into 3 smaller teams as following.
 
 #### Team #1 ####
 
-* [Jeff Godoy](jgodoy@oldwestbury.edu) (_team leader_)
+* [Jeff Godoy](jgodoy@oldwestbury.edu) (_team leader & group leader_)
 * [Benny Pena](mailto:bpena5@oldwestbury.edu)
 * [Junaid Farooq](mailto:jfarooq@oldwestbuyr.edu)
 
@@ -49,9 +49,11 @@ __Team in charge:__ team #2
 * __Cancellation List__ class:
 	* ViewCancellationList
 
+
 * __Checked Out Media__ class:
 	* CheckInMedia
 	* RenewMedia
+
 
 * __Media__ class:
 	* AddMedia
@@ -60,7 +62,9 @@ __Team in charge:__ team #2
 	* ReserveMedia
 	* SearchMedia
 
+
 * __Reservation List__ class:
+  * EditReservationList
   * ViewReservationList
 
 ### Monetary Transactions Subsystem: ###
