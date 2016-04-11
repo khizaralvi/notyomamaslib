@@ -1,3 +1,5 @@
+package media_mgt;
+
 
 /**
  * MediaAcademic is the class for all media material of type academic

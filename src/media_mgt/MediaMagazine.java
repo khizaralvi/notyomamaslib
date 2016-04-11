@@ -1,3 +1,5 @@
+package media_mgt;
+
 
 /**
  * MediaMagazine is the class for all magazines.

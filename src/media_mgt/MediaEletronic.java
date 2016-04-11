@@ -1,3 +1,5 @@
+package media_mgt;
+
 
 /**
  * MediaEletronic is the class for all electronic media, such as eBooks, PDFs, 

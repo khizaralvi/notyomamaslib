@@ -1,3 +1,5 @@
+package media_mgt;
+
 /**
  * ReservationList is the class that implements a list of reservations made 
  * by the users. 

@@ -1,3 +1,5 @@
+package media_mgt;
+
 
 /**
  * Media is the abstract base class for all media material

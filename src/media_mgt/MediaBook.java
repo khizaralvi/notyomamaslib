@@ -1,3 +1,5 @@
+package media_mgt;
+
 
 /**
  * MediaBook is the class for all media material of type book.

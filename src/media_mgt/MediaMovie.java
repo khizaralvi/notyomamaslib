@@ -1,3 +1,5 @@
+package media_mgt;
+
 
 /**
  * MediaMovie is the class for all material of type movie.
