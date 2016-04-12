@@ -1,9 +1,8 @@
 package media_mgt;
 
-
 /**
- * MediaBook is the class for all media material of type book.
- * It inherits from Media superclass.
+ * MediaBook is the class for all media material of type book. It inherits from
+ * Media superclass.
  * <p>
  * The MediaBook class encapsulates all state information related to books.
  * These state information includes: </p>
@@ -57,6 +56,32 @@ public class MediaBook extends Media {
      */
     public MediaBook(String id, String title, String year, String isbn, int edition, String publisher, double cost) {
         super(id, title, year, cost);
+    }
+
+    /**
+     * Adds new media of type book to the catalog.
+     */
+    @Override
+    public void addMedia() {
+        super.addMedia();
+    }
+
+    /**
+     * This methods edits an existing media of type book in the catalog.
+     *
+     */
+    @Override
+    public void editMedia() {
+        super.editMedia();
+    }
+
+    /**
+     * This methods deletes an existing media of type book from the catalog.
+     *
+     */
+    @Override
+    public void deleteMedia() {
+        super.deleteMedia();
     }
 
     /**
