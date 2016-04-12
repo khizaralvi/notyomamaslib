@@ -1,9 +1,8 @@
 package media_mgt;
 
-
 /**
- * Media is the abstract base class for all media material
- * existing in the library system.
+ * Media is the abstract base class for all media material existing in the
+ * library system.
  * <p>
  * The Media class encapsulates all state information common among all different
  * types of Media. These state information includes: </p>
@@ -35,6 +34,27 @@ public abstract class Media {
     }
 
     /**
+     * This methods adds a new media to the catalog.
+     *
+     */
+    public void addMedia() {
+    }
+    
+    /**
+     * This methods edits an existing media in the catalog.
+     *
+     */
+    public void editMedia() {
+    }
+    
+    /**
+     * This methods deletes an existing media from the catalog.
+     *
+     */
+    public void deleteMedia() {
+    }
+
+    /**
      * Returns the Media ID
      *
      * @return mediaId Media unique identifier
@@ -60,7 +80,7 @@ public abstract class Media {
     public String getMediaYear() {
         return mediaYear;
     }
-    
+
     /**
      * Returns the Media cost
      *
@@ -93,7 +113,7 @@ public abstract class Media {
      */
     public void setMediaYear(String year) {
     }
-    
+
     /**
      * Sets the Media cost
      *
