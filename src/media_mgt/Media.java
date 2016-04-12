@@ -21,6 +21,7 @@ public abstract class Media {
     private String mediaId;
     private String mediaTitle;
     private String mediaYear;
+    private double mediaCost;
 
     /**
      * Constructor for Media.
@@ -28,8 +29,9 @@ public abstract class Media {
      * @param id Media unique identifier
      * @param title Media title
      * @param year Media publishing year
+     * @param cost Media cost
      */
-    Media(String id, String title, String year) {
+    Media(String id, String title, String year, double cost) {
     }
 
     /**
@@ -58,6 +60,15 @@ public abstract class Media {
     public String getMediaYear() {
         return mediaYear;
     }
+    
+    /**
+     * Returns the Media cost
+     *
+     * @return mediaCost Cost of media in US$
+     */
+    public double getMediaCost() {
+        return mediaCost;
+    }
 
     /**
      * Sets the Media Id
@@ -81,5 +92,13 @@ public abstract class Media {
      * @param year Publication year in format YYYY
      */
     public void setMediaYear(String year) {
+    }
+    
+    /**
+     * Sets the Media cost
+     *
+     * @param cost Cost of media in US$
+     */
+    public void setMediaCost(double cost) {
     }
 }

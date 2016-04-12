@@ -50,13 +50,13 @@ public class MediaBook extends Media {
      * @param id Media unique identifier
      * @param title Media title
      * @param year Media publishing year
+     * @param cost Media cost
      * @param isbn Book ISBN
      * @param edition Book edition as an integer number (1, 2, ...)
      * @param publisher Book publisher name
-     * @see Media#Media(java.lang.String, java.lang.String, java.lang.String) 
      */
-    public MediaBook(String id, String title, String year, String isbn, int edition, String publisher) {
-        super(id, title, year);
+    public MediaBook(String id, String title, String year, String isbn, int edition, String publisher, double cost) {
+        super(id, title, year, cost);
     }
 
     /**

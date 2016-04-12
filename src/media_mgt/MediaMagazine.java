@@ -41,10 +41,10 @@ public class MediaMagazine extends Media {
      * @param id Media unique identifier
      * @param title Media title
      * @param year Media publishing year
-     * @see Media#Media(java.lang.String, java.lang.String, java.lang.String) 
+     * @param cost Media cost
      */
-    public MediaMagazine(String id, String title, String year) {
-        super(id, title, year);
+    public MediaMagazine(String id, String title, String year, double cost) {
+        super(id, title, year, cost);
     }
 
 }
