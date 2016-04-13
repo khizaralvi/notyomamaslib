@@ -53,6 +53,17 @@ public abstract class Media {
      */
     public void deleteMedia() {
     }
+    
+    /**
+     * This method will perform a search in the catalog.
+     * 
+     * @param searchAttr This attribute is the string the user inputs to 
+     * perform a search in the catalog.
+     * @param attrType This attribute defines by which field the user is 
+     * trying to search.
+     */
+    public static void searchMedia(String searchAttr, String attrType) {
+    }
 
     /**
      * Returns the Media ID
