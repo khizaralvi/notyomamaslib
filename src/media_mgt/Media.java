@@ -121,4 +121,5 @@ public abstract class Media {
      */
     public void setMediaCost(double cost) {
     }
+    
 }
