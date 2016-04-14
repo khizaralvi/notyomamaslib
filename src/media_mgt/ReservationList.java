@@ -1,17 +1,23 @@
 package media_mgt;
 
+import java.util.Date;
+
 /**
- * ReservationList is the class that implements a list of reservations made 
- * by the users. 
- * 
+ * ReservationList is the class that implements a list of reservations made by
+ * the users.
+ *
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
  * @version 1.0.0
  */
 public class ReservationList extends Media {
-    
+
+    // private Accounts user;
+    private Media mediaReserved;
+    private Date reservationDate;
+
     /**
      * Constructor for ReservationList.
-     * 
+     *
      * @param id Media unique identifier
      * @param title Media title
      * @param year Media publishing year
@@ -20,5 +26,32 @@ public class ReservationList extends Media {
     public ReservationList(String id, String title, String year, double cost) {
         super(id, title, year, cost);
     }
-    
+
+    /**
+     * Returns the Media object saved in this reservation.
+     * 
+     * @return Media object
+     */
+    public Media getMediaReserved() {
+        return mediaReserved;
+    }
+
+    /**
+     * Sets the Media object.
+     * 
+     * @param mediaReserved 
+     */
+    public void setMediaReserved(Media mediaReserved) {
+        this.mediaReserved = mediaReserved;
+    }
+
+    /**
+     * Returns the date the reservation was created.
+     * 
+     * @return an object of type Date
+     */
+    public Date getReservationDate() {
+        return reservationDate;
+    }
+
 }

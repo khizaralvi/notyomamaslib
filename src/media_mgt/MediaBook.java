@@ -1,5 +1,7 @@
 package media_mgt;
 
+import java.util.ArrayList;
+
 /**
  * MediaBook is the class for all media material of type book. It inherits from
  * Media superclass.
@@ -8,7 +10,10 @@ package media_mgt;
  * These state information includes: </p>
  * <ul>
  * <li>ISBN</li>
+ * <li>Author(s)</li>
  * <li>Edition</li>
+ * <li>Volume</li>
+ * <li>Number of pages</li>
  * <li>Publisher</li>
  * </ul>
  *
@@ -18,8 +23,11 @@ package media_mgt;
 public class MediaBook extends Media {
 
     private String bookIsbn;
-    private int bookEdition;
+    private String bookEdition;
+    private String bookVolume;
+    private String bookPages;
     private String bookPublisher;
+    private ArrayList<String> bookAuthors;
 
     /**
      * Loan period is the duration of a loan in days.
@@ -52,42 +60,38 @@ public class MediaBook extends Media {
      * @param cost Media cost
      * @param isbn Book ISBN
      * @param edition Book edition as an integer number (1, 2, ...)
+     * @param volume
+     * @param pages
      * @param publisher Book publisher name
      */
-    public MediaBook(String id, String title, String year, String isbn, int edition, String publisher, double cost) {
+    public MediaBook(String id, String title, String year, String isbn,
+            String edition, String volume, String pages, String publisher, 
+            double cost) {
         super(id, title, year, cost);
     }
 
     /**
-     * Adds new media of type book to the catalog.
-     */
-    @Override
-    public void addMedia() {
-        super.addMedia();
-    }
-
-    /**
      * This methods edits an existing media of type book in the catalog.
+     * <p>
+     * This method receives all editable attributes (all except mediaID) when
+     * the use submits the modifications to update the entry in the catalog.</p>
      *
+     * @param id Media unique identifier
+     * @param title Media title
+     * @param year Media publishing year
+     * @param cost Media cost
+     * @param isbn Book ISBN
+     * @param edition Book edition as an integer number (1, 2, ...)
+     * @param publisher Book publisher name
      */
-    @Override
-    public void editMedia() {
-        super.editMedia();
-    }
-
-    /**
-     * This methods deletes an existing media of type book from the catalog.
-     *
-     */
-    @Override
-    public void deleteMedia() {
-        super.deleteMedia();
+    public void editMedia(String id, String title, String year, String isbn,
+            int edition, String publisher, double cost) {
     }
 
     /**
      * Returns the ISBN code
      *
-     * @return bookIsbn ISBN code
+     * @return ISBN code
      */
     public String getIsbn() {
         return bookIsbn;
@@ -96,19 +100,86 @@ public class MediaBook extends Media {
     /**
      * Returns the book edition
      *
-     * @return bookEdition book edition
+     * @return book edition
      */
-    public int getEdition() {
+    public String getEdition() {
         return bookEdition;
     }
 
     /**
-     * Returns the publisher name
+     * Returns the book volume
      *
-     * @return bookPublisher publisher name
+     * @return book volume
+     */
+    public String getVolume() {
+        return bookVolume;
+    }
+
+    /**
+     * Returns the number of pages
+     *
+     * @return number of pages
+     */
+    public String getNumbeOfPages() {
+        return bookPages;
+    }
+
+    /**
+     * Returns the publisher name.
+     *
+     * @return publisher name
      */
     public String getPublisher() {
         return bookPublisher;
+    }
+
+    /**
+     * Returns all the authors for the book.
+     *
+     * @return an ArrayList of strings with the name of all authors.
+     */
+    public ArrayList<String> getAuthors() {
+        return bookAuthors;
+    }
+
+    /**
+     * Sets the ISBN code
+     *
+     * @param isbn ISBN code
+     */
+    public void setIsbn(String isbn) {
+    }
+
+    /**
+     * Sets the book edition
+     *
+     * @param edition book edition
+     */
+    public void setEdition(int edition) {
+    }
+
+    /**
+     * Sets the book volume
+     *
+     * @param volume book volume
+     */
+    public void setVolume(int volume) {
+    }
+
+    /**
+     * Sets the publisher name
+     *
+     * @param publisher publisher name
+     */
+    public void setPublisher(String publisher) {
+    }
+
+    /**
+     * Sets the authors list for the book.
+     *
+     * @param authors an ArrayList of strings with the name of all authors.
+     */
+    public void setAuthors(ArrayList<String> authors) {
     }
 
 }
