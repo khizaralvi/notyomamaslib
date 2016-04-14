@@ -11,21 +11,52 @@ import java.util.Date;
  */
 public class CancellationList {
     
-    private Media mediaReserved;
-    private Date dateReserved;
+    private CheckedOutMedia mediaReserved;
     private Date dateCanceled;
 
     /**
      * Constructor for CancellationList.
      * 
-     * @param mediaReserved media to be reserved
-     * @param dateReserved date on which media is reserved
-     * @param dateCanceled date on which reservation is canceled
+     * @param reserved An object of type CheckedOutMedia
+     * @param cancellation Date in which cancellation was performed.
      */
-    public CancellationList(Media mediaReserved, Date dateReserved, Date dateCanceled) {
+    public CancellationList(CheckedOutMedia reserved, Date cancellation) {
     }
 
-    public CancellationList() {
+    /**
+     * Returns the object of type CheckedOutMedia.
+     * 
+     * @return object of type CheckedOutMedia
+     */
+    public CheckedOutMedia getMediaReserved() {
+        return mediaReserved;
+    }
+
+    /**
+     * Sets the object of type CheckedOutMedia.
+     * 
+     * @param mediaReserved object of type CheckedOutMedi
+     */
+    public void setMediaReserved(CheckedOutMedia mediaReserved) {
+        this.mediaReserved = mediaReserved;
+    }
+
+    /**
+     * Returns the date in which the cancellation was performed.
+     * 
+     * @return cancellation date
+     */
+    public Date getDateCanceled() {
+        return dateCanceled;
+    }
+
+    /**
+     * Sets the date in which the cancellation was performed.
+     * 
+     * @param dateCanceled cancellation date
+     */
+    public void setDateCanceled(Date dateCanceled) {
+        this.dateCanceled = dateCanceled;
     }
     
 }
