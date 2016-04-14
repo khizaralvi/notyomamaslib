@@ -52,10 +52,10 @@ public abstract class Media {
     }
     
     /**
-     * This is an abstract method which edits an existing media in the catalog.
+     * This method edits an existing media in the catalog.
      * Each subtype class will have their own implementation of this method
      * @param media_id Media_id
-     * @param atribute attribute to edit
+     * @param attribute attribute to edit
      * @param new_value new value provided to that attribute
      */
     
@@ -69,6 +69,8 @@ public abstract class Media {
     /**
      * This methods deletes an existing media from the catalog.
      *@param Media_id Media id to delete
+     *@return boolean shows if media is deleted successfully
+     *
      */
     public boolean deleteMedia(String Media_id) {
   

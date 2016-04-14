@@ -60,8 +60,8 @@ public class MediaBook extends Media {
      * @param cost Media cost
      * @param isbn Book ISBN
      * @param edition Book edition as an integer number (1, 2, ...)
-     * @param volume
-     * @param pages
+     * @param volume Volume of the book
+     * @param pages number of pages of the book
      * @param publisher Book publisher name
      */
     public MediaBook(String id, String title, String year, String isbn,

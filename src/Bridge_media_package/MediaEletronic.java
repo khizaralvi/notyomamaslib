@@ -46,8 +46,9 @@ public class MediaEletronic extends Media {
      * @param year Media publishing year
      * @param cost Media cost
      * @param issn International Standard Serial number for Journal
-     * @param publsher Name of the publisher
+     * @param publisher Name of the publisher
      * @param authors List of Authors
+     * @param format format of the electronic book
      */
     public MediaEletronic(String id, String title, String year,String cost,String issn,String format,String publisher,ArrayList<String> authors) {
         super(id, title, year, cost);

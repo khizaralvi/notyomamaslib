@@ -49,6 +49,7 @@ public class MediaMovie extends Media {
      * @param title Media title
      * @param year Media publishing year
      * @param cost Media cost 
+     * @param genre Media genre
      */
     public MediaMovie(String id, String title, String year,String cost,String genre,String director,ArrayList<String> actors, String running_time) {
         super(id, title, year, cost);

@@ -18,9 +18,9 @@ public class CancellationList {
     /**
      * Constructor for CancellationList.
      * 
-     * @param mediaReserved
-     * @param dateReserved
-     * @param dateCanceled 
+     * @param mediaReserved media to be reserved
+     * @param dateReserved date on which media is reserved
+     * @param dateCanceled date on which reservation is canceled
      */
     public CancellationList(Media mediaReserved, Date dateReserved, Date dateCanceled) {
     }
