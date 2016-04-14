@@ -1,5 +1,7 @@
 package media_mgt;
 
+import java.util.Date;
+
 /**
  * CancellationList is the class that implements a list of canceled 
  * reservations made by the users.
@@ -7,18 +9,23 @@ package media_mgt;
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
  * @version 1.0.0
  */
-public class CancellationList extends Media {
+public class CancellationList {
     
+    private Media mediaReserved;
+    private Date dateReserved;
+    private Date dateCanceled;
+
     /**
-     * Constructor for CancellationList
+     * Constructor for CancellationList.
      * 
-     * @param id Media unique identifier
-     * @param title Media title
-     * @param year Media publishing year
-     * @param cost Media cost
+     * @param mediaReserved
+     * @param dateReserved
+     * @param dateCanceled 
      */
-    public CancellationList(String id, String title, String year, double cost) {
-        super(id, title, year, cost);
+    public CancellationList(Media mediaReserved, Date dateReserved, Date dateCanceled) {
+    }
+
+    public CancellationList() {
     }
     
 }

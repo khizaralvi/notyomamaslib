@@ -28,8 +28,21 @@ public class ReservationList extends Media {
     }
 
     /**
+     * This method will delete a reservation.
+     * A canceled reservation will be stored as a CancellationList object.
+     *
+     * @param reservation an ReservationList object that will be deleted
+     * @return an object of type CancellationList
+     */
+    public static CancellationList cancelReservation(ReservationList reservation) {
+        CancellationList canceledReserve;
+        canceledReserve = new CancellationList();
+        return canceledReserve;
+    }
+
+    /**
      * Returns the Media object saved in this reservation.
-     * 
+     *
      * @return Media object
      */
     public Media getMediaReserved() {
@@ -38,8 +51,8 @@ public class ReservationList extends Media {
 
     /**
      * Sets the Media object.
-     * 
-     * @param mediaReserved 
+     *
+     * @param mediaReserved
      */
     public void setMediaReserved(Media mediaReserved) {
         this.mediaReserved = mediaReserved;
@@ -47,7 +60,7 @@ public class ReservationList extends Media {
 
     /**
      * Returns the date the reservation was created.
-     * 
+     *
      * @return an object of type Date
      */
     public Date getReservationDate() {
