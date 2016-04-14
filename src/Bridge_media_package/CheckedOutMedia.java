@@ -1,4 +1,4 @@
-package media_mgt;
+package Bridge_media_package;
 
 /**
  * CheckedOutMedia is the class that implements a media that was borrowed
@@ -18,7 +18,7 @@ public class CheckedOutMedia extends Media {
      * @param year Media publishing year
      * @param cost Media cost
      */
-    public CheckedOutMedia(String id, String title, String year, double cost) {
+    public CheckedOutMedia(String id, String title, String year, String cost) {
         super(id, title, year, cost);
     }
 

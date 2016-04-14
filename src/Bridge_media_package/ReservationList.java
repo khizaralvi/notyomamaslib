@@ -1,4 +1,4 @@
-package media_mgt;
+package Bridge_media_package;
 
 import java.util.Date;
 
@@ -23,7 +23,7 @@ public class ReservationList extends Media {
      * @param year Media publishing year
      * @param cost Media cost
      */
-    public ReservationList(String id, String title, String year, double cost) {
+    public ReservationList(String id, String title, String year,String cost) {
         super(id, title, year, cost);
     }
 

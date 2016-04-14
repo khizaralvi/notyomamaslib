@@ -1,12 +1,11 @@
-package media_mgt;
+package Bridge_media_package;
 
 
 /**
- * MediaAcademic is the class for all media material of type academic
- * materials, such as journals, theses, dissertations, etc.
+ * MediaCD is the class for all media material of type CDs.
  * It inherits from Media superclass.
  * <p>
- * The MediaAcademic class encapsulates all state information related to academic materials.
+ * The MediaCD class encapsulates all state information related to CDs.
  * These state information includes: </p>
  * <ul>
  * <li></li>
@@ -17,18 +16,18 @@ package media_mgt;
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
  * @version 1.0.0
  */
-public class MediaAcademic extends Media {
+public class MediaCD extends Media {
 
     /**
-     * LOAN_PERIOD is the duration of a loan in days.
+     * Loan period is the duration of a loan in days.
      */
-    public static int LOAN_PERIOD = 28;
+    public static int LOAN_PERIOD = 14;
 
     /**
-     * LATE_FEE is the amount of money charged in cents per late day by the
+     * Late fee is the amount of money charged in cents per late day by the
      * Patron.
      */
-    public static double LATE_FEE = 0.10;
+    public static double LATE_FEE = 0.50;
 
     /**
      * RENEWABLE is true if media can be renewed by the patron, or false
@@ -42,14 +41,14 @@ public class MediaAcademic extends Media {
     public static int RENEW_TIMES = 1;
 
     /**
-     * Constructor for MediaAcademic
+     * Constructor for MediaCD
      *
      * @param id Media unique identifier
      * @param title Media title
      * @param year Media publishing year
-     * @param cost Media cost 
+     * @param cost Media cost
      */
-    public MediaAcademic(String id, String title, String year, double cost) {
+    public MediaCD(String id, String title, String year,String cost) {
         super(id, title, year, cost);
     }
 

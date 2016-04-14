@@ -1,4 +1,4 @@
-package media_mgt;
+package Bridge_media_package;
 
 import java.util.ArrayList;
 
@@ -66,7 +66,7 @@ public class MediaBook extends Media {
      */
     public MediaBook(String id, String title, String year, String isbn,
             String edition, String volume, String pages, String publisher, 
-            double cost) {
+            String cost) {
         super(id, title, year, cost);
     }
 
@@ -84,8 +84,10 @@ public class MediaBook extends Media {
      * @param edition Book edition as an integer number (1, 2, ...)
      * @param publisher Book publisher name
      */
+  
+    
     public void editMedia(String id, String title, String year, String isbn,
-            int edition, String publisher, double cost) {
+            int edition, String publisher, String cost) {
     }
 
     /**

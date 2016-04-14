@@ -1,4 +1,7 @@
-package media_mgt;
+package Bridge_media_package;
+
+import Jdbc_media_package.MediaJdbcClass;
+import java.util.ArrayList;
 
 /**
  * Media is the abstract base class for all media material existing in the
@@ -20,8 +23,12 @@ public abstract class Media {
     private String mediaId;
     private String mediaTitle;
     private String mediaYear;
-    private double mediaCost;
-
+    private String mediaCost;
+   
+    
+    private MediaJdbcClass mjc=new MediaJdbcClass();
+    
+        
     /**
      * Constructor for Media.
      *
@@ -30,40 +37,74 @@ public abstract class Media {
      * @param year Media publishing year
      * @param cost Media cost
      */
-    Media(String id, String title, String year, double cost) {
-    }
+   public Media(String id, String title, String year, String cost) {
+ 
+
+   }
 
     /**
      * This methods adds a new media to the catalog.
-     *
+     *@return Boolean values shows if the insertion was successful or not
      */
-    public void addMedia() {
+    public boolean addMedia() {
+   //  mjc.add_media(this);
+     return false;
     }
     
     /**
-     * This methods edits an existing media in the catalog.
-     *
+     * This is an abstract method which edits an existing media in the catalog.
+     * Each subtype class will have their own implementation of this method
+     * @param media_id Media_id
+     * @param atribute attribute to edit
+     * @param new_value new value provided to that attribute
      */
-    public void editMedia() {
-    }
+    
+     public void editMedia(String media_id, String attribute, String new_value)
+     {
+            // Media m=searchMedia(media_id);
+                 //switch statement to check confirm right attribute and then put the new value
+           // mjc.editMedia(this, media_id, attribute, new_value);
+     }
     
     /**
      * This methods deletes an existing media from the catalog.
-     *
+     *@param Media_id Media id to delete
      */
-    public void deleteMedia() {
+    public boolean deleteMedia(String Media_id) {
+  
+     
+        return false;
     }
     
     /**
      * This method will perform a search in the catalog.
      * 
-     * @param searchAttr This attribute is the string the user inputs to 
-     * perform a search in the catalog.
-     * @param attrType This attribute defines by which field the user is 
+     * @param attribute attribute that serves as the key for our search 
+     * 
+     *  
+     * @return Media object that was targeted by search method
      * trying to search.
      */
-    public static void searchMedia(String searchAttr, String attrType) {
+   
+    public ArrayList<Media> searchMedia(String attribute) {
+            
+         
+        return(mjc.searchMedia(this,attribute));
+          
+         
+     
     }
+  
+   /**
+    *  This method displays all media in the table 
+    */
+    public void BrowseMedia()
+    {
+      
+     
+    }
+    
+    
 
     /**
      * Returns the Media ID
@@ -91,13 +132,15 @@ public abstract class Media {
     public String getMediaYear() {
         return mediaYear;
     }
+    
+    
 
     /**
      * Returns the Media cost
      *
      * @return mediaCost Cost of media in US$
      */
-    public double getMediaCost() {
+    public String getMediaCost() {
         return mediaCost;
     }
 
@@ -130,7 +173,7 @@ public abstract class Media {
      *
      * @param cost Cost of media in US$
      */
-    public void setMediaCost(double cost) {
+    public void setMediaCost(String cost) {
     }
     
 }

@@ -1,4 +1,4 @@
-package media_mgt;
+package Bridge_media_package;
 
 /**
  * MediaMagazine is the class for all magazines. It inherits from Media
@@ -51,29 +51,11 @@ public class MediaMagazine extends Media {
      * @param publisher Magazine publisher name
      * @param issn ISSN code for that magazine
      */
-    public MediaMagazine(String id, String title, String year, double cost,
-            int issue, int month, String publisher, String issn) {
+    public MediaMagazine(String id, String title, String year, String cost,
+            String issue, String month, String publisher, String issn) {
         super(id, title, year, cost);
     }
     
-    /**
-     * This methods edits an existing media of type magazine in the catalog.
-     * <p>This method receives all editable attributes (all except mediaID) 
-     * when the use submits the modifications to update the entry in the 
-     * catalog.</p>
-     *
-     * @param id Media unique identifier
-     * @param title Media title
-     * @param year Media publishing year
-     * @param cost Media cost
-     * @param issue Magazine issue number
-     * @param month Magazine month publication
-     * @param publisher Magazine publisher name
-     * @param issn ISSN code for that magazine
-     */
-    public void editMedia(String id, String title, String year, double cost,
-            int issue, int month, String publisher, String issn) {  
-    }
 
     /**
      * Returns magazine issue number. The issue is the number of that specific

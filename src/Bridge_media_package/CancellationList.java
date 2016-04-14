@@ -1,4 +1,4 @@
-package media_mgt;
+package Bridge_media_package;
 
 import java.util.Date;
 
