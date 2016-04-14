@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class CancellationList {
     
-    private CheckedOutMedia mediaReserved;
+    private ReservationList mediaReserved;
     private Date dateCanceled;
 
     /**
@@ -20,24 +20,24 @@ public class CancellationList {
      * @param reserved An object of type CheckedOutMedia
      * @param cancellation Date in which cancellation was performed.
      */
-    public CancellationList(CheckedOutMedia reserved, Date cancellation) {
+    public CancellationList(ReservationList reserved, Date cancellation) {
     }
 
     /**
-     * Returns the object of type CheckedOutMedia.
+     * Returns the object of type ReservationList.
      * 
-     * @return object of type CheckedOutMedia
+     * @return object of type ReservationList
      */
-    public CheckedOutMedia getMediaReserved() {
+    public ReservationList getMediaReserved() {
         return mediaReserved;
     }
 
     /**
-     * Sets the object of type CheckedOutMedia.
+     * Sets the object of type ReservationList.
      * 
-     * @param mediaReserved object of type CheckedOutMedi
+     * @param mediaReserved object of type ReservationList
      */
-    public void setMediaReserved(CheckedOutMedia mediaReserved) {
+    public void setMediaReserved(ReservationList mediaReserved) {
         this.mediaReserved = mediaReserved;
     }
 

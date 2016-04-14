@@ -24,11 +24,9 @@ public abstract class Media {
     private String mediaTitle;
     private String mediaYear;
     private String mediaCost;
-   
-    
-    private MediaJdbcClass mjc=new MediaJdbcClass();
-    
-        
+
+    private MediaJdbcClass mjc = new MediaJdbcClass();
+
     /**
      * Constructor for Media.
      *
@@ -37,77 +35,78 @@ public abstract class Media {
      * @param year Media publishing year
      * @param cost Media cost
      */
-   public Media(String id, String title, String year, String cost) {
- 
+    public Media(String id, String title, String year, String cost) {
 
-   }
+    }
 
     /**
      * This methods adds a new media to the catalog.
-     *@return Boolean values shows if the insertion was successful or not
+     *
+     * @return Boolean values shows if the insertion was successful or not
      */
     public boolean addMedia() {
-   //  mjc.add_media(this);
-     return false;
+        //  mjc.add_media(this);
+        return false;
     }
-    
+
     /**
-     * This method edits an existing media in the catalog.
-     * Each subtype class will have their own implementation of this method
+     * This method edits an existing media in the catalog. Each subtype class
+     * will have their own implementation of this method
+     *
      * @param media_id Media_id
      * @param attribute attribute to edit
      * @param new_value new value provided to that attribute
      */
-    
-     public void editMedia(String media_id, String attribute, String new_value)
-     {
-            // Media m=searchMedia(media_id);
-                 //switch statement to check confirm right attribute and then put the new value
-           // mjc.editMedia(this, media_id, attribute, new_value);
-     }
-    
+    public void editMedia(String media_id, String attribute, String new_value) {
+        // Media m=searchMedia(media_id);
+        //switch statement to check confirm right attribute and then put the new value
+        // mjc.editMedia(this, media_id, attribute, new_value);
+    }
+
     /**
      * This methods deletes an existing media from the catalog.
-     *@param Media_id Media id to delete
-     *@return boolean shows if media is deleted successfully
+     *
+     * @param Media_id Media id to delete
+     * @return boolean shows if media is deleted successfully
      *
      */
     public boolean deleteMedia(String Media_id) {
-  
-     
+
         return false;
+    }
+
+    /**
+     * This method will perform a search in the catalog.
+     *
+     * @param attribute attribute that serves as the key for our search
+     *
+     *
+     * @return Media object that was targeted by search method trying to search.
+     */
+    public ArrayList<Media> searchMedia(String attribute) {
+
+        return (mjc.searchMedia(this, attribute));
+
+    }
+
+    /**
+     * This method displays all media in the table
+     */
+    public void browseMedia() {
+
     }
     
     /**
-     * This method will perform a search in the catalog.
+     * This methods performs a reservation of a media to a patron account.
      * 
-     * @param attribute attribute that serves as the key for our search 
-     * 
-     *  
-     * @return Media object that was targeted by search method
-     * trying to search.
+     * @param patronId Patron's Id
+     * @return an object of type ReservationList
      */
-   
-    public ArrayList<Media> searchMedia(String attribute) {
-            
-         
-        return(mjc.searchMedia(this,attribute));
-          
-         
-     
-    }
-  
-   /**
-    *  This method displays all media in the table 
-    */
-    public void BrowseMedia()
-    {
-      
-     
+    public ReservationList reserveMedia(String patronId) {
+        ReservationList reserved = new ReservationList(this);
+        return reserved;
     }
     
-    
-
     /**
      * Returns the Media ID
      *
@@ -134,8 +133,6 @@ public abstract class Media {
     public String getMediaYear() {
         return mediaYear;
     }
-    
-    
 
     /**
      * Returns the Media cost
@@ -177,5 +174,5 @@ public abstract class Media {
      */
     public void setMediaCost(String cost) {
     }
-    
+
 }

@@ -9,7 +9,7 @@ import java.util.Date;
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
  * @version 1.0.0
  */
-public class ReservationList extends Media {
+public class ReservationList {
 
     // private Accounts user;
     private Media mediaReserved;
@@ -18,25 +18,21 @@ public class ReservationList extends Media {
     /**
      * Constructor for ReservationList.
      *
-     * @param id Media unique identifier
-     * @param title Media title
-     * @param year Media publishing year
-     * @param cost Media cost
+     * @param reserved
      */
-    public ReservationList(String id, String title, String year,String cost) {
-        super(id, title, year, cost);
+    public ReservationList(Media reserved) {
     }
 
     /**
      * This method will delete a reservation.
      * A canceled reservation will be stored as a CancellationList object.
      *
-     * @param reservation an ReservationList object that will be deleted
      * @return an object of type CancellationList
      */
-    public static CancellationList cancelReservation(ReservationList reservation) {
+    public CancellationList cancelReservation() {
         CancellationList canceledReserve;
-        canceledReserve = new CancellationList();
+        Date curDate = new Date();
+        canceledReserve = new CancellationList(this, curDate);
         return canceledReserve;
     }
 
