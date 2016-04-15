@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Test_package;
+package library.testing;
 
-import Bridge_media_package.Media;
-import Bridge_media_package.MediaBook;
+import library.media.Media;
+import library.media.MediaBook;
 
 /**
  *

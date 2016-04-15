@@ -1,6 +1,6 @@
-package Bridge_media_package;
+package library.media;
 
-import Jdbc_media_package.MediaJdbcClass;
+import library.jdbc.MediaJdbcClass;
 import java.util.ArrayList;
 
 /**

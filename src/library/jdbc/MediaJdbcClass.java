@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Jdbc_media_package;
+package library.jdbc;
 
-import Bridge_media_package.Media;
-import Bridge_media_package.MediaAcademic;
-import Bridge_media_package.MediaBook;
-import Bridge_media_package.MediaCD;
-import Bridge_media_package.MediaEletronic;
-import Bridge_media_package.MediaMagazine;
-import Bridge_media_package.MediaMovie;
+import library.media.Media;
+import library.media.MediaAcademic;
+import library.media.MediaBook;
+import library.media.MediaCD;
+import library.media.MediaEletronic;
+import library.media.MediaMagazine;
+import library.media.MediaMovie;
 import java.sql.*;
 import java.util.ArrayList;
 

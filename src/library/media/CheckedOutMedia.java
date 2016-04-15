@@ -1,4 +1,4 @@
-package Bridge_media_package;
+package library.media;
 
 /**
  * CheckedOutMedia is the class that implements a media that was borrowed by a

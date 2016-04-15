@@ -1,4 +1,4 @@
-package Bridge_media_package;
+package library.media;
 
 /**
  * MediaMagazine is the class for all magazines. It inherits from Media
