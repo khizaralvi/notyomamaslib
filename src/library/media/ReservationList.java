@@ -29,11 +29,7 @@ public class ReservationList {
      *
      * @return an object of type CancellationList
      */
-    public CancellationList cancelReservation() {
-        CancellationList canceledReserve;
-        Date curDate = new Date();
-        canceledReserve = new CancellationList(this, curDate);
-        return canceledReserve;
+    public void cancelReservation() {
     }
 
     /**

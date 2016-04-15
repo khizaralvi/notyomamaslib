@@ -28,9 +28,9 @@ __Team in charge:__ team #2
 
 * __Media Collection__:
 	* AddMedia
-  * CancelReservation
+	* CancelReservation
 	* CheckOutMedia
-  * DeleteMedia
+	* DeleteMedia
 	* EditMedia
 	* ReserveMedia
 	* SearchMedia
