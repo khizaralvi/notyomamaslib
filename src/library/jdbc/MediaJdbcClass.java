@@ -8,9 +8,6 @@ package library.jdbc;
 import library.media.Media;
 import library.media.MediaAcademic;
 import library.media.MediaBook;
-import library.media.MediaCD;
-import library.media.MediaEletronic;
-import library.media.MediaMagazine;
 import library.media.MediaMovie;
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,9 +26,6 @@ public class MediaJdbcClass{
    private ArrayList<Media> media;
    private Media media_var;
    private MediaBook media_book;
-   private MediaCD media_cd;
-   private MediaEletronic media_electronic;
-   private MediaMagazine media_megazine;
    private MediaMovie media_movie;
    private MediaAcademic media_academy;
    
