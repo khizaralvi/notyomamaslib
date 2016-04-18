@@ -2,10 +2,9 @@ package library.media;
 
 import java.util.ArrayList;
 
-
 /**
- * MediaMovie is the class for all material of type movie.
- * It inherits from Media superclass.
+ * MediaMovie is the class for all material of type movie. It inherits from
+ * Media superclass.
  * <p>
  * The MediaMovie class encapsulates all state information related to movies.
  * These state information includes: </p>
@@ -20,11 +19,11 @@ import java.util.ArrayList;
  */
 public class MediaMovie extends Media {
 
-      private String genre;
-      private String director;
-      private ArrayList<String> actors;
-      private String running_time;
-      
+    private String genre;
+    private String director;
+    private ArrayList<String> actors;
+    private String running_time;
+
     /**
      * Loan period is the duration of a loan in days.
      */
@@ -44,25 +43,25 @@ public class MediaMovie extends Media {
 
     /**
      * Constructor for MediaMovie
-     * 
+     *
      * @param id Media unique identifier
      * @param title Media title
      * @param year Media publishing year
-     * @param cost Media cost 
+     * @param cost Media cost
      * @param genre Media genre
      * @param director Director name
      * @param actors List of main actors
      * @param running_time Duration in minutes
      */
-    public MediaMovie(String id, String title, String year,String cost,
-            String genre,String director, ArrayList<String> actors, 
+    public MediaMovie(String id, String title, String year, String cost,
+            String genre, String director, ArrayList<String> actors,
             String running_time) {
         super(id, title, year, cost, 'M');
     }
 
     /**
      * Returns genre of movie.
-     * 
+     *
      * @return genre of movie
      */
     public String getGenre() {
@@ -70,8 +69,8 @@ public class MediaMovie extends Media {
     }
 
     /**
-     * Sets genre of movie. 
-     * 
+     * Sets genre of movie.
+     *
      * @param genre genre of movie
      */
     public void setGenre(String genre) {
@@ -79,7 +78,7 @@ public class MediaMovie extends Media {
 
     /**
      * Returns the director name.
-     * 
+     *
      * @return director name
      */
     public String getDirector() {
@@ -88,7 +87,7 @@ public class MediaMovie extends Media {
 
     /**
      * Sets director name.
-     * 
+     *
      * @param director director name
      */
     public void setDirector(String director) {
@@ -96,7 +95,7 @@ public class MediaMovie extends Media {
 
     /**
      * Returns all main actors.
-     * 
+     *
      * @return an ArrayList of strings with name of main actors
      */
     public ArrayList<String> getActors() {
@@ -105,7 +104,7 @@ public class MediaMovie extends Media {
 
     /**
      * Sets list of main actors.
-     * 
+     *
      * @param actors an ArrayList of strings with name of main actors
      */
     public void setActors(ArrayList<String> actors) {
@@ -114,7 +113,7 @@ public class MediaMovie extends Media {
 
     /**
      * Returns the duration of the movie.
-     * 
+     *
      * @return duration of movie in minutes
      */
     public String getRunning_time() {
@@ -122,8 +121,8 @@ public class MediaMovie extends Media {
     }
 
     /**
-     * Sets the duration of the movie. 
-     * 
+     * Sets the duration of the movie.
+     *
      * @param running_time duration of movie in minutes
      */
     public void setRunning_time(String running_time) {
@@ -132,7 +131,7 @@ public class MediaMovie extends Media {
 
     /**
      * toString method for MediaMovie object.
-     * 
+     *
      * @return string with all detail information about the movie.
      */
     @Override

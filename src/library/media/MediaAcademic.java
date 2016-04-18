@@ -2,14 +2,13 @@ package library.media;
 
 import java.util.ArrayList;
 
-
 /**
- * MediaAcademic is the class for all media material of type academic
- * materials, such as journals, theses, dissertations, etc.
- * It inherits from Media superclass.
+ * MediaAcademic is the class for all media material of type academic materials,
+ * such as journals, theses, dissertations, etc. It inherits from Media
+ * superclass.
  * <p>
- * The MediaAcademic class encapsulates all state information related to academic materials.
- * These state information includes: </p>
+ * The MediaAcademic class encapsulates all state information related to
+ * academic materials. These state information includes: </p>
  * <ul>
  * <li></li>
  * <li></li>
@@ -25,7 +24,7 @@ public class MediaAcademic extends Media {
     private String numberOfPages;
     private ArrayList<String> authors;
     private String documentType;
-    
+
     /**
      * LOAN_PERIOD is the duration of a loan in days.
      */
@@ -54,21 +53,21 @@ public class MediaAcademic extends Media {
      * @param id Media unique identifier
      * @param title Media title
      * @param year Media publishing year
-     * @param cost Media cost 
+     * @param cost Media cost
      * @param publisher Journals publisher
-     * @param author Authors list 
+     * @param author Authors list
      * @param numberOfPages Total number of pages of journal
      * @param documentType Document type of the journal
      */
-    public MediaAcademic(String id, String title, String year,String cost,
-            String publisher,ArrayList<String> author, 
-            String numberOfPages,String documentType) {
+    public MediaAcademic(String id, String title, String year, String cost,
+            String publisher, ArrayList<String> author,
+            String numberOfPages, String documentType) {
         super(id, title, year, cost, 'A');
     }
 
     /**
      * Returns the publisher.
-     * 
+     *
      * @return publisher name.
      */
     public String getPublisher() {
@@ -77,7 +76,7 @@ public class MediaAcademic extends Media {
 
     /**
      * Sets the publisher name.
-     * 
+     *
      * @param publisher publisher name
      */
     public void setPublisher(String publisher) {
@@ -85,7 +84,7 @@ public class MediaAcademic extends Media {
 
     /**
      * Returns number of pages.
-     * 
+     *
      * @return number of pages.
      */
     public String getNumberOfPages() {
@@ -94,7 +93,7 @@ public class MediaAcademic extends Media {
 
     /**
      * Sets number of pages.
-     * 
+     *
      * @param numberOfPages number of pages
      */
     public void setNumberOfPages(String numberOfPages) {
@@ -102,7 +101,7 @@ public class MediaAcademic extends Media {
 
     /**
      * Returns a list with all authors.
-     * 
+     *
      * @return an ArrayList of strings with all authors.
      */
     public ArrayList<String> getAuthors() {
@@ -111,16 +110,16 @@ public class MediaAcademic extends Media {
 
     /**
      * Sets authors of academic material.
-     * 
+     *
      * @param authors an ArrayList of strings with the name of all authors.
      */
     public void setAuthors(ArrayList<String> authors) {
     }
 
     /**
-     * Returns the type of academic material.
-     * These type could be journal, these, dissertation.
-     * 
+     * Returns the type of academic material. These type could be journal,
+     * these, dissertation.
+     *
      * @return document type
      */
     public String getDocumentType() {
@@ -128,9 +127,9 @@ public class MediaAcademic extends Media {
     }
 
     /**
-     * Sets the type of academic material.
-     * These type could be journal, these, dissertation.
-     * 
+     * Sets the type of academic material. These type could be journal, these,
+     * dissertation.
+     *
      * @param documentType type of document
      */
     public void setDocumentType(String documentType) {
@@ -138,13 +137,11 @@ public class MediaAcademic extends Media {
 
     /**
      * toString method for MediaAcademic object.
-     * 
+     *
      * @return string with all detail information about the academic material.
      */
     @Override
     public String toString() {
         return "";
     }
-   
-   
 }

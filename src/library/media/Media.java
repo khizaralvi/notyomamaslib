@@ -1,7 +1,5 @@
 package library.media;
 
-import java.util.Objects;
-
 /**
  * Media is the abstract base class for all media material existing in the
  * library system.
@@ -136,5 +134,4 @@ public abstract class Media {
     public boolean equals(Media m) {
         return m.mediaId.equals(this.mediaId);
     }
-
 }

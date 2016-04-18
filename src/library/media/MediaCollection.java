@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 /**
  * MediaCollection is the collection of all Media in the catalog. The
- * MediaColletion will store an array of Media
+ * MediaColletion will store an array of Media and the total number of available
+ * Media in the catalog.
  *
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
  */
@@ -33,7 +34,7 @@ public class MediaCollection {
 
     /**
      * Sets the ArrayList of Media in MediaCollection.
-     * 
+     *
      * @param media ArrayList of Media
      */
     public void setMedia(ArrayList<Media> media) {
@@ -50,11 +51,10 @@ public class MediaCollection {
 
     /**
      * Sets the total of Media.
-     * 
-     * @param total number of Media in the catalog.
+     *
+     * @param total number of Media in the catalog
      */
     public void setTotal(int total) {
-        this.total = total;
     }
 
     /**
@@ -86,7 +86,7 @@ public class MediaCollection {
      * This methods deletes an existing media from the catalog.
      *
      * @param mediaId Media id to delete
-     * @return boolean shows if media is deleted successfully
+     * @return boolean if media was deleted successfully, false otherwise
      */
     public boolean deleteMedia(String mediaId) {
         total--;
@@ -98,21 +98,18 @@ public class MediaCollection {
      *
      * @param attribute attribute that serves as the key for search
      * @param value value typed by user to perform search
+     * @return an ArrayList of Media with all entries retrieved from the search
      */
-    public void searchMedia(String attribute, String value) {
-    }
-
-    /**
-     * This method displays all media in the catalog.
-     */
-    public void browseMedia() {
+    public ArrayList<Media> searchMedia(String attribute, String value) {
+        ArrayList<Media> resultSet = new ArrayList<>();
+        return resultSet;
     }
 
     /**
      * This methods performs a reservation of a media to a patron account.
      *
-     * @param patronId Patron's Id
-     * @param mediaId Media's Id to be reserved
+     * @param patronId Patron Id
+     * @param mediaId Media Id to be reserved
      * @return an object of type Reservation
      */
     public Reservation reserveMedia(String patronId, String mediaId) {
@@ -122,12 +119,11 @@ public class MediaCollection {
 
     /**
      * toString() method to MediaCollection
+     *
      * @return detail for every Media
      */
     @Override
     public String toString() {
         return "";
     }
-    
-   
 }

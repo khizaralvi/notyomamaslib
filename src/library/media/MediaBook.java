@@ -166,12 +166,11 @@ public class MediaBook extends Media {
 
     /**
      * toString method for MediaBook object.
-     * 
+     *
      * @return string with all detail information about the book.
      */
     @Override
     public String toString() {
         return "";
     }
-   
 }
