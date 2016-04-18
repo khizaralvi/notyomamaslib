@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package library.jdbc;
 
 import library.media.Media;
@@ -11,91 +6,82 @@ import library.media.MediaBook;
 import library.media.MediaMovie;
 import java.sql.*;
 import java.util.ArrayList;
+import library.media.Reservation;
 
 /**
  *
  * @author Adil Imam
  */
-public class MediaJdbcClass{
-    
-   private Media m=null;
-   private Connection con=null;
-   private ResultSet rs=null;
-   private Statement statement=null;
-   private PreparedStatement prepared=null;
-   private ArrayList<Media> media;
-   private Media media_var;
-   private MediaBook media_book;
-   private MediaMovie media_movie;
-   private MediaAcademic media_academy;
-   
-   public MediaJdbcClass()
-   {
-   
-   
-   }
-    
-  
-   
-   /**
-    * 
-    * @param m an object of reference type Media
-    * @return boolean shows if the add media was successful or not 
-    */
-   public boolean add_media(Media m)
-   {
-    //  System.out.println(m.getClass().toString());
-      //System.out.println("This will store it into database");
-    
-       //the following steps are done to get the correct subclass to store that to the right table
-     // int index=m.getClass().toString().indexOf(".");
-      //System.out.println(m.getClass().toString().substring(index+1));
-      
-        return false;
-   
-   }
-   
-   /**
-    * 
-    * @param Media_id delete the media identified by the given id
-    * @return shows if delete was successful or not
-    */
-   public boolean deleteMedia(String Media_id) {
-    
-     return false;   
-    }
-   
-   /**
-    * 
-    * @param m object of reference type Media
-    * @param attribute the attribute to search for
-    * @return ArrayList of Media
-    */
-  
- public ArrayList<Media> searchMedia(Media m,String attribute) {
+public class MediaJdbcClass {
 
-     //you will get the class like that
-     // int index=m.getClass().toString().indexOf(".");
-     //System.out.println(m.getClass().toString().substring(index+1));
-     
-     //since result set is a list by itself..it would need a list to be mapped onto
-     //that list will be returned back to Media Class
-     
-        return null;
-     
+    private Media m = null;
+    private Connection con = null;
+    private ResultSet rs = null;
+    private Statement statement = null;
+    private PreparedStatement prepared = null;
+
+    /**
+     * Constructor for MediaJdbcClass.
+     */
+    public MediaJdbcClass() {
     }
-   
- /**
-  * 
-  * @param media_id
-  * @param attribute
-  * @param new_value 
-  */
- public void editMedia(Media m,String media_id, String attribute, String new_value)
-     {
-            // Media m=searchMedia(media_id);
-                 //switch statement to check confirm right attribute and then put the new value
-     }
-    
-    
+
+    /**
+     * This methods adds a new media to the catalog.
+     *
+     * @param m Media to be added
+     * @return true if the insertion was successful or false otherwise
+     */
+    public boolean addMedia(Media m) {
+        return true;
+    }
+
+    /**
+     * This method edits an existing media in the catalog. Each subtype class
+     * will have their own implementation of this method
+     *
+     * @param mediaId Media unique identifier
+     * @param attribute attribute to edit
+     * @param newValue new value provided to that attribute
+     * @return true if the edition was successful or false otherwise
+     */
+    public boolean editMedia(String mediaId, String attribute,
+            String newValue) {
+        return true;
+    }
+
+    /**
+     * This methods deletes an existing media from the catalog.
+     *
+     * @param mediaId Media id to delete
+     * @return boolean if media was deleted successfully, false otherwise
+     */
+    public boolean deleteMedia(String mediaId) {
+        return true;
+    }
+
+    /**
+     * This method will perform a search in the catalog.
+     *
+     * @param attribute attribute that serves as the key for search
+     * @param value value typed by user to perform search
+     * @return an ArrayList of Media with all entries retrieved from the search
+     */
+    public ArrayList<Media> searchMedia(String attribute, String value) {
+        ArrayList<Media> resultSet = new ArrayList<>();
+        return resultSet;
+    }
+
+    /**
+     * This methods performs a reservation of a media to a patron account.
+     *
+     * @param patronId Patron Id
+     * @param mediaId Media Id to be reserved
+     * @return an object of type Reservation
+     */
+    public Reservation reserveMedia(String patronId, String mediaId) {
+        Reservation reserved = new Reservation(patronId, mediaId);
+        return reserved;
+    }
+
 }
