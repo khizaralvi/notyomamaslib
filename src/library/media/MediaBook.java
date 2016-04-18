@@ -65,29 +65,9 @@ public class MediaBook extends Media {
      * @param publisher Book publisher name
      */
     public MediaBook(String id, String title, String year, String isbn,
-            String edition, String volume, String pages, String publisher, 
+            String edition, String volume, String pages, String publisher,
             String cost) {
-        super(id, title, year, cost);
-    }
-
-    /**
-     * This methods edits an existing media of type book in the catalog.
-     * <p>
-     * This method receives all editable attributes (all except mediaID) when
-     * the use submits the modifications to update the entry in the catalog.</p>
-     *
-     * @param id Media unique identifier
-     * @param title Media title
-     * @param year Media publishing year
-     * @param cost Media cost
-     * @param isbn Book ISBN
-     * @param edition Book edition as an integer number (1, 2, ...)
-     * @param publisher Book publisher name
-     */
-  
-    
-    public void editMedia(String id, String title, String year, String isbn,
-            int edition, String publisher, String cost) {
+        super(id, title, year, cost, 'B');
     }
 
     /**
@@ -100,6 +80,14 @@ public class MediaBook extends Media {
     }
 
     /**
+     * Sets the ISBN code
+     *
+     * @param isbn ISBN code
+     */
+    public void setIsbn(String isbn) {
+    }
+
+    /**
      * Returns the book edition
      *
      * @return book edition
@@ -109,12 +97,28 @@ public class MediaBook extends Media {
     }
 
     /**
+     * Sets the book edition
+     *
+     * @param edition book edition
+     */
+    public void setEdition(int edition) {
+    }
+
+    /**
      * Returns the book volume
      *
      * @return book volume
      */
     public String getVolume() {
         return bookVolume;
+    }
+
+    /**
+     * Sets the book volume
+     *
+     * @param volume book volume
+     */
+    public void setVolume(int volume) {
     }
 
     /**
@@ -136,44 +140,20 @@ public class MediaBook extends Media {
     }
 
     /**
+     * Sets the publisher name
+     *
+     * @param publisher publisher name
+     */
+    public void setPublisher(String publisher) {
+    }
+
+    /**
      * Returns all the authors for the book.
      *
      * @return an ArrayList of strings with the name of all authors.
      */
     public ArrayList<String> getAuthors() {
         return bookAuthors;
-    }
-
-    /**
-     * Sets the ISBN code
-     *
-     * @param isbn ISBN code
-     */
-    public void setIsbn(String isbn) {
-    }
-
-    /**
-     * Sets the book edition
-     *
-     * @param edition book edition
-     */
-    public void setEdition(int edition) {
-    }
-
-    /**
-     * Sets the book volume
-     *
-     * @param volume book volume
-     */
-    public void setVolume(int volume) {
-    }
-
-    /**
-     * Sets the publisher name
-     *
-     * @param publisher publisher name
-     */
-    public void setPublisher(String publisher) {
     }
 
     /**
@@ -184,4 +164,14 @@ public class MediaBook extends Media {
     public void setAuthors(ArrayList<String> authors) {
     }
 
+    /**
+     * toString method for MediaBook object.
+     * 
+     * @return string with all detail information about the book.
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
+   
 }

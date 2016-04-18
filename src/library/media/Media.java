@@ -1,7 +1,6 @@
 package library.media;
 
-import library.jdbc.MediaJdbcClass;
-import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Media is the abstract base class for all media material existing in the
@@ -13,10 +12,10 @@ import java.util.ArrayList;
  * <li>A unique Media ID</li>
  * <li>Title</li>
  * <li>Publishing year</li>
+ * <li>Media cost</li>
  * </ul>
  *
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
- * @version 1.0.0
  */
 public abstract class Media {
 
@@ -24,8 +23,7 @@ public abstract class Media {
     private String mediaTitle;
     private String mediaYear;
     private String mediaCost;
-
-    private MediaJdbcClass mjc = new MediaJdbcClass();
+    private char mediaType; // Media types: A (Academic), B (Book), M (Movie)
 
     /**
      * Constructor for Media.
@@ -34,104 +32,60 @@ public abstract class Media {
      * @param title Media title
      * @param year Media publishing year
      * @param cost Media cost
+     * @param type Type of Media
      */
-    public Media(String id, String title, String year, String cost) {
-
+    public Media(String id, String title, String year, String cost, char type) {
     }
 
-    /**
-     * This methods adds a new media to the catalog.
-     *
-     * @return Boolean values shows if the insertion was successful or not
-     */
-    public boolean addMedia() {
-        //  mjc.add_media(this);
-        return false;
-    }
-
-    /**
-     * This method edits an existing media in the catalog. Each subtype class
-     * will have their own implementation of this method
-     *
-     * @param media_id Media_id
-     * @param attribute attribute to edit
-     * @param new_value new value provided to that attribute
-     */
-    public void editMedia(String media_id, String attribute, String new_value) {
-        // Media m=searchMedia(media_id);
-        //switch statement to check confirm right attribute and then put the new value
-        // mjc.editMedia(this, media_id, attribute, new_value);
-    }
-
-    /**
-     * This methods deletes an existing media from the catalog.
-     *
-     * @param Media_id Media id to delete
-     * @return boolean shows if media is deleted successfully
-     *
-     */
-    public boolean deleteMedia(String Media_id) {
-
-        return false;
-    }
-
-    /**
-     * This method will perform a search in the catalog.
-     *
-     * @param attribute attribute that serves as the key for our search
-     *
-     *
-     * @return Media object that was targeted by search method trying to search.
-     */
-    public ArrayList<Media> searchMedia(String attribute) {
-
-        return (mjc.searchMedia(this, attribute));
-
-    }
-
-    /**
-     * This method displays all media in the table
-     */
-    public void browseMedia() {
-
-    }
-    
-    /**
-     * This methods performs a reservation of a media to a patron account.
-     * 
-     * @param patronId Patron's Id
-     * @return an object of type ReservationList
-     */
-    public ReservationList reserveMedia(String patronId) {
-        ReservationList reserved = new ReservationList(this);
-        return reserved;
-    }
-    
     /**
      * Returns the Media ID
      *
-     * @return mediaId Media unique identifier
+     * @return Media unique identifier
      */
     public String getMediaId() {
         return mediaId;
     }
 
     /**
+     * Sets the Media Id
+     *
+     * @param id Media unique identifier
+     */
+    public void setMediaId(String id) {
+    }
+
+    /**
      * Returns the Media title
      *
-     * @return mediaTitle Media title
+     * @return Media title
      */
     public String getMediaTitle() {
         return mediaTitle;
     }
 
     /**
+     * Sets the Media title
+     *
+     * @param title Media title
+     */
+    public void setMediaTitle(String title) {
+    }
+
+    /**
      * Returns the Media publication year
      *
-     * @return mediaYear Publication year in format YYYY
+     * @return Publication year in format YYYY
      */
     public String getMediaYear() {
         return mediaYear;
+    }
+
+    /**
+     * Sets the Media publication year
+     *
+     * @param year Publication year in format YYYY
+     */
+    public void setMediaYear(String year) {
     }
 
     /**
@@ -144,35 +98,43 @@ public abstract class Media {
     }
 
     /**
-     * Sets the Media Id
-     *
-     * @param id Media unique identifier
-     */
-    public void setMediaId(String id) {
-    }
-
-    /**
-     * Sets the Media title
-     *
-     * @param title Media title
-     */
-    public void setMediaTitle(String title) {
-    }
-
-    /**
-     * Sets the Media publication year
-     *
-     * @param year Publication year in format YYYY
-     */
-    public void setMediaYear(String year) {
-    }
-
-    /**
      * Sets the Media cost
      *
      * @param cost Cost of media in US$
      */
     public void setMediaCost(String cost) {
+    }
+
+    /**
+     * Returns the type of media. Media types: A (Academic), B (Book), M (Movie)
+     *
+     * @return a char indicating which type of Media is this.
+     */
+    public char getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(char mediaType) {
+    }
+
+    /**
+     * toString() method to print Media details
+     *
+     * @return string with all attributes of Media
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
+
+    /**
+     * equals method to compare two Media objects.
+     *
+     * @param m Media object
+     * @return true if same object, false otherwise.
+     */
+    public boolean equals(Media m) {
+        return m.mediaId.equals(this.mediaId);
     }
 
 }

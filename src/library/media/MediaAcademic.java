@@ -21,10 +21,10 @@ import java.util.ArrayList;
  */
 public class MediaAcademic extends Media {
 
-    private String publish_sphere;
-    private String number_of_pages;
+    private String publisher;
+    private String numberOfPages;
     private ArrayList<String> authors;
-    private String document_type;
+    private String documentType;
     
     /**
      * LOAN_PERIOD is the duration of a loan in days.
@@ -55,50 +55,96 @@ public class MediaAcademic extends Media {
      * @param title Media title
      * @param year Media publishing year
      * @param cost Media cost 
-     * @param publishing_sphere Journals publishing country
+     * @param publisher Journals publisher
      * @param author Authors list 
-     * @param num_of_pages Total number of pages of journal
-     * @param  document_type Document type of the journal
+     * @param numberOfPages Total number of pages of journal
+     * @param documentType Document type of the journal
      */
-    public MediaAcademic(String id, String title, String year,String cost,String publishing_sphere,ArrayList<String> author, String num_of_pages,String document_type) {
-        super(id, title, year, cost);
-        this.publish_sphere=publishing_sphere;
-        this.document_type=document_type;
-        this.number_of_pages=num_of_pages;
-        this.authors=author;
+    public MediaAcademic(String id, String title, String year,String cost,
+            String publisher,ArrayList<String> author, 
+            String numberOfPages,String documentType) {
+        super(id, title, year, cost, 'A');
     }
 
-    public String getPublish_sphere() {
-        return publish_sphere;
+    /**
+     * Returns the publisher.
+     * 
+     * @return publisher name.
+     */
+    public String getPublisher() {
+        return publisher;
     }
 
-    public void setPublish_sphere(String publish_sphere) {
-        this.publish_sphere = publish_sphere;
+    /**
+     * Sets the publisher name.
+     * 
+     * @param publisher publisher name
+     */
+    public void setPublisher(String publisher) {
     }
 
-    public String getNumber_of_pages() {
-        return number_of_pages;
+    /**
+     * Returns number of pages.
+     * 
+     * @return number of pages.
+     */
+    public String getNumberOfPages() {
+        return numberOfPages;
     }
 
-    public void setNumber_of_pages(String number_of_pages) {
-        this.number_of_pages = number_of_pages;
+    /**
+     * Sets number of pages.
+     * 
+     * @param numberOfPages number of pages
+     */
+    public void setNumberOfPages(String numberOfPages) {
     }
 
+    /**
+     * Returns a list with all authors.
+     * 
+     * @return an ArrayList of strings with all authors.
+     */
     public ArrayList<String> getAuthors() {
         return authors;
     }
 
+    /**
+     * Sets authors of academic material.
+     * 
+     * @param authors an ArrayList of strings with the name of all authors.
+     */
     public void setAuthors(ArrayList<String> authors) {
-        this.authors = authors;
     }
 
-    public String getDocument_type() {
-        return document_type;
+    /**
+     * Returns the type of academic material.
+     * These type could be journal, these, dissertation.
+     * 
+     * @return document type
+     */
+    public String getDocumentType() {
+        return documentType;
     }
 
-    public void setDocument_type(String document_type) {
-        this.document_type = document_type;
+    /**
+     * Sets the type of academic material.
+     * These type could be journal, these, dissertation.
+     * 
+     * @param documentType type of document
+     */
+    public void setDocumentType(String documentType) {
     }
 
+    /**
+     * toString method for MediaAcademic object.
+     * 
+     * @return string with all detail information about the academic material.
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
+   
    
 }

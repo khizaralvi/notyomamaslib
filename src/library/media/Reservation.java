@@ -9,45 +9,28 @@ import java.util.Date;
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
  * @version 1.0.0
  */
-public class ReservationList {
+public class Reservation {
 
     // private Accounts user;
-    private Media mediaReserved;
+    private String mediaId;
+    private String patronId;
     private Date reservationDate;
 
     /**
      * Constructor for ReservationList.
      *
-     * @param reserved
+     * @param mediaId
+     * @param patronId
      */
-    public ReservationList(Media reserved) {
+    public Reservation(String mediaId, String patronId) {
     }
 
     /**
      * This method will delete a reservation.
      * A canceled reservation will be stored as a CancellationList object.
      *
-     * @return an object of type CancellationList
      */
     public void cancelReservation() {
-    }
-
-    /**
-     * Returns the Media object saved in this reservation.
-     *
-     * @return Media object
-     */
-    public Media getMediaReserved() {
-        return mediaReserved;
-    }
-
-    /**
-     * Sets the Media object.
-     *
-     * @param mediaReserved
-     */
-    public void setMediaReserved(Media mediaReserved) {
-        this.mediaReserved = mediaReserved;
     }
 
     /**

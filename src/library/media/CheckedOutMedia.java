@@ -7,7 +7,7 @@ package library.media;
  * @author <a href="abasit1@oldwestbury.edu">Abdul Basit</a>
  * @version 1.0.0
  */
-public class CheckedOutMedia extends Media {
+public class CheckedOutMedia  {
 
     private String patron_id;
     private String media_id;
@@ -31,7 +31,6 @@ public class CheckedOutMedia extends Media {
     public CheckedOutMedia(String id, String title, String year, String cost,
             String patron_id, String media_id, String borrow_date,
             String due_date, String date_returned) {
-        super(id, title, year, cost);
     }
 
     /**

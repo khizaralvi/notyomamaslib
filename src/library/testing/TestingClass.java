@@ -7,6 +7,7 @@ package library.testing;
 
 import library.media.Media;
 import library.media.MediaBook;
+import library.media.MediaCollection;
 
 /**
  *
@@ -15,12 +16,7 @@ import library.media.MediaBook;
 public class TestingClass {
  
     public static void main(String[] args)
-    {
-      
-       MediaBook m=new MediaBook("","","","","","","","","");
-       
-       m.addMedia();
-       
+    {      
     }
     
 }

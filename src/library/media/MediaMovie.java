@@ -50,50 +50,93 @@ public class MediaMovie extends Media {
      * @param year Media publishing year
      * @param cost Media cost 
      * @param genre Media genre
+     * @param director Director name
+     * @param actors List of main actors
+     * @param running_time Duration in minutes
      */
-    public MediaMovie(String id, String title, String year,String cost,String genre,String director,ArrayList<String> actors, String running_time) {
-        super(id, title, year, cost);
-        this.actors=actors;
-        this.director=director;
-        this.genre=genre;
-        this.running_time=running_time;
+    public MediaMovie(String id, String title, String year,String cost,
+            String genre,String director, ArrayList<String> actors, 
+            String running_time) {
+        super(id, title, year, cost, 'M');
     }
 
+    /**
+     * Returns genre of movie.
+     * 
+     * @return genre of movie
+     */
     public String getGenre() {
         return genre;
     }
 
+    /**
+     * Sets genre of movie. 
+     * 
+     * @param genre genre of movie
+     */
     public void setGenre(String genre) {
-        this.genre = genre;
     }
 
+    /**
+     * Returns the director name.
+     * 
+     * @return director name
+     */
     public String getDirector() {
         return director;
     }
 
+    /**
+     * Sets director name.
+     * 
+     * @param director director name
+     */
     public void setDirector(String director) {
-        this.director = director;
     }
 
+    /**
+     * Returns all main actors.
+     * 
+     * @return an ArrayList of strings with name of main actors
+     */
     public ArrayList<String> getActors() {
         return actors;
     }
 
+    /**
+     * Sets list of main actors.
+     * 
+     * @param actors an ArrayList of strings with name of main actors
+     */
     public void setActors(ArrayList<String> actors) {
         this.actors = actors;
     }
 
+    /**
+     * Returns the duration of the movie.
+     * 
+     * @return duration of movie in minutes
+     */
     public String getRunning_time() {
         return running_time;
     }
 
+    /**
+     * Sets the duration of the movie. 
+     * 
+     * @param running_time duration of movie in minutes
+     */
     public void setRunning_time(String running_time) {
         this.running_time = running_time;
     }
-    
-    
-    
-    
-    
 
+    /**
+     * toString method for MediaMovie object.
+     * 
+     * @return string with all detail information about the movie.
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
 }
