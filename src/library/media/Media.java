@@ -115,8 +115,31 @@ public abstract class Media {
         return mediaType;
     }
 
+    /**
+     * Sets media type. Media types: A (Academic), B (Book), M (Movie)
+     * 
+     * @param mediaType a char indicating which type of Media is this. 
+     */
     public void setMediaType(char mediaType) {
     }
+    
+    /**
+     * Returns quantity available for media.
+     * 
+     * @return quantity available.
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    /**
+     * Sets quantity available of Media.
+     * 
+     * @param q available quantity
+     */
+    public void setQuantity(int q) {
+    }
+    
 
     /**
      * toString() method to print Media details
