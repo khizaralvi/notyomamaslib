@@ -52,11 +52,12 @@ public class MediaMovie extends Media {
      * @param director Director name
      * @param actors List of main actors
      * @param running_time Duration in minutes
+     * @param quantity amount of media available
      */
     public MediaMovie(String id, String title, String year, String cost,
             String genre, String director, ArrayList<String> actors,
-            String running_time) {
-        super(id, title, year, cost, 'M');
+            String running_time, int quantity) {
+        super(id, title, year, cost, 'M', quantity);
     }
 
     /**

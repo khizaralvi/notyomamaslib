@@ -40,13 +40,10 @@ public class MediaJdbcClass {
      * This method edits an existing media in the catalog. Each subtype class
      * will have their own implementation of this method
      *
-     * @param mediaId Media unique identifier
-     * @param attribute attribute to edit
-     * @param newValue new value provided to that attribute
+     * @param editedMedia Media object with all modifications
      * @return true if the edition was successful or false otherwise
      */
-    public boolean editMedia(String mediaId, String attribute,
-            String newValue) {
+    public boolean editMedia(Media editedMedia) {
         return true;
     }
 

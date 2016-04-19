@@ -22,6 +22,7 @@ public abstract class Media {
     private String mediaYear;
     private String mediaCost;
     private char mediaType; // Media types: A (Academic), B (Book), M (Movie)
+    private int quantity;
 
     /**
      * Constructor for Media.
@@ -31,8 +32,10 @@ public abstract class Media {
      * @param year Media publishing year
      * @param cost Media cost
      * @param type Type of Media
+     * @param quantity amount of media available
      */
-    public Media(String id, String title, String year, String cost, char type) {
+    public Media(String id, String title, String year, String cost, 
+            char type, int quantity) {
     }
 
     /**

@@ -63,11 +63,12 @@ public class MediaBook extends Media {
      * @param volume Volume of the book
      * @param pages number of pages of the book
      * @param publisher Book publisher name
+     * @param quantity amount of media available
      */
     public MediaBook(String id, String title, String year, String isbn,
             String edition, String volume, String pages, String publisher,
-            String cost) {
-        super(id, title, year, cost, 'B');
+            String cost, int quantity) {
+        super(id, title, year, cost, 'B', quantity);
     }
 
     /**

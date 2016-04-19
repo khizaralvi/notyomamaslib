@@ -10,9 +10,10 @@ import java.util.ArrayList;
  * The MediaAcademic class encapsulates all state information related to
  * academic materials. These state information includes: </p>
  * <ul>
- * <li></li>
- * <li></li>
- * <li></li>
+ * <li>Publisher</li>
+ * <li>Number of Pages</li>
+ * <li>Authors</li>
+ * <li>Type of material</li>
  * </ul>
  *
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
@@ -58,11 +59,12 @@ public class MediaAcademic extends Media {
      * @param author Authors list
      * @param numberOfPages Total number of pages of journal
      * @param documentType Document type of the journal
+     * @param quantity amount of media available
      */
     public MediaAcademic(String id, String title, String year, String cost,
             String publisher, ArrayList<String> author,
-            String numberOfPages, String documentType) {
-        super(id, title, year, cost, 'A');
+            String numberOfPages, String documentType, int quantity) {
+        super(id, title, year, cost, 'A', quantity);
     }
 
     /**

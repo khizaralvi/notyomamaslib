@@ -12,15 +12,13 @@ import java.util.ArrayList;
 public class MediaCollection {
 
     private ArrayList<Media> media;
-    private int total;
 
     /**
      * Constructor for MediaCollection.
      *
      * @param media an ArrayList of Media
-     * @param total total amount of Media
      */
-    public MediaCollection(ArrayList<Media> media, int total) {
+    public MediaCollection(ArrayList<Media> media) {
     }
 
     /**
@@ -41,30 +39,12 @@ public class MediaCollection {
     }
 
     /**
-     * Returns the total amount of Media in the catalog.
-     *
-     * @return total of Media as integer
-     */
-    public int getTotal() {
-        return total;
-    }
-
-    /**
-     * Sets the total of Media.
-     *
-     * @param total number of Media in the catalog
-     */
-    public void setTotal(int total) {
-    }
-
-    /**
      * This methods adds a new media to the catalog.
      *
      * @param m Media to be added
      * @return true if the insertion was successful or false otherwise
      */
     public boolean addMedia(Media m) {
-        total++;
         return true;
     }
 
@@ -72,13 +52,10 @@ public class MediaCollection {
      * This method edits an existing media in the catalog. Each subtype class
      * will have their own implementation of this method
      *
-     * @param mediaId Media unique identifier
-     * @param attribute attribute to edit
-     * @param newValue new value provided to that attribute
+     * @param editedMedia Media object with all modifications
      * @return true if the edition was successful or false otherwise
      */
-    public boolean editMedia(String mediaId, String attribute,
-            String newValue) {
+    public boolean editMedia(Media editedMedia) {
         return true;
     }
 
@@ -89,7 +66,6 @@ public class MediaCollection {
      * @return boolean if media was deleted successfully, false otherwise
      */
     public boolean deleteMedia(String mediaId) {
-        total--;
         return true;
     }
 
