@@ -9,100 +9,133 @@ package library.media;
  */
 public class CheckedOutMedia  {
 
-    private String patron_id;
-    private String media_id;
-    private String borrow_date;
-    private String due_date;
-    private String date_returned;
+    private String mediaId;
+    private String patronId;
+    private String borrowDate;
+    private String dueDate;
+    private String patronEmail;
 
     /**
      * Constructor for CheckedOutMedia.
      *
-     * @param id Media unique identifier
-     * @param title Media title
-     * @param year Media publishing year
-     * @param cost Media cost
-     * @param patron_id Patrons id
-     * @param media_id Medias id
-     * @param borrow_date date borrowed
-     * @param due_date date due
-     * @param date_returned date returned
+     * @param mId Media unique identifier
+     * @param pId Patron unique identifier
+     * @param bDate date borrowed
+     * @param dDate date due
+     * @param pEmail Email of Patron
      */
-    public CheckedOutMedia(String id, String title, String year, String cost,
-            String patron_id, String media_id, String borrow_date,
-            String due_date, String date_returned) {
+    public CheckedOutMedia(String mediaId, String patronId, 
+		String borrowDate, String dueDate, String patronEmail) {
     }
 
     /**
-     * Returns the Patron ID of the Patron who is checking out the media.
+     * Returns the Media ID of the Media that is being checked out
      *
-     * @return patron id
+     * @return Media unique identifier
      */
-    public String getPatron_id() {
-        return patron_id;
+    public String getMediaId() {
+        return mediaId;
     }
 
     /**
-     * Returns the Media ID of the Media that is being checked out.
+     * Sets the Media Id
      *
-     * @return media id
+     * @param mId Media unique identifier
      */
-    public String getMedia_id() {
-        return media_id;
+    public void setMediaId(String mediaId) {
+    }
+
+   
+     /**
+     * Returns the Patron ID of the Patron who is checking out the media
+     *
+     * @return Patron unique identifier
+     */
+    public String getPatronId() {
+        return patronId;
     }
 
     /**
-     * Returns the date that the Media is being checked out.
+     * Sets the Patron Id
+     *
+     * @param pId Patron unique identifier
+     */
+    public void setPatronId(String patronId) {
+    }
+
+    /**
+     * Returns the date that the Media is being checked out
      *
      * @return borrow date
      */
-    public String getBorrow_date() {
-        return borrow_date;
+    public String getBorrowDate() {
+        return borrowDate;
     }
 
     /**
-     * Sets the date that the Media is being checked out.
+     * Sets the date that the Media is being checked out
      *
-     * @param borrow_date date borrowed
+     * @param bDate date borrowed
      */
-    public void setBorrow_date(String borrow_date) {
+    public void setBorrowDate(String borrowDate) {
 
     }
 
     /**
-     * Returns the date that the Media is due back.
+     * Returns the date that the Media is due back
      *
      * @return due date
      */
-    public String getDue_date() {
-        return due_date;
+    public String getDueDate() {
+        return dueDate;
     }
 
     /**
-     * Sets the date that the Media is due back.
+     * Sets the date that the Media is due back
      *
-     * @param due_date date due
+     * @param dDate date due
      */
-    public void setDue_date(String due_date) {
+    public void setDueDate(String dueDate) {
 
     }
 
     /**
-     * Returns the date that the Media is actually returned.
+     * Returns the Email Address of the Patron checking out the Media
      *
-     * @return return date
+     * @return Email of Patron
      */
-    public String getDate_returned() {
-        return date_returned;
+    public String getPatronEmail() {
+        return patronEmail;
     }
 
     /**
-     * Sets the date that the Media is actually returned.
+     * Sets the the Email Address of the Patron checking out the Media
      *
-     * @param date_returned date returned
+     * @param pEmail Email of Patron
      */
-    public void setDate_returned(String date_returned) {
+    public void setPatronEmail(String patronEmail) {
 
+    }
+
+
+    /**
+     * toString() for printing all the data associated with CheckOutMedia 
+     *
+     * @return the string with all the information of CheckedOutMedia
+     */
+    @Override
+    public String toString() {
+        return "";
+    }
+
+    /**
+     * equals method to compare CheckedOutMedia objects
+     *
+     * @param com CheckedOutMedia Object
+     * @return true if same, otherwise false
+     */
+    public boolean equals(CheckedOutMedia com) {
+	return true;
     }
 
 }
