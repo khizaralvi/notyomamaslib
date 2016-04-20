@@ -72,6 +72,26 @@ public class CheckedOutCollection {
     }
 
     /**
+     * @author khizaralvi This method sends email notification to the user
+     * reminding him/her of his/her overdue media and
+     * @return true on successful delivery of email
+     */
+    public boolean SendLateNotification() {
+        return true;
+
+    }
+
+    /**
+     * @author khizaralvi This method sends email notification to the user
+     * reminding him/her of his/her approaching due date and
+     * @return true on successful delivery of email
+     */
+    public boolean SendDueDateNotification() {
+        return true;
+
+    }
+
+    /**
      * toString() method to CheckedOutCollection
      *
      * @return detail for every Media
