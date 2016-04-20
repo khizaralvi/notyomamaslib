@@ -1,16 +1,16 @@
 package library.jdbc;
 
 import library.media.Media;
-import library.media.MediaAcademic;
-import library.media.MediaBook;
-import library.media.MediaMovie;
 import java.sql.*;
 import java.util.ArrayList;
 import library.media.Reservation;
 
 /**
- *
- * @author Adil Imam
+ * The MediaJdbcClass is the bridge between the MediaCollection and the JDBC 
+ * (database). This class implements all communications with the database 
+ * related to the functions of MediaCollection.
+ * 
+ * @author <a href="mailto:jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
  */
 public class MediaJdbcClass {
 

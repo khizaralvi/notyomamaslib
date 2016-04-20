@@ -5,7 +5,7 @@ package library.media;
  * library system.
  * <p>
  * The Media class encapsulates all state information common among all different
- * types of Media. These state information includes: </p>
+ * types of Media. This state information includes: </p>
  * <ul>
  * <li>A unique Media ID</li>
  * <li>Title</li>
