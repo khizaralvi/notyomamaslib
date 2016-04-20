@@ -44,7 +44,7 @@ public class Reservation {
     /**
      * This method lets us set the MediaId attribute for the object
      *
-     * @param MediaId
+     * @param MediaId Media Id
      */
     public void setMediaId(String MediaId) {
         this.MediaId = MediaId;
@@ -62,7 +62,7 @@ public class Reservation {
     /**
      * This method sets the PatronId attribute of the object
      *
-     * @param PatronId
+     * @param PatronId Patron unique identifies
      */
     public void setPatronId(String PatronId) {
         this.PatronId = PatronId;
@@ -80,7 +80,7 @@ public class Reservation {
     /**
      * This method lets us return reserve date attribute of the object
      *
-     * @param reserved_date
+     * @param reserved_date date media was reserved
      */
     public void setReserved_date(Date reserved_date) {
         this.reserved_date = reserved_date;

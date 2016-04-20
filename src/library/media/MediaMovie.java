@@ -9,9 +9,10 @@ import java.util.ArrayList;
  * The MediaMovie class encapsulates all state information related to movies.
  * These state information includes: </p>
  * <ul>
- * <li></li>
- * <li></li>
- * <li></li>
+ * <li>Genre</li>
+ * <li>Director</li>
+ * <li>Actors</li>
+ * <li>Running time</li>
  * </ul>
  *
  * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>

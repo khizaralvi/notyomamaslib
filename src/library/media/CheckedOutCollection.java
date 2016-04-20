@@ -53,7 +53,7 @@ public class CheckedOutCollection {
      * This method marks the media that is currently checked out of the catalog,
      * as returned. It is only called when checkIn is true
      *
-     * @param deleteCheckedOutMedia Media to be marked as returned
+     * @param deletedCheckedOutMedia Media to be marked as returned
      * @return true if this was successful or false otherwise
      */
     public boolean deleteCheckedOutMedia(CheckedOutMedia deletedCheckedOutMedia) {
