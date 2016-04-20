@@ -69,16 +69,4 @@ public class MediaJdbcClass {
         return resultSet;
     }
 
-    /**
-     * This methods performs a reservation of a media to a patron account.
-     *
-     * @param patronId Patron Id
-     * @param mediaId Media Id to be reserved
-     * @return an object of type Reservation
-     */
-    public Reservation reserveMedia(String patronId, String mediaId) {
-        Reservation reserved = new Reservation(patronId, mediaId);
-        return reserved;
-    }
-
 }
