@@ -19,7 +19,7 @@ public class CancellationJDBC {
     /**
      * This method lets us view all cancelled media for one specific patron
      *
-     * @param Patronid represents patron whose cancellation is required to be
+     * @param PatronId represents patron whose cancellation is required to be
      * displayed
      */
     public void View_SpecificUser_CancellationList(String PatronId) {

@@ -22,7 +22,7 @@ public class Cancellation {
      * @param cancelled_date records date the book was cancellated for reservation
      *
      */
-    public Reservation(String MediaId, String PatronId, Date reserved_date, Date cancelled_date) {
+    public Cancellation(String MediaId, String PatronId, Date reserved_date, Date cancelled_date) {
         this.MediaId = MediaId;
         this.PatronId = PatronId;
         this.reserved_date = reserved_date;
@@ -86,7 +86,7 @@ public class Cancellation {
     /**
      * This method lets us receive Date attribute of the object
      *
-     * @cancellation Date
+     * @return cancelled_date cancellation date
      */
     public Date getCancelled_date() {
         return cancelled_date;
