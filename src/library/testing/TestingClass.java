@@ -14,9 +14,5 @@ import library.media.MediaCollection;
  * @author Adil Imam
  */
 public class TestingClass {
- 
-    public static void main(String[] args)
-    {      
-    }
-    
+
 }
