@@ -2,7 +2,7 @@
 /**
  * PatronAccount is a subclass of Account that implements a patron account.
  * 
- * TEST FOR GIT SYNC WITH JUNAID
+ * TEST FOR GIT SYNC WITH Jeff
  * 
  * @author Benny Pena
  * @author Jeffrey Godoy
@@ -112,9 +112,9 @@ public class PatronAccount extends Account {
     /**
      *applyLateFees Method--<BR>
      *This method will apply late fees to the accounts
-     *that have a late fee’s exceeding $5 (by Elbin G2T3)
+     *that have a late feeï¿½s exceeding $5 (by Elbin G2T3)
      *
-     *@return boolean - sending back acknowledgement the late fee’s were applied 
+     *@return boolean - sending back acknowledgement the late feeï¿½s were applied 
      */
     public boolean applyLateFees(){
     	return true; //just to make it stop complaining  
