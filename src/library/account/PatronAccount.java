@@ -23,7 +23,7 @@ public class PatronAccount extends Account {
         super(first, last, phone);
         this.address = address;
         this.accountBalance = 0.0;
-        this.email = "";
+        this.email = null;
     }
     /**
      * Overloaded constructor 
@@ -111,6 +111,7 @@ public class PatronAccount extends Account {
      *applyLateFees Method--<BR>
      *This method will apply late fees to the accounts
      *that have a late fee’s exceeding $5 (by Elbin G2T3)
+     *
      *@return boolean - sending back acknowledgement the late fee’s were applied 
      */
     public boolean applyLateFees(){
@@ -121,6 +122,7 @@ public class PatronAccount extends Account {
  	*billAccount Method--<BR>
  	*This method is used to bill a patron for damaged
  	*library materials (by Elbin G2T3)
+ 	*
  	*@param patronId - String holding the id of the patron to be billed
  	*@param mediaId - String holding the id of the media that was damaged
  	*/

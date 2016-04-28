@@ -1,52 +1,121 @@
-
+/**
+ * The LoginManager class handles everything involved in Login for the system.
+ * 
+ * @author Benny Pena
+ * @author Jeffrey Godoy
+ * @author Junaid Farooq 
+ * @version 1.1
+ */
 public class LoginManager {
 	
-	/**
-	 * Value when the an operation is successful
-	 */
-	public static final boolean SUCCESS = true;
+	private String username, password, userID;
 	
 	/**
-	 * Value when the operation fails
+	 * Constructor for Account Login entry
+	 * 
+	 * @param userN Username associated with the account.
+	 * @param userP Password associated with the account.
+	 * @param userI Account ID.
 	 */
-	public static final boolean FAILED = false;
+	public LoginManager(String userN, String userP, String userI){
+		this.username = userN;
+		this.password = userP;
+		this.userID = userI;
+	}
 	
-	/**
-	 * Inserts an account's login credentials
-	 * @param associatedAccount
-	 * @return Confirmation of action
-	 */
-	public static boolean insertLogin(Account associatedAccount){
-		return true;
+	/** Return the username */
+	public String getUsername() {
+		return username;
 	}
 	
 	/**
-	 * Deletes an account's login credentials
-	 * @param associatedAccount
-	 * @return Confirmation of action
+	 * Sets the username.
+	 * 
+	 * @param username New username for the account.
 	 */
-	public static boolean deleteLogin(Account associatedAccount){
-		return true;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	/** Return the password */
+	public String getPassword() {
+		return password;
 	}
 	
 	/**
-	 * Updates an account's login credentials
-	 * @param associatedAccount
-	 * @param newUser
-	 * @param newPass
-	 * @return Confirmation of action
+	 * Sets the password.
+	 * 
+	 * @param password New password for the account.
 	 */
-	public static boolean updateLogin(Account associatedAccount, String newUser, String newPass){
-		return true;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	/**
-	 * Returns an array containing the login credentials 
-	 * @param associatedAccount
-	 * @return {username,password}
+	 * MAYBE NOT USE
+	 * 
+	 * Gain access to a Patron account with the username and password.
+	 * If both are found, return back the associated account.
+	 *  
+	 * @param userName Username to lookup.
+	 * @param password Password to lookup.
+	 * @return Patron Account
 	 */
-	public static String[] viewLogin(Account associatedAccount){
+	public PatronAccount loginPatron(String userName, String password) {
+		//Returns Key
+		//JDBC findID(Username,password)
 		return null;
+	}
+	
+	/**
+	 * MAYBE NOT USE.  APPLICATION LAYER.
+	 * 
+	 * Gain access to a Staff account with the username and password.
+	 * If both are found, return back the associated account.
+	 *  
+	 * @param userName Username to lookup.
+	 * @param password Password to lookup.
+	 * @return Staff Account
+	 */
+	public StaffAccount loginStaff(String userName, String password) {
+		return null;
+	}
+	
+	/**
+	 * Logout of loaded account.
+	 * 
+	 * @param a Account object.
+	 * @return 
+	 */
+	public boolean logout(Account a){
+		//show Login
+		return true;
+	}
+	
+	/**
+	 * Resets password to a randomly generated password for Patron Account.
+	 * It will be emailed to the account on file.
+	 * 
+	 * @param username The username associated with the account.
+	 * @return true if change was successful
+	 */
+	public boolean recoverPassword(String username){
+		//update table for user with random password
+		//use id for confirmation
+		//or email random password
+		return true;
+	}
+	
+	/**
+	 * Compares account be accessed to account logged in to verify access.
+	 * 
+	 * @param a Account logged in.
+	 * @param b Account being accessed.
+	 * @return true if access level is granted. 
+	 */
+	public boolean verifyAccess(Account a, Account b){
+		// can it change info on account b?
+		return true;
 	}
 	
 }

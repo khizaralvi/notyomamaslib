@@ -25,7 +25,6 @@ public class Account {
      * @param number User's phone number
      */
     public Account(String first ,String last, String number){
-    	id = "000";
     	firstName = first;
     	lastName = last;
     	phoneNumber = number;

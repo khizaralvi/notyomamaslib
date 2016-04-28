@@ -1,3 +1,4 @@
+
 /**
  * StaffAccount is a subclass of Account that implements a staff account.
  * 
@@ -6,12 +7,10 @@
  * @author Junaid Farooq 
  * @version 1.1
  */
-
-
-
 public class StaffAccount extends Account{
 	
 	private char accountType;
+
 
     /**
      * Constructor
