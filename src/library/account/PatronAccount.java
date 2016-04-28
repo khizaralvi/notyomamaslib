@@ -2,7 +2,7 @@
 /**
  * PatronAccount is a subclass of Account that implements a patron account.
  * 
- * TEST FOR GIT SYNC WITH Alvi
+ * TEST FOR GIT SYNC WITH ****
  * 
  * @author Benny Pena
  * @author Jeffrey Godoy
