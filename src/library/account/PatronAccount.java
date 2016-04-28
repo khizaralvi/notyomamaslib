@@ -2,8 +2,7 @@
 /**
  * PatronAccount is a subclass of Account that implements a patron account.
  * 
- * 
- * 
+ *  
  * @author Benny Pena
  * @author Jeffrey Godoy
  * @author Junaid Farooq 
