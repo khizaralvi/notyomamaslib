@@ -1,112 +1,131 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package library.media;
 
 import java.util.Date;
 
 /**
- *
- * This class holds attributes required to hold data about one reserved media
- *
- * @author Adil Imam
+ * This class holds attributes required to a reservation of a specific media by
+ * a specific patron.
  */
 public class Reservation {
 
-    private String MediaId;
-    private String PatronId;
-    private Date reserved_date;
+    private String mediaId;
+    private String patronId;
+    private int reservationId;
+    private String reservationDate;
 
+    
+    /**
+     * Default constructor.
+     */
+    public Reservation() {
+    }
+    
     /**
      *
-     * @param MediaId MediaId is the unique id for every single media
-     * @param PatronId PatronId is the unique id for every single patron
-     * @param reserved_date records date the book was reserved
+     * @param reservationId reservation id
+     * @param mediaId the unique id for every single media
+     * @param patronId the unique id for every single patron
+     * @param date date
      *
      */
-    public Reservation(String MediaId, String PatronId, Date reserved_date) {
-        this.MediaId = MediaId;
-        this.PatronId = PatronId;
-        this.reserved_date = reserved_date;
+    public Reservation(int reservationId, String mediaId, String patronId, String date) {
+        setReservationId(reservationId);
+        setMediaId(mediaId);
+        setPatronId(patronId);
+        setReservationDate(date);
     }
 
     /**
-     * This method returns MediaID attribute of the object
+     * This method returns the media id for which the reservation was made.
      *
      * @return String
      */
     public String getMediaId() {
-        return MediaId;
+        return mediaId;
     }
 
     /**
-     * This method lets us set the MediaId attribute for the object
+     * This method sets the media id for which the reservation is being made.
      *
-     * @param MediaId Media Id
+     * @param mediaId the unique id for every single media
      */
-    public void setMediaId(String MediaId) {
-        this.MediaId = MediaId;
+    public void setMediaId(String mediaId) {
+        this.mediaId = mediaId;
     }
 
     /**
-     * This method returns the PatronId attribute of the object
+     * This method returns the patron id of the reservation.
      *
-     * @return String
+     * @return the unique id for every single patron
      */
     public String getPatronId() {
-        return PatronId;
+        return patronId;
     }
 
     /**
-     * This method sets the PatronId attribute of the object
+     * This method sets the patron id of the reservation.
      *
-     * @param PatronId Patron unique identifies
+     * @param patronId the unique id for every single patron
      */
-    public void setPatronId(String PatronId) {
-        this.PatronId = PatronId;
+    public void setPatronId(String patronId) {
+        this.patronId = patronId;
     }
 
     /**
-     * This method lets us receive Date attribute of the object
+     * This method returns the reservation id .
      *
-     * @return Date
+     * @return the date in which the reservation was made
      */
-    public Date getReserved_date() {
-        return reserved_date;
+    public int getReservationId() {
+        return reservationId;
     }
 
     /**
-     * This method lets us return reserve date attribute of the object
-     *
-     * @param reserved_date date media was reserved
+     * This method sets the reservation id.
+     * @param reservationId reservation id
      */
-    public void setReserved_date(Date reserved_date) {
-        this.reserved_date = reserved_date;
+    public void setReservationId(int reservationId) {
+        this.reservationId = reservationId;
     }
 
     /**
-     * This method is used to display contents of each object
+     * This method returns the date in which the reservation was made.
      *
-     * @return String This String contains the contents of each attribute for
-     * the given object
+     * @return the date in which the reservation was made
+     */
+    public String getReservationDate() {
+        return reservationDate;
+    }
+
+    /**
+     * This method sets the reservation date to the current date.
+     */
+    public void setReservationDate(String date) {
+        this.reservationDate = date;
+    }
+
+    /**
+     * This method is used to print a reservation entry.
+     *
+     * @return media id, patron id, reservation date in the following format:
+     * <br>
+     * 43D2B 123127 03/15/2016
      */
     @Override
     public String toString() {
-        return "Reservation2{" + "MediaId=" + MediaId + ", PatronId=" + PatronId + ", reserved_date=" + reserved_date + '}';
+        return mediaId + " " + patronId + " " + reservationDate + " ";
     }
 
     /**
-     * This method is used to compare object passed with the object invoking the
-     * method
+     * This method is used to compare two reservation objects.
      *
-     * @param o Object that is sent to be compared
-     * @return boolean value which
+     * @param r object of type Reservation
+     * @return true if two reservations are the same, false otherwise
      */
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o); //To change body of generated methods, choose Tools | Templates.
+    public boolean equals(Reservation r) {
+        return this.mediaId.equals(r.mediaId)
+                && this.patronId.equals(r.patronId)
+                && this.reservationDate.equals(r.reservationDate);
     }
 
 }

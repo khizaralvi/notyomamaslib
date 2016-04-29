@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package library.media;
 
 import java.util.ArrayList;
@@ -10,31 +5,39 @@ import library.jdbc.ReservationJdbc;
 
 /**
  * This is a ReservationCollection Class which will have collection of
- * reservation objects
+ * reservation objects.
  *
- * @author Adil Imam
  */
 public class ReservationCollection {
 
-    private ArrayList<Reservation> reservation;
-    private ReservationJdbc reserve;
+    public ArrayList<Reservation> reservList;
+   // private ReservationJdbc reserve=;
 
     public ReservationCollection() {
-        reservation = new ArrayList();
-        reserve = new ReservationJdbc();
+        reservList = new ArrayList();
+        //reserve = ;
     }
 
     /**
-     * This method lets us reserve one media for one specific patron
+     * This method allows us reserve one media for one specific patron.
      *
      * @param r reservation object passed from control class which tells us
-     * which patron has reserved what media
-     * @return Boolean represents whether the desired operation was successful
-     * or not
+     * which patron has reserved what media.
+     * @return true if the desired operation was successful, false otherwise
      */
-    public Boolean ReserveMedia(Reservation r) {
-        reservation.add(r);
+    public boolean reserveMedia(Reservation r) {
+        reservList.add(r);
         return false;
+    }
+    
+    /**
+     * Delete a reservation given its reservation id.
+     * @param reservationId the reservation id
+     * @return the deleted object
+     */
+    public Reservation deleteReservation(String reservationId) {
+        Reservation deletedR = new Reservation();
+        return deletedR;
     }
 
     /**
@@ -42,37 +45,35 @@ public class ReservationCollection {
      *
      * @param Patronid represents patron whose reservation is required to be
      * displayed
+     * @return an ArrayList with all reservations for that specific patron
      */
-    public void View_SpecificUser_ReservationList(String Patronid) {
-
+    public ArrayList<Reservation> viewPatronReserveList(String Patronid) {
+        return reservList;
     }
 
     /**
-     * This method display all the reserved books in the library
+     * This method display all the reserved media in the library.
+     * @return an ArrayList with all reserved items in the library
      */
-    public void view_All_Reservation_List() {
-
-        reservation.toString();
-
+    public ArrayList<Reservation> viewLibReserveList() {
+        return reservList;
     }
 
+    /** Prints the reservation collection.
+     * @return string formatted with all reservation objects
+     */
     @Override
     public String toString() {
-        return "ReservationCollection{" + "reservation=" + reservation + '}';
+        return "ReservationCollection{" + "reservation=" + reservList + '}';
     }
 
     /**
-     *
+     * Returns the ArrayList of reservations. 
      * @return ArrayList lets you return the arrayList holding objects of
      * Reservation
      */
     public ArrayList<Reservation> getArr() {
-        return reservation;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o); //To change body of generated methods, choose Tools | Templates.
+        return reservList;
     }
 
 }
