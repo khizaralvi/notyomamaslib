@@ -45,7 +45,7 @@ public class MediaJdbcClass {
      *
      * @param m Media to be added
      * @return true if the insertion was successful or false otherwise
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException it throws SQL Exception
      */
     public boolean addMedia(Media m) throws SQLException {
     

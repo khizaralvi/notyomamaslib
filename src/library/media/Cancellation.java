@@ -24,10 +24,11 @@ public class Cancellation {
 
     /**
      *
+     * @param cancellationId unique cancellation id
      * @param MediaId MediaId is the unique id for every single media
      * @param PatronId PatronId is the unique id for every single patron
      * @param reserved_date records date the book was reserved
-     * @param cancelled_date records date the book was cancellated for reservation
+     * @param cancelled_date records date the book was Cancelled
      *
      */
     public Cancellation(int cancellationId, String MediaId, String PatronId, Date reserved_date, Date cancelled_date) {
