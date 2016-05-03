@@ -1,11 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package library.media;
 
 import java.util.Date;
+
+/**
+ * This class holds the attributes required to cancel a reservation of media by a patron.
+ * <ul>
+ * <li>Media ID</li>
+ * <li>Patron ID</li>
+ * <li>Cancellation ID</li>
+ * <li>Reservation date</li>
+ * <li>Cancellaed data<li>
+ * </ul>
+ * @author <a>Brett Landau</a>
+ */
 
 public class Cancellation {
 
