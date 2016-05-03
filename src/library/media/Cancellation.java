@@ -31,6 +31,10 @@ public class Cancellation {
         this.cancelled_date = cancelled_date;
     }
 
+    Cancellation() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method returns MediaID attribute of the object
      *
@@ -128,7 +132,10 @@ public class Cancellation {
      */
     @Override
     public String toString() {
-        return "Reservation2{" + "MediaId=" + MediaId + ", PatronId=" + PatronId + ", reserved_date=" + reserved_date + ", cancelled_date=" + cancelled_date + ", cancellationID=" + cancellationId'}';
+        return "Reservation2{" + "MediaId=" + MediaId + ", PatronId=" + 
+                PatronId + ", reserved_date=" + reserved_date + 
+                ", cancelled_date=" + cancelled_date + ", cancellationID=" + 
+                cancellationId + "}";
     }
 
     /**
