@@ -3,9 +3,9 @@ package library.media;
 import java.util.ArrayList;
 
 /**
- * CheckedOutCollection is the collection of all Media that has been checked out
- * by a specific Patron. The CheckedOutCollection has an array for Media and an
- * array for Patrons
+ * CheckedOutCollection is the collection of all Media that has been checked out 
+ * by a specific Patron. The CheckedOutCollection has an array for Media and 
+ * an array for Patrons 
  *
  * @author <a href="abasit1@oldwestbury.edu">Abdul Basit</a>
  */
@@ -22,38 +22,34 @@ public class CheckedOutCollection {
     }
 
     /**
-     * Returns the array of available Media in the system
+     * This methods records info of the checked out media  
+     * and the info of the patron checking it out
      *
-     * @return an ArrayList of Media
+     * @param insertCheckoutMedia record of info pertaining to check out
+     * @return true if recorded successfully or false otherwise
      */
-    public ArrayList<Media> getMedia() {
-        return media;
-    }
-
-    /**
-     * Sets the ArrayList of Media in CheckedOutCollection
-     *
-     * @param media ArrayList of Media
-     */
-    public void setMedia(ArrayList<Media> media) {
-    }
-
-    /**
-     * This methods reinserts a previously checked out media to the catalog upon
-     * return
-     *
-     * @param checkIn Media to be reinserted
-     * @return true if the insertion was successful or false otherwise
-     */
-    public boolean CheckInMedia(Media checkIn) {
+    public boolean insertCheckoutMedia(CheckedOutMedia insertCheckoutMedia) {
         return true;
     }
 
+
     /**
-     * This method marks the media that is currently checked out of the catalog,
-     * as returned. It is only called when checkIn is true
+     * This method allows people to search the checked out media
+     * allowing the patron to view borrowing history
      *
-     * @param deletedCheckedOutMedia Media to be marked as returned
+     * @param searchCheckedOutMedia provides checked out media history
+     * @return true if this was successful or false otherwise
+     */
+    public boolean searchCheckedOutMedia(CheckedOutMedia searchCheckedOutMedia) {
+        return true;
+    }
+
+
+    /**
+     * This method marks the media that is currently checked out of the catalog, as 
+     * returned. It is only called when checkIn is true
+     *
+     * @param deleteCheckedOutMedia Media to be marked as returned
      * @return true if this was successful or false otherwise
      */
     public boolean deleteCheckedOutMedia(CheckedOutMedia deletedCheckedOutMedia) {
@@ -61,36 +57,17 @@ public class CheckedOutCollection {
     }
 
     /**
-     * This methods validates a renewal for media that is currently checked from
-     * the catalog if it is not currently reserved already
+     * This methods validates a renewal for media that is currently checked from the catalog
+     * if it is not currently reserved already
      *
-     * @param renewMedia Media is renewed
+     * @param renewMedia Media is renewed 
      * @return true if media was renewed successfully, false otherwise
      */
     public boolean renewMedia(CheckedOutMedia renewMedia) {
         return true;
     }
 
-    /**
-     * @author khizaralvi This method sends email notification to the user
-     * reminding him/her of his/her overdue media and
-     * @return true on successful delivery of email
-     */
-    public boolean SendLateNotification() {
-        return true;
-
-    }
-
-    /**
-     * @author khizaralvi This method sends email notification to the user
-     * reminding him/her of his/her approaching due date and
-     * @return true on successful delivery of email
-     */
-    public boolean SendDueDateNotification() {
-        return true;
-
-    }
-
+    
     /**
      * toString() method to CheckedOutCollection
      *

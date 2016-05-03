@@ -1,11 +1,14 @@
 package library.jdbc;
 
-import java.sql.*;
 import library.media.CheckedOutMedia;
+import library.media.CheckedOutCollection;
+import java.sql.*;
+import java.util.ArrayList;
 import library.media.Media;
+import library.media.Reservation;
 
 /**
- * This is the JDBC class for CheckedOutMedia.
+ *
  * @author Abdul Basit
  */
 public class CheckedOutJdbcClass {
@@ -17,20 +20,34 @@ public class CheckedOutJdbcClass {
     private PreparedStatement prepared = null;
 
     /**
-     * Constructor for CheckedOutJdbcClass.
+     * Constructor for CheckedOutJdbc
      */
     public CheckedOutJdbcClass() {
     }
 
     /**
-     * This methods reinserts a previously checked out media to the catalog upon return
+     * This methods records info of the checked out media  
+     * and the info of the patron checking it out
      *
-     * @param checkIn Media to be reinserted
-     * @return true if the insertion was successful or false otherwise
+     * @param insertCheckoutMedia record of info pertaining to check out
+     * @return true if recorded successfully or false otherwise
      */
-    public boolean CheckInMedia(Media checkIn) {
+    public boolean insertCheckoutMedia(CheckedOutMedia insertCheckoutMedia) {
         return true;
     }
+
+
+    /**
+     * This method allows people to search the checked out media
+     * allowing the patron to view borrowing history
+     *
+     * @param searchCheckedOutMedia provides checked out media history
+     * @return true if this was successful or false otherwise
+     */
+    public boolean searchCheckedOutMedia(CheckedOutMedia searchCheckedOutMedia) {
+        return true;
+    }
+
 
     /**
      * This method marks the media that is currently checked out of the catalog, as 

@@ -18,11 +18,11 @@ public class CheckedOutMedia  {
     /**
      * Constructor for CheckedOutMedia.
      *
-     * @param mediaId Media unique identifier
-     * @param patronId Patron unique identifier
-     * @param borrowDate date borrowed
-     * @param dueDate date due
-     * @param patronEmail Email of Patron
+     * @param mId Media unique identifier
+     * @param pId Patron unique identifier
+     * @param bDate date borrowed
+     * @param dDate date due
+     * @param pEmail Email of Patron
      */
     public CheckedOutMedia(String mediaId, String patronId, 
 		String borrowDate, String dueDate, String patronEmail) {
@@ -40,7 +40,7 @@ public class CheckedOutMedia  {
     /**
      * Sets the Media Id
      *
-     * @param mediaId Media unique identifier
+     * @param mId Media unique identifier
      */
     public void setMediaId(String mediaId) {
     }
@@ -58,7 +58,7 @@ public class CheckedOutMedia  {
     /**
      * Sets the Patron Id
      *
-     * @param patronId Patron unique identifier
+     * @param pId Patron unique identifier
      */
     public void setPatronId(String patronId) {
     }
@@ -75,7 +75,7 @@ public class CheckedOutMedia  {
     /**
      * Sets the date that the Media is being checked out
      *
-     * @param borrowDate date borrowed
+     * @param bDate date borrowed
      */
     public void setBorrowDate(String borrowDate) {
 
@@ -93,7 +93,7 @@ public class CheckedOutMedia  {
     /**
      * Sets the date that the Media is due back
      *
-     * @param dueDate date due
+     * @param dDate date due
      */
     public void setDueDate(String dueDate) {
 
@@ -111,7 +111,7 @@ public class CheckedOutMedia  {
     /**
      * Sets the the Email Address of the Patron checking out the Media
      *
-     * @param patronEmail Email of Patron
+     * @param pEmail Email of Patron
      */
     public void setPatronEmail(String patronEmail) {
 
