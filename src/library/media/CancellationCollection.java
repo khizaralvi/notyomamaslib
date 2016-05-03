@@ -19,7 +19,7 @@ public class CancellationCollection {
     }
 
     /**
-     * This method lets us reserve one media for one specific patron
+     * This method lets us cancel one media reservation for one specific patron
      *
      * @param r cancellation object passed from control class which tells us
      * which patron has cancelled what media reservation
