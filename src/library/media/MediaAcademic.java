@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * <li>Type of material</li>
  * </ul>
  *
- * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
+ * @author <a>Adil Imam</a>
  * @version 1.0.0
  */
 public class MediaAcademic extends Media {
@@ -64,7 +64,13 @@ public class MediaAcademic extends Media {
     public MediaAcademic(String id, String title, String year, String cost,
             String publisher, ArrayList<String> author,
             String numberOfPages, String documentType, int quantity) {
-        super(id, title, year, cost, 'A', quantity);
+        super(id, title, year, cost,"a", quantity);
+        
+    this.authors=author;
+    this.documentType=documentType;
+    this.publisher=publisher;
+    this.numberOfPages=numberOfPages;
+    
     }
 
     /**
@@ -72,7 +78,11 @@ public class MediaAcademic extends Media {
      *
      * @return publisher name.
      */
-    public String getPublisher() {
+    
+    
+    
+    @Override
+    public String get_Ebook_Publisher() {
         return publisher;
     }
 
@@ -80,8 +90,11 @@ public class MediaAcademic extends Media {
      * Sets the publisher name.
      *
      * @param publisher publisher name
+     * @return boolean
      */
-    public void setPublisher(String publisher) {
+    @Override
+    public boolean set_Ebook_Publisher(String publisher) {
+    return true;
     }
 
     /**
@@ -89,7 +102,8 @@ public class MediaAcademic extends Media {
      *
      * @return number of pages.
      */
-    public String getNumberOfPages() {
+    @Override
+    public String getNumberOfPages_of_Ebook() {
         return numberOfPages;
     }
 
@@ -97,8 +111,11 @@ public class MediaAcademic extends Media {
      * Sets number of pages.
      *
      * @param numberOfPages number of pages
+     * @return boolean
      */
-    public void setNumberOfPages(String numberOfPages) {
+    @Override
+    public boolean setNumberOfPages_of_Ebook(String numberOfPages) {
+    return true;
     }
 
     /**
@@ -106,7 +123,8 @@ public class MediaAcademic extends Media {
      *
      * @return an ArrayList of strings with all authors.
      */
-    public ArrayList<String> getAuthors() {
+    @Override
+    public ArrayList<String> getAuthors_of_Ebook() {
         return authors;
     }
 
@@ -114,8 +132,11 @@ public class MediaAcademic extends Media {
      * Sets authors of academic material.
      *
      * @param authors an ArrayList of strings with the name of all authors.
+     * @return boolean
      */
-    public void setAuthors(ArrayList<String> authors) {
+    @Override
+    public boolean setAuthors_of_Ebook(ArrayList<String> authors) {
+    return true;
     }
 
     /**
@@ -124,6 +145,7 @@ public class MediaAcademic extends Media {
      *
      * @return document type
      */
+    @Override
     public String getDocumentType() {
         return documentType;
     }
@@ -133,8 +155,11 @@ public class MediaAcademic extends Media {
      * dissertation.
      *
      * @param documentType type of document
+     * @return boolean
      */
-    public void setDocumentType(String documentType) {
+    @Override
+    public boolean setDocumentType(String documentType) {
+    return true;
     }
 
     /**

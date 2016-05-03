@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * <li>Publisher</li>
  * </ul>
  *
- * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
+ * @author <a>Adil Imam</a>
  * @version 1.0.0
  */
 public class MediaBook extends Media {
@@ -68,7 +68,13 @@ public class MediaBook extends Media {
     public MediaBook(String id, String title, String year, String isbn,
             String edition, String volume, String pages, String publisher,
             String cost, int quantity) {
-        super(id, title, year, cost, 'B', quantity);
+        super(id, title, year, cost,"b", quantity);
+        
+        this.bookEdition=edition;
+        this.bookVolume=volume;
+        this.bookPages=pages;
+        this.bookPublisher=publisher;;
+        this.bookIsbn=isbn;
     }
 
     /**
@@ -76,6 +82,7 @@ public class MediaBook extends Media {
      *
      * @return ISBN code
      */
+    @Override
     public String getIsbn() {
         return bookIsbn;
     }
@@ -84,8 +91,11 @@ public class MediaBook extends Media {
      * Sets the ISBN code
      *
      * @param isbn ISBN code
+     * @return boolean
      */
-    public void setIsbn(String isbn) {
+    @Override
+    public boolean setIsbn(String isbn) {
+    return true;
     }
 
     /**
@@ -93,6 +103,7 @@ public class MediaBook extends Media {
      *
      * @return book edition
      */
+    @Override
     public String getEdition() {
         return bookEdition;
     }
@@ -101,8 +112,11 @@ public class MediaBook extends Media {
      * Sets the book edition
      *
      * @param edition book edition
+     * @return boolean
      */
-    public void setEdition(int edition) {
+    @Override
+    public boolean setEdition(int edition) {
+    return true;
     }
 
     /**
@@ -110,6 +124,7 @@ public class MediaBook extends Media {
      *
      * @return book volume
      */
+    @Override
     public String getVolume() {
         return bookVolume;
     }
@@ -118,8 +133,11 @@ public class MediaBook extends Media {
      * Sets the book volume
      *
      * @param volume book volume
+     * @return boolean
      */
-    public void setVolume(int volume) {
+    @Override
+    public boolean setVolume(int volume) {
+    return true;
     }
 
     /**
@@ -127,7 +145,8 @@ public class MediaBook extends Media {
      *
      * @return number of pages
      */
-    public String getNumbeOfPages() {
+    @Override
+    public String getNumOfPages_of_Books() {
         return bookPages;
     }
 
@@ -136,6 +155,7 @@ public class MediaBook extends Media {
      *
      * @return publisher name
      */
+    @Override
     public String getPublisher() {
         return bookPublisher;
     }
@@ -144,8 +164,11 @@ public class MediaBook extends Media {
      * Sets the publisher name
      *
      * @param publisher publisher name
+     * @return boolean
      */
-    public void setPublisher(String publisher) {
+    @Override
+    public boolean setPublisher(String publisher) {
+    return true;
     }
 
     /**
@@ -153,6 +176,7 @@ public class MediaBook extends Media {
      *
      * @return an ArrayList of strings with the name of all authors.
      */
+    @Override
     public ArrayList<String> getAuthors() {
         return bookAuthors;
     }
@@ -161,8 +185,11 @@ public class MediaBook extends Media {
      * Sets the authors list for the book.
      *
      * @param authors an ArrayList of strings with the name of all authors.
+     * @return boolean
      */
-    public void setAuthors(ArrayList<String> authors) {
+    @Override
+    public boolean setAuthors(ArrayList<String> authors) {
+    return true;
     }
 
     /**

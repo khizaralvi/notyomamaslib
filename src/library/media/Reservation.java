@@ -1,10 +1,14 @@
 package library.media;
 
-import java.util.Date;
-
 /**
  * This class holds attributes required to a reservation of a specific media by
  * a specific patron.
+ * <ul>
+ * <li>Media ID</li>
+ * <li>Patron ID</li>
+ * <li>Reservation ID</li>
+ * <li>Reservation date</li>
+ * </ul>
  */
 public class Reservation {
 
@@ -99,6 +103,7 @@ public class Reservation {
 
     /**
      * This method sets the reservation date to the current date.
+     * @param date Current date
      */
     public void setReservationDate(String date) {
         this.reservationDate = date;

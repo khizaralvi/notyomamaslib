@@ -6,7 +6,8 @@
 package userinterface;
 
 /**
- *
+ * Interface that will be displayed for librarian users.
+ * 
  * @author Jéssica Carneiro
  */
 public class LibrarianInterface {

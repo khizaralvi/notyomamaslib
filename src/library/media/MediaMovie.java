@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * <li>Running time</li>
  * </ul>
  *
- * @author <a href="jessicacarneiro@ufmg.br">Jéssica Carneiro</a>
+ * @author <a>Adil Imam</a>
  * @version 1.0.0
  */
 public class MediaMovie extends Media {
@@ -57,8 +57,13 @@ public class MediaMovie extends Media {
      */
     public MediaMovie(String id, String title, String year, String cost,
             String genre, String director, ArrayList<String> actors,
-            String running_time, int quantity) {
-        super(id, title, year, cost, 'M', quantity);
+            String running_time, int quantity)
+    {
+       super(id, title, year, cost,"m", quantity);
+       this.genre=genre;
+       this.director=director;
+       this.actors=actors;
+       this.running_time=running_time;       
     }
 
     /**
@@ -66,6 +71,7 @@ public class MediaMovie extends Media {
      *
      * @return genre of movie
      */
+    @Override
     public String getGenre() {
         return genre;
     }
@@ -74,8 +80,12 @@ public class MediaMovie extends Media {
      * Sets genre of movie.
      *
      * @param genre genre of movie
+     * @return boolean
      */
-    public void setGenre(String genre) {
+    @Override
+    public boolean setGenre(String genre) {
+       this.genre=genre;
+       return true;
     }
 
     /**
@@ -83,6 +93,7 @@ public class MediaMovie extends Media {
      *
      * @return director name
      */
+    @Override
     public String getDirector() {
         return director;
     }
@@ -91,8 +102,11 @@ public class MediaMovie extends Media {
      * Sets director name.
      *
      * @param director director name
+     * @return boolean
      */
-    public void setDirector(String director) {
+    @Override
+    public boolean setDirector(String director) {
+    return true;
     }
 
     /**
@@ -100,6 +114,7 @@ public class MediaMovie extends Media {
      *
      * @return an ArrayList of strings with name of main actors
      */
+    @Override
     public ArrayList<String> getActors() {
         return actors;
     }
@@ -108,9 +123,12 @@ public class MediaMovie extends Media {
      * Sets list of main actors.
      *
      * @param actors an ArrayList of strings with name of main actors
+     * @return boolean
      */
-    public void setActors(ArrayList<String> actors) {
+    @Override
+    public boolean setActors(ArrayList<String> actors) {
         this.actors = actors;
+        return true;
     }
 
     /**
@@ -118,6 +136,7 @@ public class MediaMovie extends Media {
      *
      * @return duration of movie in minutes
      */
+    @Override
     public String getRunning_time() {
         return running_time;
     }
@@ -126,9 +145,12 @@ public class MediaMovie extends Media {
      * Sets the duration of the movie.
      *
      * @param running_time duration of movie in minutes
+     * @return boolean
      */
-    public void setRunning_time(String running_time) {
+    @Override
+    public boolean setRunning_time(String running_time) {
         this.running_time = running_time;
+        return true;
     }
 
     /**
