@@ -2,6 +2,11 @@ package library.jdbc;
 
 import library.media.Cancellation;
 
+/**
+ * The Cancellation JDBC class is works with the JDBC service package to use and edit
+ * the cancellation data in the database.
+ */
+
 public class CancellationJDBC {
 
     /**
@@ -22,8 +27,7 @@ public class CancellationJDBC {
      * @param PatronId represents patron whose cancellation is required to be
      * displayed
      */
-    public void View_SpecificUser_CancellationList(String PatronId) {
-
+    public void View_User_CancellationList(String PatronId) {
     }
 
     /**
