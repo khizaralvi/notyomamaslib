@@ -1,12 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package library.media;
 
 import java.util.ArrayList;
 import library.jdbc.CancellationJDBC;
+
+/**
+ * The CancellationCollection is the class that holds the Cancellation objects 
+ * related to cancelling a reservation.
+ * 
+ * @author <a>Brett Landau</a>
+ */
 
 public class CancellationCollection {
 
