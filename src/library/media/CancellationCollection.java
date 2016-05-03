@@ -50,7 +50,7 @@ public class CancellationCollection {
      * @param PatronId represents patron whose cancellation is required to be
      * displayed
      */
-    public void View_SpecificUser_CancellationList(String PatronId) {
+    public void View_User_CancellationList(String PatronId) {
 
     }
 
