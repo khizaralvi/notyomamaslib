@@ -1,13 +1,14 @@
-/**
- * Bridge class between database and software for the Accounts class
- * @author Benny Pena
- * @author Jeffrey Godoy
- * @author Junaid Farooq 
- * @version 1.0
- */
 import java.util.ArrayList;
+import java.sql.*;
+import javax.sql.*;
 
-public class AccountCollection {
+public class AccountJDBC {
+	private String url = "jdbc:mysql://localhost:3306/";
+	private String username = "admin";
+	private String password = "admin";
+	private Connection connection = null;
+	private String patron = "patron";
+	private String staff = "staff";
 	
 	/**
 	 * Value when the an operation is successful
@@ -123,6 +124,4 @@ public class AccountCollection {
 		ArrayList<StaffAccount> resultList = new ArrayList<StaffAccount>();
 	 	return resultList;
 	 }
-	 
-	 
 }

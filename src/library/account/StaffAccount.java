@@ -40,29 +40,5 @@ public class StaffAccount extends Account{
     public void setAccountType(char accountType) {
         this.accountType = accountType;
     }
-    /**
-     * Search for an account using account ID as key.
-     * 
-     * @param id ID to use a search key.
-     * @return Account object.
-     */
-    public static Account searchByID(String id){
-    	//move to parent Account and override?
-    	//JDBC x = new JDBC();
-    	//return x.search(id);
-    	return null;	
-    }
-    /**
-     * Search for an account using telephone number as key.
-     * 
-     * @param phone telephone number to use as search key.
-     * @return Account object.
-     */
-    public static Account searchByPhone(String phone){
-    	//move to parent Account and override?
-    	//JDBC x = new JDBC();
-    	//return x.search(first,last);
-    	return null;
-    }
-
+    
 }

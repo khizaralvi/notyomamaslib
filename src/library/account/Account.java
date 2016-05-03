@@ -99,5 +99,9 @@ public class Account {
     	return null;
     }
     
+    public char getAccountType(){
+    	return 'P';
+    }
+    
     
 }
