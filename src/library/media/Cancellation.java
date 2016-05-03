@@ -12,6 +12,7 @@ public class Cancellation {
     private String MediaId;
     private String PatronId;
     private Date reserved_date;
+    private int cancellationId;
     private Date cancelled_date;
 
     /**
@@ -22,7 +23,8 @@ public class Cancellation {
      * @param cancelled_date records date the book was cancellated for reservation
      *
      */
-    public Cancellation(String MediaId, String PatronId, Date reserved_date, Date cancelled_date) {
+    public Cancellation(int cancellationId, String MediaId, String PatronId, Date reserved_date, Date cancelled_date) {
+        this.cancellationId = cancellationId;
         this.MediaId = MediaId;
         this.PatronId = PatronId;
         this.reserved_date = reserved_date;
@@ -95,11 +97,28 @@ public class Cancellation {
     /**
      * This method lets us return cancellation date attribute of the object
      *
-     * @param cancelled_date date media was reserved
+     * @param cancelled_date date media was cancelled
      */
     public void setCancelled_date(Date cancelled_date) {
         this.cancelled_date = cancelled_date;
      }
+
+    /**
+     * This method returns the cancellation id .
+     *
+     * @return the date in which the cancellation was made
+     */
+    public int getCancellationId() {
+        return cancellationId;
+    }
+
+    /**
+     * This method sets the cancellation id.
+     * @param cancellationId cancellation id
+     */
+    public void setCancellationId(int cancellationId) {
+        this.cancellationId = cancellationId;
+    }
 
     /**
      * This method is used to display contents of each object
@@ -109,7 +128,7 @@ public class Cancellation {
      */
     @Override
     public String toString() {
-        return "Reservation2{" + "MediaId=" + MediaId + ", PatronId=" + PatronId + ", reserved_date=" + reserved_date + ", cancelled_date=" + cancelled_date + '}';
+        return "Reservation2{" + "MediaId=" + MediaId + ", PatronId=" + PatronId + ", reserved_date=" + reserved_date + ", cancelled_date=" + cancelled_date + ", cancellationID=" + cancellationId'}';
     }
 
     /**

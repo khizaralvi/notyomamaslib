@@ -19,10 +19,10 @@ public class CancellationCollection {
     }
 
     /**
-     * This method lets us reserve one media for one specific patron
+     * This method lets us cancel one media reservation for one specific patron
      *
-     * @param r reservation object passed from control class which tells us
-     * which patron has reserved what media
+     * @param r cancellation object passed from control class which tells us
+     * which patron has cancelled what media reservation
      * @return Boolean represents whether the desired operation was successful
      * or not
      */
@@ -30,6 +30,17 @@ public class CancellationCollection {
         cancellation.add(r);
         return false;
     }
+    
+        /**
+     * Delete a cancellation
+     * @param 
+     * @return the deleted object
+     */
+    public Cancellation deleteCancellation(String cancellationId) {
+        Cancellation deletedC = new Cancellation();
+        return deletedC;
+    }
+
 
     /**
      * This method lets us view all reserved media for one specific patron
