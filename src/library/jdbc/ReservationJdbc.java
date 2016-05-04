@@ -24,7 +24,6 @@ public class ReservationJdbc {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("It works!!");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -53,7 +52,7 @@ public class ReservationJdbc {
             ps.setString(2, r.getPatronId());
             ps.setString(3, r.getMediaId());
             ps.setString(4, r.getReservationDate());
-            System.out.println(ps.executeUpdate());
+            ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,23 +63,44 @@ public class ReservationJdbc {
     /**
      * Delete a reservation given its reservation id.
      *
-     * @param reservationId the reservation id
+     * @param r Reservation object retrieved from the database
      * @return the deleted object
      */
-    public Reservation deleteReservation(String reservationId) {
-        Reservation deletedR = new Reservation();
-        return deletedR;
+    public Reservation deleteReservation(Reservation r) {
+        connect();
+        try {
+            ps = con.prepareStatement("DELETE FROM mydb.reservation WHERE ReservationId = ?");
+            ps.setInt(1, r.getReservationId());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
     }
 
     /**
      * This method lets us view all reserved media for one specific patron
      *
-     * @param Patronid represents patron whose reservation is required to be
+     * @param patronId represents patron whose reservation is required to be
      * displayed
      * @return an ArrayList with all reservations for that specific patron
      */
-    public ArrayList<Reservation> viewPatronReserveList(String Patronid) {
-        return rc.viewPatronReserveList(Patronid);
+    public ArrayList<Reservation> viewPatronReserveList(String patronId) {
+        connect();
+        if (!rc.reservList.isEmpty()) {
+            rc.reservList.clear();
+        }
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM mydb.reservation WHERE patroId = " + patronId);      
+            while (rs.next()) {
+                reservation.setReservationId(rs.getInt("ReservationId"));
+                rc.reservList.add(reservation);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rc.reservList;
     }
 
     /**
@@ -89,7 +109,7 @@ public class ReservationJdbc {
      * @return an ArrayList with all reserved items in the library
      */
     public ArrayList<Reservation> viewLibReserveList() {
-        
+
         connect();
         try {
             st = con.createStatement();

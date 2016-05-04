@@ -50,7 +50,10 @@ public class CheckedOutCollection {
      * returned. It is only called when checkIn is true
      *
      * @param deletedCheckedOutMedia Media to be marked as returned
+<<<<<<< HEAD
+=======
      * 
+>>>>>>> 7c4da5dc30717b541a4fb55f6bca62cbe6da62bf
      * @return true if this was successful or false otherwise
      */
     public boolean deleteCheckedOutMedia(CheckedOutMedia deletedCheckedOutMedia) {

@@ -12,12 +12,6 @@ public class PatronInterface {
     public static void main(String [] args) {
         int option = 0;
         
-        ReservationJdbc rj = new ReservationJdbc();
-        Reservation res = new Reservation(1212121, "6546464", "112121", "04/28/2016");
-        // rj.connect();
-        // rj.reserveMedia(res);
-        System.out.print(rj.viewLibReserveList().toString());
-        
         do {
             System.out.println("Welcome to Not Your Mamas's Library!");
             System.out.println("Menu options:");

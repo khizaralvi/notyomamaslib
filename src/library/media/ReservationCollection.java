@@ -64,7 +64,12 @@ public class ReservationCollection {
      */
     @Override
     public String toString() {
-        return "ReservationCollection{" + "reservation=" + reservList + '}';
+        String s = "";
+        for (int i = 0; i < reservList.size(); i++) {
+            s += reservList.get(i).toString();
+            s += "\n";
+        }
+        return s;
     }
 
     /**

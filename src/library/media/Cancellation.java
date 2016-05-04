@@ -24,7 +24,11 @@ public class Cancellation {
 
     /**
      *
+<<<<<<< HEAD
+     * @param cancellationId CancellationID is the unique id for the cancellation
+=======
      * @param cancellationId unique cancellation id
+>>>>>>> 7c4da5dc30717b541a4fb55f6bca62cbe6da62bf
      * @param MediaId MediaId is the unique id for every single media
      * @param PatronId PatronId is the unique id for every single patron
      * @param reserved_date records date the book was reserved

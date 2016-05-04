@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import library.jdbc.CancellationJDBC;
 
 /**
- * The CancellationCollection is the class that holds the Cancellation objects 
+ * The CancellationCollection is the class that holds the Cancellation objects
  * related to cancelling a reservation.
- * 
+ *
  * @author <a>Brett Landau</a>
  */
-
 public class CancellationCollection {
 
     private ArrayList<Cancellation> cancellation;
@@ -32,17 +31,21 @@ public class CancellationCollection {
         cancellation.add(r);
         return false;
     }
-    
-        /**
+
+    /**
      * Delete a cancellation
+<<<<<<< HEAD
+     *
+     * @param cancellationId is the unique id for cancellation
+=======
      * @param cancellationId unique cancellationId
+>>>>>>> 7c4da5dc30717b541a4fb55f6bca62cbe6da62bf
      * @return the deleted object
      */
     public Cancellation deleteCancellation(String cancellationId) {
         Cancellation deletedC = new Cancellation();
         return deletedC;
     }
-
 
     /**
      * This method lets us view all reserved media for one specific patron
