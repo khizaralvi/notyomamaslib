@@ -70,14 +70,14 @@ public class CheckedOutJdbcClass {
     }
 
     /**
-     * @author khizaralvi This method uses JDBC to retrieve Patron Emails and
+     * This method uses JDBC to retrieve Patron Emails and
      * his/her due dates from the checkedOutMedia table in Database, stores them
      * into
      * String and Date arrayLists and compares the difference of due dates
      * with the current date using the Java.util.date and joda.time.DateTime
      * class.
      * @return an ArrayList of DueDates
-     * @throws java.sql.SQLException
+     * @throws java.sql.SQLException Throughs exception
      */
     public ArrayList<Date> checkDueDates() throws SQLException {
         
@@ -87,7 +87,7 @@ public class CheckedOutJdbcClass {
     }
 
     /**
-     * @author khizaralvi This method uses Java.mail.Api and JDBC class to
+     * This method uses Java.mail.Api and JDBC class to
      * retrieve Patron emails from checkedOutMedia table in Database and send
      * email notifications to the Patrons who have missed Due Date of their
      * return of media
@@ -99,7 +99,7 @@ public class CheckedOutJdbcClass {
     }
 
     /**
-     * @author khizaralvi This method uses Java.mail.Api and JDBC class to
+     * This method uses Java.mail.Api and JDBC class to
      * retrieve Patron emails from checkedOutMedia table in Database and send
      * due date email notifications to the Patrons who have two days left to
      * return their media

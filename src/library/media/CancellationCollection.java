@@ -34,12 +34,8 @@ public class CancellationCollection {
 
     /**
      * Delete a cancellation
-<<<<<<< HEAD
-     *
+     * 
      * @param cancellationId is the unique id for cancellation
-=======
-     * @param cancellationId unique cancellationId
->>>>>>> 7c4da5dc30717b541a4fb55f6bca62cbe6da62bf
      * @return the deleted object
      */
     public Cancellation deleteCancellation(String cancellationId) {
