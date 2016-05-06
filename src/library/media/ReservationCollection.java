@@ -10,24 +10,23 @@ import library.jdbc.ReservationJdbc;
  */
 public class ReservationCollection {
 
-    public ArrayList<Reservation> reservList;
-   // private ReservationJdbc reserve=;
+    public ArrayList<Reservation> reserveList;
+    private ReservationJdbc reserveJdbc;
 
     public ReservationCollection() {
-        reservList = new ArrayList();
-        //reserve = ;
+        reserveList = new ArrayList();
     }
 
     /**
      * This method allows us reserve one media for one specific patron.
      *
-     * @param r reservation object passed from control class which tells us
-     * which patron has reserved what media.
+     * @param m media object to be reserved
      * @return true if the desired operation was successful, false otherwise
      */
-    public boolean reserveMedia(Reservation r) {
-        reservList.add(r);
-        return false;
+    public boolean reserveMedia(Media m) {
+        Reservation r = new Reservation();
+        r.setMediaId(m.getMediaId());
+        return reserveJdbc.reserveMedia(r);
     }
     
     /**
@@ -37,7 +36,7 @@ public class ReservationCollection {
      */
     public Reservation deleteReservation(String reservationId) {
         Reservation deletedR = new Reservation();
-        return deletedR;
+        return reserveJdbc.deleteReservation(deletedR);
     }
 
     /**
@@ -48,7 +47,7 @@ public class ReservationCollection {
      * @return an ArrayList with all reservations for that specific patron
      */
     public ArrayList<Reservation> viewPatronReserveList(String Patronid) {
-        return reservList;
+        return reserveJdbc.viewPatronReserveList(Patronid);
     }
 
     /**
@@ -56,7 +55,7 @@ public class ReservationCollection {
      * @return an ArrayList with all reserved items in the library
      */
     public ArrayList<Reservation> viewLibReserveList() {
-        return reservList;
+        return reserveJdbc.viewLibReserveList();
     }
 
     /** Prints the reservation collection.
@@ -65,8 +64,9 @@ public class ReservationCollection {
     @Override
     public String toString() {
         String s = "";
-        for (int i = 0; i < reservList.size(); i++) {
-            s += reservList.get(i).toString();
+        for (int i = 0; i < reserveList.size(); i++) {
+            s += reserveList.get(i).toString();
+            System.out.println(reserveList.get(i).toString());
             s += "\n";
         }
         return s;
@@ -78,7 +78,7 @@ public class ReservationCollection {
      * Reservation
      */
     public ArrayList<Reservation> getArr() {
-        return reservList;
+        return reserveList;
     }
 
 }

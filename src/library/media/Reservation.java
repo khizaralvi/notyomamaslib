@@ -17,13 +17,12 @@ public class Reservation {
     private int reservationId;
     private String reservationDate;
 
-    
     /**
      * Default constructor.
      */
     public Reservation() {
     }
-    
+
     /**
      *
      * @param reservationId reservation id
@@ -86,6 +85,7 @@ public class Reservation {
 
     /**
      * This method sets the reservation id.
+     *
      * @param reservationId reservation id
      */
     public void setReservationId(int reservationId) {
@@ -103,6 +103,7 @@ public class Reservation {
 
     /**
      * This method sets the reservation date to the current date.
+     *
      * @param date Current date
      */
     public void setReservationDate(String date) {
@@ -118,7 +119,8 @@ public class Reservation {
      */
     @Override
     public String toString() {
-        return mediaId + " " + patronId + " " + reservationDate + " ";
+        return "ID:" + reservationId + " Media:" + mediaId + " Patron:" + patronId + " Date:"
+                + reservationDate;
     }
 
     /**

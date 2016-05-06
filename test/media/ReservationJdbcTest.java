@@ -1,3 +1,5 @@
+package media;
+
 
 import library.jdbc.ReservationJdbc;
 import library.media.Reservation;
@@ -17,14 +19,14 @@ public class ReservationJdbcTest {
     public static void main(String[] args) {
         ReservationJdbc rj = new ReservationJdbc();
         ReservationCollection rc = new ReservationCollection();
-//        Reservation res1 = new Reservation(12121, "112121", "1209213", "03/28/2016");
-//        Reservation res2 = new Reservation(98212, "112121", "8921081", "05/01/2016");
-//        Reservation res3 = new Reservation(12910, "889976", "1092812", "04/30/2016");
-//        Reservation res4 = new Reservation(12109, "091223", "1209328", "05/03/2016");
+//        Reservation res1 = new Reservation(111111, "112121", "8921081", "03/25/2016");
+//        Reservation res2 = new Reservation(909101, "112121", "2323232", "05/05/2016");
+//        Reservation res3 = new Reservation(122390, "121223", "5454545", "04/25/2016");
+//        Reservation res4 = new Reservation(676765, "091223", "0291921", "05/03/2016");
 //        rj.reserveMedia(res1);
 //        rj.reserveMedia(res2);
 //        rj.reserveMedia(res3);
 //        rj.reserveMedia(res4);
-        System.out.println(rj.viewPatronReserveList("112121").toString());
+        System.out.println(rj.viewPatronReserveList("8921081").toString());
     }
 }

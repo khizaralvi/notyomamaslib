@@ -8,8 +8,8 @@ import library.media.Reservation;
 import library.media.ReservationCollection;
 
 /**
- * Reservation_JDBC class is the class that uses JDBC service package to
- * manipulate the data in Reservation.
+ * This is the class that uses JDBC service package to manipulate the data in
+ * Reservation.
  */
 public class ReservationJdbc {
 
@@ -20,6 +20,9 @@ public class ReservationJdbc {
     private ResultSet rs = null;
     private Reservation reservation = new Reservation();
 
+    /**
+     * This methods will stablish a connection with the database.
+     */
     public void connect() {
 
         try {
@@ -45,7 +48,22 @@ public class ReservationJdbc {
      * @return true if the desired operation was successful, false otherwise
      */
     public boolean reserveMedia(Reservation r) {
-        connect();
+        connect(); // First, it must be connected to the database 
+        // First, check if there are any copies to reserve
+        // Then, check if the patron already reserved this same media
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT mediaQuantity FROM mydb.media WHERE mediaId = " + r.getMediaId());
+            rs.next();
+            
+            if (rs.getInt("mediaQuantity") == 0) {
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Reserving media
         try {
             ps = con.prepareStatement("INSERT INTO mydb.reservation values(?,?,?,?)");
             ps.setInt(1, r.getReservationId());
@@ -55,9 +73,10 @@ public class ReservationJdbc {
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /**
@@ -67,7 +86,8 @@ public class ReservationJdbc {
      * @return the deleted object
      */
     public Reservation deleteReservation(Reservation r) {
-        connect();
+        connect(); // First, it must be connected to the database
+
         try {
             ps = con.prepareStatement("DELETE FROM mydb.reservation WHERE ReservationId = ?");
             ps.setInt(1, r.getReservationId());
@@ -86,21 +106,29 @@ public class ReservationJdbc {
      * @return an ArrayList with all reservations for that specific patron
      */
     public ArrayList<Reservation> viewPatronReserveList(String patronId) {
-        connect();
-        if (!rc.reservList.isEmpty()) {
-            rc.reservList.clear();
+        connect(); // First, it must be connected to the database 
+
+        /**
+         * Cleaning the reservList collection to be used to collect all
+         * reservation entries for the patron.
+         */
+        if (!rc.reserveList.isEmpty()) {
+            rc.reserveList.clear();
         }
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM mydb.reservation WHERE patroId = " + patronId);      
+            rs = st.executeQuery("SELECT * FROM mydb.reservation WHERE patronId = " + patronId);
             while (rs.next()) {
                 reservation.setReservationId(rs.getInt("ReservationId"));
-                rc.reservList.add(reservation);
+                reservation.setPatronId(rs.getString("patronId"));
+                reservation.setMediaId(rs.getString("mediaId"));
+                reservation.setReservationDate(rs.getString("ReservedDate"));
+                rc.reserveList.add(reservation);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rc.reservList;
+        return rc.reserveList;
     }
 
     /**
@@ -119,13 +147,13 @@ public class ReservationJdbc {
                 reservation.setPatronId(rs.getString("patronId"));
                 reservation.setMediaId(rs.getString("mediaId"));
                 reservation.setReservationDate(rs.getString("ReservedDate"));
-                rc.reservList.add(reservation);
+                rc.reserveList.add(reservation);
 
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rc.reservList;
+        return rc.reserveList;
     }
 
 }
