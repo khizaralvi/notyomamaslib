@@ -22,7 +22,7 @@ USE `mediamanagement` ;
 -- Table `mediamanagement`.`author`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mediamanagement`.`author` (
-  `authorID` INT(5) NOT NULL,
+  `authorID` INT(5) NOT NULL AUTO_INCREMENT,
   `auhorName` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`authorID`))
 ENGINE = InnoDB
@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `mediamanagement`.`media` (
   `runningTime` VARCHAR(6) NULL DEFAULT NULL,
   PRIMARY KEY (`mediaId`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -85,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `mediamanagement`.`patronaccount` (
   `accounttype` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`patronId`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 51
+AUTO_INCREMENT = 101
 DEFAULT CHARACTER SET = utf8;
 
 
