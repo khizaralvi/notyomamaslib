@@ -2,6 +2,7 @@ package media;
 
 
 import library.jdbc.ReservationJdbc;
+import library.media.Media;
 import library.media.Reservation;
 import library.media.ReservationCollection;
 
@@ -18,15 +19,15 @@ public class ReservationJdbcTest {
 
     public static void main(String[] args) {
         ReservationJdbc rj = new ReservationJdbc();
-        ReservationCollection rc = new ReservationCollection();
-//        Reservation res1 = new Reservation(111111, "112121", "8921081", "03/25/2016");
-//        Reservation res2 = new Reservation(909101, "112121", "2323232", "05/05/2016");
-//        Reservation res3 = new Reservation(122390, "121223", "5454545", "04/25/2016");
-//        Reservation res4 = new Reservation(676765, "091223", "0291921", "05/03/2016");
-//        rj.reserveMedia(res1);
-//        rj.reserveMedia(res2);
-//        rj.reserveMedia(res3);
-//        rj.reserveMedia(res4);
-        System.out.println(rj.viewPatronReserveList("8921081").toString());
+        Media m = new Media(1);
+        Reservation r = new Reservation();
+        Reservation r2;
+        r.setMediaId(1);
+        r.setPatronId(2);
+        r.setReservationDate("05/07/2016");
+        
+        System.out.println(rj.reserveMedia(r));
+        
+        r2 = rj.deleteReservation(9);
     }
 }

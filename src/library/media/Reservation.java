@@ -12,8 +12,8 @@ package library.media;
  */
 public class Reservation {
 
-    private String mediaId;
-    private String patronId;
+    private int mediaId;
+    private int patronId;
     private int reservationId;
     private String reservationDate;
 
@@ -31,7 +31,7 @@ public class Reservation {
      * @param date date
      *
      */
-    public Reservation(int reservationId, String mediaId, String patronId, String date) {
+    public Reservation(int reservationId, int mediaId, int patronId, String date) {
         setReservationId(reservationId);
         setMediaId(mediaId);
         setPatronId(patronId);
@@ -43,7 +43,7 @@ public class Reservation {
      *
      * @return String
      */
-    public String getMediaId() {
+    public int getMediaId() {
         return mediaId;
     }
 
@@ -52,7 +52,7 @@ public class Reservation {
      *
      * @param mediaId the unique id for every single media
      */
-    public void setMediaId(String mediaId) {
+    public void setMediaId(int mediaId) {
         this.mediaId = mediaId;
     }
 
@@ -61,7 +61,7 @@ public class Reservation {
      *
      * @return the unique id for every single patron
      */
-    public String getPatronId() {
+    public int getPatronId() {
         return patronId;
     }
 
@@ -70,7 +70,7 @@ public class Reservation {
      *
      * @param patronId the unique id for every single patron
      */
-    public void setPatronId(String patronId) {
+    public void setPatronId(int patronId) {
         this.patronId = patronId;
     }
 
@@ -130,8 +130,8 @@ public class Reservation {
      * @return true if two reservations are the same, false otherwise
      */
     public boolean equals(Reservation r) {
-        return this.mediaId.equals(r.mediaId)
-                && this.patronId.equals(r.patronId)
+        return this.mediaId == r.mediaId
+                && this.patronId == r.patronId
                 && this.reservationDate.equals(r.reservationDate);
     }
 

@@ -31,7 +31,7 @@ public class ReservationJdbc {
             ex.printStackTrace();
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mediamanagement?autoReconnect=true&useSSL=false", "root", "");
 
         } catch (SQLException ex) {
 
@@ -45,55 +45,159 @@ public class ReservationJdbc {
      *
      * @param r reservation object passed from control class which tells us
      * which patron has reserved what media.
-     * @return true if the desired operation was successful, false otherwise
+     * @return status message
      */
-    public boolean reserveMedia(Reservation r) {
+    public String reserveMedia(Reservation r) {
+
+        // Checking if media is available
+        if (!this.checkQuantity(r.getMediaId())) {
+            return "Media not available";
+        }
+
+        // Check if reservation was not made before
+        if (this.checkPatronReservation(r.getMediaId(), r.getPatronId())) {
+            return "Patron already reserved this media";
+        }
+
+        connect(); // First, it must be connected to the database
+
+        // Reserving media
+        try {
+            ps = con.prepareStatement("INSERT INTO reservation (patronId, mediaId, reservedDate) values(?,?,?)");
+            ps.setInt(1, r.getPatronId());
+            ps.setInt(2, r.getMediaId());
+            ps.setString(3, r.getReservationDate());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Decrease quantity of the media available
+        if (!this.decreaseQuantity(r.getMediaId())) {
+            // Roll-back last transaction
+            return "An error occured.";
+        }
+
+        return "Reservation was placed successfully!";
+    }
+
+    /**
+     * Check if quantity is greater than zero.
+     *
+     * @param mediaId media unique identifier
+     * @return true if quantity is greater than zero, false otherwise
+     */
+    public boolean checkQuantity(int mediaId) {
         connect(); // First, it must be connected to the database 
+
         // First, check if there are any copies to reserve
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT mediaQuantity FROM media WHERE mediaId = " + mediaId);
+
+            while (rs.next()) {
+                // Impossible to reserve media: no copies avaiable
+                if (rs.getInt("mediaQuantity") == 0) {
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+
+    /**
+     * Check if the media was already reserved for the patron.
+     *
+     * @param mediaId media unique identifier
+     * @param patronId patron unique identifier
+     * @return true if media was already reserved for that patron, false
+     * otherwise
+     */
+    public boolean checkPatronReservation(int mediaId, int patronId) {
+        connect(); // First, it must be connected to the database 
+
         // Then, check if the patron already reserved this same media
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT mediaQuantity FROM mydb.media WHERE mediaId = " + r.getMediaId());
-            rs.next();
-            
-            if (rs.getInt("mediaQuantity") == 0) {
-                return false;
+            rs = st.executeQuery("SELECT reservationId, reservedDate FROM reservation WHERE mediaId = "
+                    + mediaId + " AND patronId = " + patronId);
+
+            // Impossible to reserve media: this patron has a reservation placed for this media
+            while (rs.next()) {
+                return true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Reserving media
+        return false;
+    }
+
+    /**
+     * Decrease quantity for a media.
+     *
+     * @param mediaId media unique identifier
+     * @return true if update was made, false otherwise
+     */
+    public boolean decreaseQuantity(int mediaId) {
+        connect(); // First, it must be connected to the database
+
+        // Decreasing quantity
         try {
-            ps = con.prepareStatement("INSERT INTO mydb.reservation values(?,?,?,?)");
-            ps.setInt(1, r.getReservationId());
-            ps.setString(2, r.getPatronId());
-            ps.setString(3, r.getMediaId());
-            ps.setString(4, r.getReservationDate());
+            ps = con.prepareStatement("UPDATE media SET mediaQuantity = mediaQuantity - 1 WHERE mediaId = "
+                    + mediaId);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
+        return false;
+    }
 
-        return true;
+    /**
+     * Increase quantity for a media.
+     *
+     * @param mediaId media unique identifier
+     * @return true if update was made, false otherwise
+     */
+    public boolean increaseQuantity(int mediaId) {
+        connect(); // First, it must be connected to the database
+
+        // Decreasing quantity
+        try {
+            ps = con.prepareStatement("UPDATE media SET mediaQuantity = mediaQuantity + 1 WHERE mediaId = "
+                    + mediaId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     /**
      * Delete a reservation given its reservation id.
      *
-     * @param r Reservation object retrieved from the database
+     * @param reservationId reservation ID
      * @return the deleted object
      */
-    public Reservation deleteReservation(Reservation r) {
+    public Reservation deleteReservation(int reservationId) {
         connect(); // First, it must be connected to the database
-
+        Reservation r = new Reservation();
+        
+        r = this.searchReservation(reservationId);
+        
         try {
-            ps = con.prepareStatement("DELETE FROM mydb.reservation WHERE ReservationId = ?");
+            ps = con.prepareStatement("DELETE FROM reservation WHERE reservationId = ?");
             ps.setInt(1, r.getReservationId());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(!this.increaseQuantity(r.getMediaId())) {
+            // Roll back last transaction
+            return null;
         }
         return r;
     }
@@ -105,7 +209,7 @@ public class ReservationJdbc {
      * displayed
      * @return an ArrayList with all reservations for that specific patron
      */
-    public ArrayList<Reservation> viewPatronReserveList(String patronId) {
+    public ArrayList<Reservation> viewPatronReserveList(int patronId) {
         connect(); // First, it must be connected to the database 
 
         /**
@@ -117,12 +221,12 @@ public class ReservationJdbc {
         }
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM mydb.reservation WHERE patronId = " + patronId);
+            rs = st.executeQuery("SELECT * FROM reservation WHERE patronId = " + patronId);
             while (rs.next()) {
-                reservation.setReservationId(rs.getInt("ReservationId"));
-                reservation.setPatronId(rs.getString("patronId"));
-                reservation.setMediaId(rs.getString("mediaId"));
-                reservation.setReservationDate(rs.getString("ReservedDate"));
+                reservation.setReservationId(rs.getInt("reservationId"));
+                reservation.setPatronId(rs.getInt("patronId"));
+                reservation.setMediaId(rs.getInt("mediaId"));
+                reservation.setReservationDate(rs.getString("reservedDate"));
                 rc.reserveList.add(reservation);
             }
         } catch (SQLException ex) {
@@ -141,11 +245,11 @@ public class ReservationJdbc {
         connect();
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM mydb.reservation");
+            rs = st.executeQuery("SELECT * FROM reservation");
             while (rs.next()) {
                 reservation.setReservationId(rs.getInt("ReservationId"));
-                reservation.setPatronId(rs.getString("patronId"));
-                reservation.setMediaId(rs.getString("mediaId"));
+                reservation.setPatronId(rs.getInt("patronId"));
+                reservation.setMediaId(rs.getInt("mediaId"));
                 reservation.setReservationDate(rs.getString("ReservedDate"));
                 rc.reserveList.add(reservation);
 
@@ -154,6 +258,59 @@ public class ReservationJdbc {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rc.reserveList;
+    }
+
+    /**
+     * Search a reservation by reservationId
+     *
+     * @param reservationId the reservation ID
+     * @return the reservation object
+     */
+    public Reservation searchReservation(int reservationId) {
+        Reservation r = new Reservation();
+
+        connect(); // First, it must be connected to the database 
+
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM reservation WHERE reservationId = " + reservationId);
+            while (rs.next()) {
+                r.setReservationId(rs.getInt("reservationId"));
+                r.setPatronId(rs.getInt("patronId"));
+                r.setMediaId(rs.getInt("mediaId"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
+    }
+    
+    /**
+     * Search a reservation by patronId and mediaId.
+     *
+     * @param mediaId media ID
+     * @param patronId patron ID
+     * @return the reservation object
+     */
+    public Reservation searchReservation(int mediaId, int patronId) {
+        Reservation r = new Reservation();
+
+        connect(); // First, it must be connected to the database 
+
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM reservation WHERE mediaId = " 
+                    + mediaId + " AND patronId = " + patronId);
+            while (rs.next()) {
+                r.setReservationId(rs.getInt("reservationId"));
+                r.setPatronId(rs.getInt("patronId"));
+                r.setMediaId(rs.getInt("mediaId"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
     }
 
 }

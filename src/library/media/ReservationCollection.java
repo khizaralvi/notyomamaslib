@@ -11,7 +11,6 @@ import library.jdbc.ReservationJdbc;
 public class ReservationCollection {
 
     public ArrayList<Reservation> reserveList;
-    private ReservationJdbc reserveJdbc;
 
     public ReservationCollection() {
         reserveList = new ArrayList();
@@ -21,12 +20,11 @@ public class ReservationCollection {
      * This method allows us reserve one media for one specific patron.
      *
      * @param m media object to be reserved
+     * @param patronId unique identifier for patron account
      * @return true if the desired operation was successful, false otherwise
      */
-    public boolean reserveMedia(Media m) {
-        Reservation r = new Reservation();
-        r.setMediaId(m.getMediaId());
-        return reserveJdbc.reserveMedia(r);
+    public boolean reserveMedia(Media m, int patronId) {
+        return true;
     }
     
     /**
@@ -36,18 +34,18 @@ public class ReservationCollection {
      */
     public Reservation deleteReservation(String reservationId) {
         Reservation deletedR = new Reservation();
-        return reserveJdbc.deleteReservation(deletedR);
+        return deletedR;
     }
 
     /**
      * This method lets us view all reserved media for one specific patron
      *
-     * @param Patronid represents patron whose reservation is required to be
+     * @param patronId represents patron whose reservation is required to be
      * displayed
      * @return an ArrayList with all reservations for that specific patron
      */
-    public ArrayList<Reservation> viewPatronReserveList(String Patronid) {
-        return reserveJdbc.viewPatronReserveList(Patronid);
+    public ArrayList<Reservation> viewPatronReserveList(int patronId) {
+        return reserveList;
     }
 
     /**
@@ -55,7 +53,7 @@ public class ReservationCollection {
      * @return an ArrayList with all reserved items in the library
      */
     public ArrayList<Reservation> viewLibReserveList() {
-        return reserveJdbc.viewLibReserveList();
+        return reserveList;
     }
 
     /** Prints the reservation collection.
@@ -81,4 +79,12 @@ public class ReservationCollection {
         return reserveList;
     }
 
+    /**
+     * Search for a reservation by reservationId
+     * @param reservationId the reservation ID
+     * @return a reservation object
+     */
+    public Reservation searchReservation(int reservationId)  {
+        return reserveList.get(0);
+    }
 }
