@@ -23,7 +23,7 @@ USE `mediamanagement` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mediamanagement`.`author` (
   `authorID` INT(5) NOT NULL AUTO_INCREMENT,
-  `auhorName` VARCHAR(45) NULL DEFAULT NULL,
+  `authorName` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`authorID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -145,8 +145,8 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `mediamanagement`.`reservation`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mediamanagement`.`reservation` (
-  `reservationId` INT(5) NOT NULL,
-  `patronId` INT(5) NOT NULL AUTO_INCREMENT,
+  `reservationId` INT(5) NOT NULL AUTO_INCREMENT,
+  `patronId` INT(5) NOT NULL,
   `mediaId` INT(5) NOT NULL,
   `reservedDate` VARCHAR(10) NULL DEFAULT NULL,
   PRIMARY KEY (`reservationId`),
