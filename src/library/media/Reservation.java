@@ -24,15 +24,13 @@ public class Reservation {
     }
 
     /**
-     *
-     * @param reservationId reservation id
+     * Constructor for Reservation.
      * @param mediaId the unique id for every single media
      * @param patronId the unique id for every single patron
      * @param date date
      *
      */
-    public Reservation(int reservationId, int mediaId, int patronId, String date) {
-        setReservationId(reservationId);
+    public Reservation(int mediaId, int patronId, String date) {
         setMediaId(mediaId);
         setPatronId(patronId);
         setReservationDate(date);

@@ -1,5 +1,7 @@
 package library.media;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import library.jdbc.ReservationJdbc;
 
@@ -10,10 +12,12 @@ import library.jdbc.ReservationJdbc;
  */
 public class ReservationCollection {
 
-    public ArrayList<Reservation> reserveList;
+    private ArrayList<Reservation> reserveList;
+    private ReservationJdbc rj;
 
     public ReservationCollection() {
         reserveList = new ArrayList();
+        rj = new ReservationJdbc();
     }
 
     /**
@@ -24,17 +28,9 @@ public class ReservationCollection {
      * @return true if the desired operation was successful, false otherwise
      */
     public boolean reserveMedia(Media m, int patronId) {
-        return true;
-    }
-    
-    /**
-     * Delete a reservation given its reservation id.
-     * @param reservationId the reservation id
-     * @return the deleted object
-     */
-    public Reservation deleteReservation(String reservationId) {
-        Reservation deletedR = new Reservation();
-        return deletedR;
+        String date = new SimpleDateFormat("MM-dd-yyyy").format(new Date());
+        Reservation r = new Reservation(m.getMediaId(), patronId, date);
+        return rj.reserveMedia(r);
     }
 
     /**
@@ -45,18 +41,23 @@ public class ReservationCollection {
      * @return an ArrayList with all reservations for that specific patron
      */
     public ArrayList<Reservation> viewPatronReserveList(int patronId) {
+        reserveList =  rj.viewPatronReserveList(patronId);
         return reserveList;
     }
 
     /**
      * This method display all the reserved media in the library.
+     *
      * @return an ArrayList with all reserved items in the library
      */
     public ArrayList<Reservation> viewLibReserveList() {
+        reserveList = rj.viewLibReserveList();
         return reserveList;
     }
 
-    /** Prints the reservation collection.
+    /**
+     * Prints the reservation collection.
+     *
      * @return string formatted with all reservation objects
      */
     @Override
@@ -71,7 +72,8 @@ public class ReservationCollection {
     }
 
     /**
-     * Returns the ArrayList of reservations. 
+     * Returns the ArrayList of reservations.
+     *
      * @return ArrayList lets you return the arrayList holding objects of
      * Reservation
      */
@@ -81,10 +83,32 @@ public class ReservationCollection {
 
     /**
      * Search for a reservation by reservationId
+     *
      * @param reservationId the reservation ID
      * @return a reservation object
      */
-    public Reservation searchReservation(int reservationId)  {
-        return reserveList.get(0);
+    public Reservation searchReservation(int reservationId) {
+        return rj.searchReservation(reservationId);
+    }
+    
+    /**
+     * Search for a reservation by mediaId and patronId.
+     *
+     * @param mediaId media ID
+     * @param patronId patron ID
+     * @return a reservation object
+     */
+    public Reservation searchReservation(int mediaId, int patronId) {
+        return rj.searchReservation(mediaId, patronId);
+    }
+
+    /**
+     * Delete a reservation.
+     * 
+     * @param reservationId the reservation ID
+     * @return a cancellation object
+     */
+    public Reservation deleteReservation(int reservationId) {
+        return rj.deleteReservation(reservationId);
     }
 }
