@@ -104,15 +104,15 @@ insert into authorbooks (mediaId, authorId) values (7, 11);
 /* Media movies */
 
 insert into media (mediaTitle, mediaYear, mediaCategory, mediaCost, mediaType, mediaQuantity, mediaPublisher, bookISBN, bookEdition, bookVolume, runningTime) 
-values ("Deadpool", "2016", "action", 39.50, "M", null, null, null, null, null, "108");
+values ("Deadpool", "2016", "action", 39.50, "M", 1, null, null, null, null, "108");
 
 insert into media (mediaTitle, mediaYear, mediaCategory, mediaCost, mediaType, mediaQuantity, mediaPublisher, bookISBN, bookEdition, bookVolume, runningTime) 
-values ("Eternal Sunshine of the Spotless Mind", "2004", "drama", 19.50, "M", null, null, null, null, null, "108");
+values ("Eternal Sunshine of the Spotless Mind", "2004", "drama", 19.50, "M", 1, null, null, null, null, "108");
 
 insert into media (mediaTitle, mediaYear, mediaCategory, mediaCost, mediaType, mediaQuantity, mediaPublisher, bookISBN, bookEdition, bookVolume, runningTime) 
-values ("Frozen", "2013", "animation", 25.00, "M", null, null, null, null, null, "102");
+values ("Frozen", "2013", "animation", 25.00, "M", 2, null, null, null, null, "102");
 
 insert into media (mediaTitle, mediaYear, mediaCategory, mediaCost, mediaType, mediaQuantity, mediaPublisher, bookISBN, bookEdition, bookVolume, runningTime) 
-values ("Frances Ha", "2013", "drama", 49.50, "M", null, null, null, null, null, "86");
+values ("Frances Ha", "2013", "drama", 49.50, "M", 1, null, null, null, null, "86");
 
 
