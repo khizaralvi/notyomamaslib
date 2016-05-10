@@ -29,7 +29,8 @@ public class ReservationCollection {
      */
     public boolean reserveMedia(Media m, int patronId) {
         String date = new SimpleDateFormat("MM-dd-yyyy").format(new Date());
-        Reservation r = new Reservation(m.getMediaId(), patronId, date);
+        //Reservation r = new Reservation(m.getMediaId(), patronId, date);
+        Reservation r = new Reservation();
         return rj.reserveMedia(r);
     }
 
@@ -41,7 +42,7 @@ public class ReservationCollection {
      * @return an ArrayList with all reservations for that specific patron
      */
     public ArrayList<Reservation> viewPatronReserveList(int patronId) {
-        reserveList =  rj.viewPatronReserveList(patronId);
+        reserveList = rj.viewPatronReserveList(patronId);
         return reserveList;
     }
 
@@ -82,6 +83,15 @@ public class ReservationCollection {
     }
 
     /**
+     * Sets the ArrayList of reservations.
+     *
+     * @param list ArrayList of Reservation objects
+     */
+    public void setArr(ArrayList<Reservation> list) {
+        reserveList = list;
+    }
+
+    /**
      * Search for a reservation by reservationId
      *
      * @param reservationId the reservation ID
@@ -90,7 +100,7 @@ public class ReservationCollection {
     public Reservation searchReservation(int reservationId) {
         return rj.searchReservation(reservationId);
     }
-    
+
     /**
      * Search for a reservation by mediaId and patronId.
      *
@@ -104,7 +114,7 @@ public class ReservationCollection {
 
     /**
      * Delete a reservation.
-     * 
+     *
      * @param reservationId the reservation ID
      * @return a cancellation object
      */

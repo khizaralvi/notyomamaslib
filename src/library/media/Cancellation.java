@@ -9,18 +9,18 @@ import java.util.Date;
  * <li>Patron ID</li>
  * <li>Cancellation ID</li>
  * <li>Reservation date</li>
- * <li>Cancellaed data<li>
+ * <li>Cancelled data<li>
  * </ul>
  * @author <a>Brett Landau</a>
  */
 
 public class Cancellation {
 
-    private String MediaId;
-    private String PatronId;
-    private Date reserved_date;
+    private int MediaId;
+    private int PatronId;
+    private String reserved_date;
     private int cancellationId;
-    private Date cancelled_date;
+    private String cancelled_date;
 
     /**
      *
@@ -31,7 +31,7 @@ public class Cancellation {
      * @param cancelled_date records date the book was Cancelled
      *
      */
-    public Cancellation(int cancellationId, String MediaId, String PatronId, Date reserved_date, Date cancelled_date) {
+    public Cancellation(int cancellationId, int MediaId, int PatronId, String reserved_date, String cancelled_date) {
         this.cancellationId = cancellationId;
         this.MediaId = MediaId;
         this.PatronId = PatronId;
@@ -48,7 +48,7 @@ public class Cancellation {
      *
      * @return String
      */
-    public String getMediaId() {
+    public int getMediaId() {
         return MediaId;
     }
 
@@ -57,7 +57,7 @@ public class Cancellation {
      *
      * @param MediaId Media Id
      */
-    public void setMediaId(String MediaId) {
+    public void setMediaId(int MediaId) {
         this.MediaId = MediaId;
     }
 
@@ -66,7 +66,7 @@ public class Cancellation {
      *
      * @return String
      */
-    public String getPatronId() {
+    public int getPatronId() {
         return PatronId;
     }
 
@@ -75,7 +75,7 @@ public class Cancellation {
      *
      * @param PatronId Patron unique identifies
      */
-    public void setPatronId(String PatronId) {
+    public void setPatronId(int PatronId) {
         this.PatronId = PatronId;
     }
 
@@ -84,7 +84,7 @@ public class Cancellation {
      *
      * @return Date
      */
-    public Date getReserved_date() {
+    public String getReserved_date() {
         return reserved_date;
     }
 
@@ -93,7 +93,7 @@ public class Cancellation {
      *
      * @param reserved_date date media was reserved
      */
-    public void setReserved_date(Date reserved_date) {
+    public void setReserved_date(String reserved_date) {
         this.reserved_date = reserved_date;
     }
 
@@ -102,7 +102,7 @@ public class Cancellation {
      *
      * @return cancelled_date cancellation date
      */
-    public Date getCancelled_date() {
+    public String getCancelled_date() {
         return cancelled_date;
      }
 
@@ -111,7 +111,7 @@ public class Cancellation {
      *
      * @param cancelled_date date media was cancelled
      */
-    public void setCancelled_date(Date cancelled_date) {
+    public void setCancelled_date(String cancelled_date) {
         this.cancelled_date = cancelled_date;
      }
 

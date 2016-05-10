@@ -28,6 +28,7 @@ public class MediaBook extends Media {
     private String bookPages;
     private String bookPublisher;
     private ArrayList<String> bookAuthors;
+    private String bookGenre;
 
     /**
      * Loan period is the duration of a loan in days.
@@ -64,10 +65,12 @@ public class MediaBook extends Media {
      * @param pages number of pages of the book
      * @param publisher Book publisher name
      * @param quantity amount of media available
+     * @param auth list of authors for the book
+     * @param bookGenre genre of the book
      */
     public MediaBook(String id, String title, String year, String isbn,
             String edition, String volume, String pages, String publisher,
-            String cost, int quantity) {
+            String cost, int quantity, ArrayList<String> auth, String bookGenre) {
         super(id, title, year, cost,"b", quantity);
         
         this.bookEdition=edition;
@@ -75,6 +78,9 @@ public class MediaBook extends Media {
         this.bookPages=pages;
         this.bookPublisher=publisher;;
         this.bookIsbn=isbn;
+        this.bookAuthors=auth;
+        this.bookGenre=bookGenre;
+        
     }
 
     /**
@@ -201,4 +207,12 @@ public class MediaBook extends Media {
     public String toString() {
         return "";
     }
+
+    @Override
+    public String getBookGenre() {
+        return bookGenre;
+    }
+
+
+
 }

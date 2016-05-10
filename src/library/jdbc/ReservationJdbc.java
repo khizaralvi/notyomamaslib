@@ -4,9 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import library.media.Cancellation;
 import library.media.Reservation;
-import library.media.ReservationCollection;
 
 /**
  * This is the class that uses JDBC service package to manipulate the data in

@@ -25,7 +25,8 @@ public class MediaAcademic extends Media {
     private String numberOfPages;
     private ArrayList<String> authors;
     private String documentType;
-
+    private String ebook_ISBN;
+    
     /**
      * LOAN_PERIOD is the duration of a loan in days.
      */
@@ -70,7 +71,7 @@ public class MediaAcademic extends Media {
     this.documentType=documentType;
     this.publisher=publisher;
     this.numberOfPages=numberOfPages;
-    
+    this.ebook_ISBN=id;
     }
 
     /**
@@ -162,6 +163,17 @@ public class MediaAcademic extends Media {
     return true;
     }
 
+    /**
+     * 
+     * @return ISBN
+     */
+    @Override
+    public String getEbook_ISBN()
+    {
+    return this.ebook_ISBN;
+    
+    }
+    
     /**
      * toString method for MediaAcademic object.
      *

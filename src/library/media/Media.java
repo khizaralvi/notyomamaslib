@@ -25,7 +25,7 @@ public class Media {
     private String mediaCost;
     private String mediaType; // Media types: A (Academic), B (Book), M (Movie)
     private int quantity;
-
+    
     /**
      * Constructor for Media.
      *
@@ -63,7 +63,7 @@ public class Media {
      * @param id Media unique identifier
      * @return true if mediaId is set successfully or false otherwise
      */
-    public boolean setMediaId(String id) {
+    public boolean setMediaId(int id) {
     return true;
     }
 
@@ -445,6 +445,20 @@ public class Media {
     {
     return true;
     }
-    
+   
+     public String getBookGenre() {
+     return null;         
+     }
+
+    public String getEbook_ISBN()
+    {
+    return null;
+    }
+     
+    public String getMovie_Code()
+    {
+        
+    return null;
+    }
     
 }

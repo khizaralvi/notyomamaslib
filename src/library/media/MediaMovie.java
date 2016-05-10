@@ -20,11 +20,10 @@ import java.util.ArrayList;
  */
 public class MediaMovie extends Media {
 
-    private String genre;
+    private String Movie_genre;
     private String director;
-    private ArrayList<String> actors;
     private String running_time;
-
+    private String movie_code;
     /**
      * Loan period is the duration of a loan in days.
      */
@@ -49,21 +48,22 @@ public class MediaMovie extends Media {
      * @param title Media title
      * @param year Media publishing year
      * @param cost Media cost
-     * @param genre Media genre
+     * @param Moviegenre Media genre
      * @param director Director name
      * @param actors List of main actors
      * @param running_time Duration in minutes
      * @param quantity amount of media available
      */
     public MediaMovie(String id, String title, String year, String cost,
-            String genre, String director, ArrayList<String> actors,
+            String Moviegenre, String director,
             String running_time, int quantity)
     {
        super(id, title, year, cost,"m", quantity);
-       this.genre=genre;
+       this.Movie_genre=Moviegenre;
        this.director=director;
-       this.actors=actors;
+    
        this.running_time=running_time;       
+       this.movie_code=id;
     }
 
     /**
@@ -73,7 +73,7 @@ public class MediaMovie extends Media {
      */
     @Override
     public String getGenre() {
-        return genre;
+        return Movie_genre;
     }
 
     /**
@@ -84,7 +84,7 @@ public class MediaMovie extends Media {
      */
     @Override
     public boolean setGenre(String genre) {
-       this.genre=genre;
+       this.Movie_genre=genre;
        return true;
     }
 
@@ -114,23 +114,7 @@ public class MediaMovie extends Media {
      *
      * @return an ArrayList of strings with name of main actors
      */
-    @Override
-    public ArrayList<String> getActors() {
-        return actors;
-    }
-
-    /**
-     * Sets list of main actors.
-     *
-     * @param actors an ArrayList of strings with name of main actors
-     * @return boolean
-     */
-    @Override
-    public boolean setActors(ArrayList<String> actors) {
-        this.actors = actors;
-        return true;
-    }
-
+   
     /**
      * Returns the duration of the movie.
      *
@@ -153,6 +137,18 @@ public class MediaMovie extends Media {
         return true;
     }
 
+   /**
+    * 
+     * @return 
+    */
+  
+    @Override
+     public String getMovie_Code()
+    {
+        return this.movie_code;
+    }
+   
+    
     /**
      * toString method for MediaMovie object.
      *
