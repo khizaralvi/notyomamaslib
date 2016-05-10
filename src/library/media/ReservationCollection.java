@@ -29,8 +29,7 @@ public class ReservationCollection {
      */
     public boolean reserveMedia(Media m, int patronId) {
         String date = new SimpleDateFormat("MM-dd-yyyy").format(new Date());
-        //Reservation r = new Reservation(m.getMediaId(), patronId, date);
-        Reservation r = new Reservation();
+        Reservation r = new Reservation(m.getMediaId(), patronId, date);
         return rj.reserveMedia(r);
     }
 

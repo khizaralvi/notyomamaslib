@@ -9,10 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import library.jdbc.ReservationJdbc;
 import library.media.Media;
-import library.media.MediaAcademic;
-import library.media.MediaBook;
 import library.media.MediaCollection;
-import library.media.MediaMovie;
 import library.media.Reservation;
 import library.media.ReservationCollection;
 
@@ -24,9 +21,7 @@ import library.media.ReservationCollection;
 public class LibrarianInterface {
 
     static MediaCollection mc = new MediaCollection();
-    // static MediaBook book = new MediaBook();
-    // static MediaAcademic academic = new MediaAcademic();
-    // static MediaMovie movie = new MediaMovie();
+    static ArrayList<Media> media = new ArrayList<>();
     static Reservation reservation = new Reservation();
     static ReservationJdbc rj = new ReservationJdbc();
     static ReservationCollection rc = new ReservationCollection();
@@ -248,7 +243,7 @@ public class LibrarianInterface {
         int mediaID;
         int patronID;
         Scanner scan = new Scanner(System.in);
-       
+
         System.out.println("Type the patron ID: ");
         patronID = scan.nextInt();
         // view all patron's checked out media

@@ -68,10 +68,10 @@ public class MediaBook extends Media {
      * @param auth list of authors for the book
      * @param bookGenre genre of the book
      */
-    public MediaBook(String id, String title, String year, String isbn,
-            String edition, String volume, String pages, String publisher,
+    public MediaBook(int id, String title, String year,
+            String edition, String volume, String pages, String publisher,String isbn,
             String cost, int quantity, ArrayList<String> auth, String bookGenre) {
-        super(id, title, year, cost,"b", quantity);
+        super(id,title, year, cost,"b", quantity);
         
         this.bookEdition=edition;
         this.bookVolume=volume;
