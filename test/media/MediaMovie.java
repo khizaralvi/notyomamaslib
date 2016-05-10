@@ -50,20 +50,21 @@ public class MediaMovie extends Media {
      * @param cost Media cost
      * @param Moviegenre Media genre
      * @param director Director name
-     * @param actors List of main actors
+     *
      * @param running_time Duration in minutes
+     * @param movie_code unique code for each movie
      * @param quantity amount of media available
      */
-    public MediaMovie(String id, String title, String year, String cost,
+    public MediaMovie(int id, String title, String year, String cost,
             String Moviegenre, String director,
-            String running_time, int quantity)
+            String running_time, int quantity, String movie_code)
     {
-       super(id, title, year, cost,"m", quantity);
+       super(id,title, year, cost,"m", quantity);
        this.Movie_genre=Moviegenre;
        this.director=director;
     
        this.running_time=running_time;       
-       this.movie_code=id;
+       this.movie_code=movie_code;
     }
 
     /**

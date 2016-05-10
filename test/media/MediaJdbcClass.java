@@ -75,17 +75,9 @@ public class MediaJdbcClass {
                       + "mediaCode,bookEdition,bookVolume,runningTime,movieDirector)"
                       + "values(?,?,?,?,?,?,?,?,?,?,?,?)");
               statement=con.createStatement();
-            //  rs=statement.executeQuery("select *from mydb.media where mediaId='"+m.getMediaId()+"'");
-   
-              /*
-         if(rs.next())
-         { 
-            System.out.println("Cannot add duplicate students");
-         }
-          else
-         {
-            */
-             switch(str)
+         
+           //populate the appropriate fields for each media Subtype   
+              switch(str)
              {
                  case "b":
                  {
@@ -279,26 +271,84 @@ public class MediaJdbcClass {
      */
     public boolean editMedia(Media editedMedia) {
        
+        String type=editedMedia.getMediaType();
+        
         try {
-            prepared=con.prepareStatement("update mydb.media set(mediaTitle,mediaYear,"
-                    + "mediaCost,mediaType,mediaQuantity,bookISBN"
-                    + "bookEdition,bookPublisher,mediaCategory,runningTime,movieDirector)"
+            prepared=con.prepareStatement("update mydb.media set mediaTitle=?,mediaYear=?,mediaCategory=?,mediaCost=?,mediaType=?,mediaQuantity=?,mediaPublisher=?,bookEdition=?,bookVolume=?,runningTime=?,movieDirector=?"
                     + " where mediaId=?");
          
-            
-            prepared.setString(1,editedMedia.getMediaTitle());
-            prepared.setString(2,editedMedia.getMediaYear());
-            prepared.setString(3,editedMedia.getMediaCost());
-            prepared.setString(4,editedMedia.getMediaType());
-            prepared.setInt(5,editedMedia.getQuantity());
-            prepared.setString(6,editedMedia.getIsbn());
-            prepared.setString(7,editedMedia.getEdition());
-            prepared.setString(8,editedMedia.getPublisher());
-           // prepared.setString(2,editedMedia);
-            prepared.setString(2,editedMedia.getMediaYear());
-            
-            
-        } catch (SQLException ex) {
+            switch(type)
+           
+            {
+                case "b":  
+                { 
+                
+             prepared.setString(1,editedMedia.getMediaTitle());
+             prepared.setString(2,editedMedia.getMediaYear());
+             prepared.setString(3,editedMedia.getBookGenre());
+             prepared.setString(4,editedMedia.getMediaCost());
+             prepared.setString(5,editedMedia.getMediaType());
+             prepared.setInt(6,editedMedia.getQuantity());
+             prepared.setString(7,editedMedia.getPublisher());
+             
+             prepared.setString(8,editedMedia.getEdition());
+             prepared.setString(9,editedMedia.getVolume());
+             prepared.setString(10,null);
+             prepared.setString(11,null);
+             prepared.setInt(12,editedMedia.getMediaId());
+             
+             prepared.executeUpdate();
+             
+            break;
+                }
+                case "m":
+                {
+             prepared.setString(1,editedMedia.getMediaTitle());
+             prepared.setString(2,editedMedia.getMediaYear());
+             prepared.setString(3,editedMedia.getBookGenre());
+             prepared.setString(4,editedMedia.getMediaCost());
+             prepared.setString(5,editedMedia.getMediaType());
+             prepared.setInt(6,editedMedia.getQuantity());
+             prepared.setString(7,null);
+           
+             prepared.setString(8,null);
+             prepared.setString(9,null);
+             prepared.setString(10,editedMedia.getRunning_time());
+             prepared.setString(11,editedMedia.getDirector());
+             prepared.setInt(12,editedMedia.getMediaId());
+             
+             prepared.executeUpdate();
+                
+                break;
+                
+                }
+                case "a":
+                {
+                
+             prepared.setString(1,editedMedia.getMediaTitle());
+             prepared.setString(2,editedMedia.getMediaYear());
+             prepared.setString(3,editedMedia.getDocumentType());
+             prepared.setString(4,editedMedia.getMediaCost());
+             prepared.setString(5,editedMedia.getMediaType());
+             prepared.setInt(6,editedMedia.getQuantity());
+             prepared.setString(7,editedMedia.get_Ebook_Publisher());
+           
+             prepared.setString(8,null);
+             prepared.setString(9,null);
+             prepared.setString(10,null);
+             prepared.setString(11,null);
+             prepared.setInt(12,editedMedia.getMediaId());
+             
+             prepared.executeUpdate();
+                
+                
+                
+                break;
+                
+                }
+        }
+        }
+        catch (SQLException ex) {
             Logger.getLogger(MediaJdbcClass.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -321,6 +371,7 @@ public class MediaJdbcClass {
         connect();
         try{
         
+            
             prepared=con.prepareStatement("delete from mydb.media where mediaId=?");
             prepared.setString(1,mediaId);
             
@@ -418,7 +469,7 @@ public class MediaJdbcClass {
    
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Driver Found");
+       //     System.out.println("Driver Found");
         } 
          catch (ClassNotFoundException ex) {
            
@@ -432,7 +483,7 @@ public class MediaJdbcClass {
         try{
           con=DriverManager.getConnection(url,user,password);
       
-               System.out.println("Connection successful");
+     //          System.out.println("Connection successful");
      }
      
      catch(SQLException se)
@@ -452,7 +503,7 @@ public class MediaJdbcClass {
        {
            case "b":
            {
-           book=new MediaBook(rs.getString("mediaId"),rs.getString("mediaTitle"),rs.getString("mediaYear"),
+           book=new MediaBook(rs.getInt("mediaId"),rs.getString("mediaTitle"),rs.getString("mediaYear"),
            rs.getString("mediaCode"),rs.getString("bookEdition"),rs.getString("bookVolume"),
            null ,rs.getString("mediaPublisher"),rs.getString("mediaCost"),rs.getInt("mediaQuantity"),null,rs.getString("mediaCategory"));
       
@@ -464,9 +515,9 @@ public class MediaJdbcClass {
            case "m":
            {
            
-     movie=new MediaMovie(rs.getString("mediaId"),rs.getString("mediaTitle"),rs.getString("mediaYear"),
+     movie=new MediaMovie(rs.getInt("mediaId"),rs.getString("mediaTitle"),rs.getString("mediaYear"),
       
-    rs.getString("mediaCost"),rs.getString("mediaCategory"),rs.getString("movieDirector"),rs.getString("runningTime"),rs.getInt("mediaQuantity"));
+    rs.getString("mediaCost"),rs.getString("mediaCategory"),rs.getString("movieDirector"),rs.getString("runningTime"),rs.getInt("mediaQuantity"),rs.getString("mediaCode"));
              
            collection.getMedia().add(movie);
                
@@ -474,9 +525,9 @@ public class MediaJdbcClass {
            }
            case "a":
            {
-           academic=new MediaAcademic(rs.getString("mediaId"),rs.getString("mediaTitle"),rs.getString("mediaYear"),
+           academic=new MediaAcademic(rs.getInt("mediaId"),rs.getString("mediaTitle"),rs.getString("mediaYear"),
       
-    rs.getString("mediaCost"),rs.getString("mediaPublisher"),null,null,rs.getString("mediaCategory"),rs.getInt("mediaQuantity"));
+    rs.getString("mediaCost"),rs.getString("mediaPublisher"),null,null,rs.getString("mediaCategory"),rs.getInt("mediaQuantity"),rs.getString("mediaCode"));
          
            collection.getMedia().add(academic);
            

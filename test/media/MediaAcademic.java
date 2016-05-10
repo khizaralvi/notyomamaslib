@@ -61,17 +61,18 @@ public class MediaAcademic extends Media {
      * @param numberOfPages Total number of pages of journal
      * @param documentType Document type of the journal
      * @param quantity amount of media available
+     * @param ebook_ISBN unique EBOOK_ISBN
      */
-    public MediaAcademic(String id, String title, String year, String cost,
+    public MediaAcademic(int id, String title, String year, String cost,
             String publisher, ArrayList<String> author,
-            String numberOfPages, String documentType, int quantity) {
-        super(id, title, year, cost,"a", quantity);
+            String numberOfPages, String documentType, int quantity, String ebook_ISBN) {
+        super(id,title, year, cost,"a", quantity);
         
     this.authors=author;
     this.documentType=documentType;
     this.publisher=publisher;
     this.numberOfPages=numberOfPages;
-    this.ebook_ISBN=id;
+    this.ebook_ISBN=ebook_ISBN;
     }
 
     /**

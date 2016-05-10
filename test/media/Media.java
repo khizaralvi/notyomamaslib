@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class Media {
 
-    private String mediaId;
+    private int mediaId;
     private String mediaTitle;
     private String mediaYear;
     private String mediaCost;
@@ -36,7 +36,7 @@ public class Media {
      * @param type Type of Media
      * @param quantity amount of media available
      */
-    public Media(String id, String title, String year, String cost, 
+    public Media(int id,String title, String year, String cost, 
             String type, int quantity) {
         
         this.mediaId=id;
@@ -53,7 +53,7 @@ public class Media {
      *
      * @return Media unique identifier
      */
-    public String getMediaId() {
+    public int getMediaId() {
         return mediaId;
     }
 
@@ -174,16 +174,8 @@ public class Media {
         return "";
     }
 
-    /**
-     * equals method to compare two Media objects.
-     *
-     * @param m Media object
-     * @return true if same object, false otherwise.
-     */
-    public boolean equals(Media m) {
-        return m.mediaId.equals(this.mediaId);
-    }
-
+    
+    
    public String getIsbn()
    {
     return null;
