@@ -1,3 +1,5 @@
+package library.account;
+
 
 /**
  * PatronAccount is a subclass of Account that implements a patron account.
@@ -27,6 +29,12 @@ public class PatronAccount extends Account {
         this.accountBalance = 0.0;
         this.email = null;
     }
+    
+    public PatronAccount(String first ,String last,String phone, String email, String address){
+    	super(first,last,phone);
+        this.address = address;
+        this.email = email;
+    }
     /**
      * Overloaded constructor 
      * @param first		Patron's First name 
@@ -36,7 +44,7 @@ public class PatronAccount extends Account {
      * @param email		Patron's email
      * @param number	Patron's Phone number	
      */
-    PatronAccount(String first ,String last,String address,double balance,String email,String number){
+    public PatronAccount(String first ,String last,String address,double balance,String email,String number){
     	super(first,last,number);
         this.address = address;
         this.accountBalance = balance;
@@ -57,6 +65,14 @@ public class PatronAccount extends Account {
 		this.email = email;
 	}
 	
+        public String getFirstName() {
+            return super.getFirstName();
+        }
+        
+        public String getLastName() {
+            return super.getLastName();
+        }
+        
 	/** Returns accounts current address on file. */
 	public String getAddress() {
 		return address;
