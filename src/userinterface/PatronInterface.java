@@ -19,7 +19,7 @@ public class PatronInterface {
     static ReservationCollection rc = new ReservationCollection();
     static int patronId = 2; // This will be replaced by a PatronAccount object
 
-    public static void main(String[] args) {
+    public static void patronInterface() {
         int option;
         Scanner scan = new Scanner(System.in);
 

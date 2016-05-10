@@ -27,7 +27,7 @@ public class LibrarianInterface {
     static ReservationCollection rc = new ReservationCollection();
     static int patronId; // This will be replaced by a PatronAccount object
 
-    public static void main(String[] args) {
+    public static void librarianInterface() {
         int option;
         Scanner scan = new Scanner(System.in);
 
@@ -85,7 +85,7 @@ public class LibrarianInterface {
         } while (option != 0);
     }
 
-    public static boolean searchingModule() {
+   public static boolean searchingModule() {
         int op;
         String query;
         Scanner scan = new Scanner(System.in);
@@ -107,7 +107,7 @@ public class LibrarianInterface {
                 query = scan.next();
                 // mc.setMedia(mc.searchMedia((String) op, query));
                 System.out.println("Your search resulted in " + 0 + "results");
-                System.out.println(mc.toString());
+                // System.out.println(mc.toString());
             } else {
                 System.out.println("Type a valid option!");
             }
@@ -115,6 +115,7 @@ public class LibrarianInterface {
         } while (op != 0);
         return true;
     }
+
 
     public static boolean addingModule() {
         int op;
