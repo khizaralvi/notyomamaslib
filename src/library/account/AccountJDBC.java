@@ -1,15 +1,103 @@
+package library.account;
+
 import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
 
 public class AccountJDBC {
-	private String url = "jdbc:mysql://localhost:3306/";
-	private String username = "admin";
-	private String password = "admin";
-	private Connection connection = null;
-	private String patron = "patron";
-	private String staff = "staff";
-	
+    private String dbUrl = "jdbc:mysql://localhost:3306/patron";
+    private String dbUsername = "root";
+    private String dbPassword = "admin";
+    private Connection myConn = null;
+
+    public AccountJDBC() {
+    }
+    
+    public AccountJDBC(String url, String username, String password) {
+        dbUrl = url;
+        dbUsername = username;
+        dbPassword = password;
+    }
+    
+    //CONNECT
+    public void connect() {
+       
+        try {
+            // 1. Get a connection to database
+            myConn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+        }
+        catch (Exception exc) {
+                exc.printStackTrace();
+        }
+    }
+
+    //INSERT
+    /*
+    public int insert(String dbTable, String[] dbFields, String[] dbValues) {
+        Stat
+        int rowsAffected = 0;
+        String mySQL = "";
+        
+        try {
+            mySQL = "INSERT INTO ";
+            mySQL += dbTable;
+            mySQL += " (";
+
+            for (int i = 0; i < dbFields.length; i++) {
+                if (i == dbFields.length - 1)
+                    mySQL += dbFields[i] + ")";
+                else
+                    mySQL += dbFields[i] + ",";
+            }
+            
+            mySQL += " VALUES (";
+            
+            for (int i = 0; i < dbValues.length; i++) {
+                if (i == dbValues.length - 1)
+                    mySQL += dbValues[i] + ")";
+                else
+                    mySQL += dbValues[i] + ",";
+            }
+            
+            rowsAffected = myStmt.executeUpdate(mySQL);
+            
+            
+        }
+        
+        catch (Exception exc) {
+                exc.printStackTrace();
+        }
+
+        return rowsAffected;
+    }
+    */
+    
+    public void insertPatron(String fName, String lName, String phone, String email, String address) {
+        int rowsAffected = 0;
+        String mySQL;
+        PreparedStatement prepMySQL;
+        
+        mySQL = "INSERT INTO patron (pFname,pLname,pPhone,pEmail,pAddress)"
+                + "VALUES (?,?,?,?,?)";
+        
+        try {
+            prepMySQL = myConn.prepareStatement(mySQL);
+            prepMySQL.setString(1, fName);
+            prepMySQL.setString(2, lName);
+            prepMySQL.setString(3, phone);
+            prepMySQL.setString(4, email);
+            prepMySQL.setString(5, address);
+            
+            prepMySQL.execute();
+        }
+        
+        catch (Exception exc) {
+                exc.printStackTrace();
+        }
+        
+    }
+    
+    /*
 	/**
 	 * Value when the an operation is successful
 	 */
@@ -124,4 +212,9 @@ public class AccountJDBC {
 		ArrayList<StaffAccount> resultList = new ArrayList<StaffAccount>();
 	 	return resultList;
 	 }
+        
+
+         
 }
+
+

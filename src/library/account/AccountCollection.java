@@ -1,3 +1,5 @@
+package library.account;
+
 /**
  * Bridge class between database and software for the Accounts class
  * @author Benny Pena
@@ -24,7 +26,14 @@ public class AccountCollection {
 	 * @param  patron  PatronAccount object
 	 * @return  returns either success or failed value.
 	 */
-	public static boolean insertPatron(Account patron){
+	public static boolean insertPatron(PatronAccount pAccount){
+            AccountJDBC a1 = new AccountJDBC();
+            a1.connect();
+            a1.insertPatron(pAccount.getFirstName(),
+                    pAccount.getLastName(),
+                    pAccount.getPhoneNumber(),
+                    pAccount.getEmail(),
+                    pAccount.getAddress());
 	    return SUCCESS;
 	}
 	/**
@@ -36,6 +45,7 @@ public class AccountCollection {
 	public static boolean insertStaff(Account staff) {
 	    return SUCCESS;
 	}
+        
 
 	/**
 	 * Update Patron Account
