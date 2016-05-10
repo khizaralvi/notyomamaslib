@@ -48,6 +48,10 @@ public class Media {
         
     }
 
+    public Media() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Returns the Media ID
      *

@@ -14,5 +14,8 @@ import library.media.ReservationCollection;
 public class ReservationJdbcTest {
     public static void main(String[] args) {
         ReservationCollection rc = new ReservationCollection();
+        Media m = new Media();
+        m.setMediaId(1);
+        rc.reserveMedia(m, 1);
     }
 }

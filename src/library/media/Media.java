@@ -26,6 +26,10 @@ public class Media {
     private String mediaType; // Media types: A (Academic), B (Book), M (Movie)
     private int quantity;
     
+    
+    public Media() {
+    }
+    
     /**
      * Constructor for Media.
      *
