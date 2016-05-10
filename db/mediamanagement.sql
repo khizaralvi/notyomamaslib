@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `mediamanagement`.`media` (
   `bookEdition` VARCHAR(3) NULL DEFAULT NULL,
   `bookVolume` VARCHAR(3) NULL DEFAULT NULL,
   `runningTime` VARCHAR(6) NULL DEFAULT NULL,
+  `movieDirector` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`mediaId`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
