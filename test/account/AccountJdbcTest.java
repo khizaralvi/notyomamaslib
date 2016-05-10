@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package media.income;
+package account;
 
 /**
  *
  * @author jessicacarneiro
  */
-public class IncomeJdbcTest {
+public class AccountJdbcTest {
     
 }
