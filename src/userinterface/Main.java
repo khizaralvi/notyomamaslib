@@ -19,10 +19,13 @@ public class Main {
         Login a;
         PatronAccount p;
         while (!login) {
-            System.out.print("=========MENU OPTIONS:=========\n1. Staff Login\n2. Patron Login\n3. Register (Patron Only)\nType an option: ");
+            System.out.print("=========MENU OPTIONS:=========\n1. Staff Login\n2. Patron Login\n3. Register (Patron Only)\n0. Exit\nType an option: ");
             input = scan.nextInt();
             switch (input) {
-
+                case 0:
+                    System.out.println("Bye bye!");
+                    System.exit(0);
+                    break;
                 case 1:
                     System.out.print("Username: ");
                     String user = scan.next();
