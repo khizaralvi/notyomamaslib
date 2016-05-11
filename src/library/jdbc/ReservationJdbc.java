@@ -212,11 +212,11 @@ public class ReservationJdbc {
     /**
      * This method display all the reserved media in the library.
      *
-     * @return an ArrayList with all reserved items in the library
+     * @param collection an ArrayList of Reservations where the Reservation
+     * retrieved will be added
      */
-    public ArrayList<Reservation> viewLibReserveList() {
+    public void viewLibReserveList(ArrayList<Reservation> collection) {
         connect(); // First, it must be connected to the database
-        ArrayList<Reservation> rc = new ArrayList<>();
         Reservation reservation = new Reservation();
 
         try {
@@ -227,12 +227,11 @@ public class ReservationJdbc {
                 reservation.setPatronId(rs.getInt("patronId"));
                 reservation.setMediaId(rs.getInt("mediaId"));
                 reservation.setReservationDate(rs.getDate("ReservedDate"));
-                rc.add(reservation);
+                collection.add(reservation);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rc;
     }
 
     /**

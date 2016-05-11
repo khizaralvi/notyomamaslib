@@ -30,7 +30,7 @@ public class PatronInterface {
             System.out.println("2. View checked out media");
             System.out.println("3. Make reservation");
             System.out.println("4. Cancel reservation");
-            System.out.println("0. Exit");
+            System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
             option = scan.nextInt(); // Implement a parser to check if is int
 

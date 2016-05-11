@@ -101,7 +101,7 @@ public class MediaJdbcClass {
                     prepared.setString(11, null);
                     prepared.setString(12, null);
 
-                    rs = statement.executeQuery("select *from media where mediaCode='" + m.getIsbn() + "'");
+                    rs = statement.executeQuery("select * from media where mediaCode='" + m.getIsbn() + "'");
                     if (rs.next()) {
                         System.out.println("Book with the given ISBN is already in the system");
                     } else {
@@ -116,7 +116,7 @@ public class MediaJdbcClass {
                             prepared2.setString(1, fake.get(i));
 
                             // checking if the same author name doesnt exist in the table
-                            rs = statement.executeQuery("select *from author where auhorname='" + fake.get(i) + "'");
+                            rs = statement.executeQuery("select * from author where auhorname='" + fake.get(i) + "'");
                             if (rs.next()) {
 
                             } else {
@@ -125,12 +125,12 @@ public class MediaJdbcClass {
                             }
                         }
                         for (int i = 0; i < fake.size(); i++) {
-                            rs = statement.executeQuery("select *from author where auhorname='" + fake.get(i) + "'");
+                            rs = statement.executeQuery("select * from author where auhorname='" + fake.get(i) + "'");
                             rs.next();
 
                             prepared3.setString(2, rs.getString("authorID"));
 
-                            rs = statement.executeQuery("select *from media where mediaCode='" + m.getIsbn() + "'");
+                            rs = statement.executeQuery("select * from media where mediaCode='" + m.getIsbn() + "'");
 
                             rs.next();
 
@@ -192,7 +192,7 @@ public class MediaJdbcClass {
                         prepared2.setString(1, fake.get(i));
 
                         // checking if the same author name doesnt exist in the table
-                        rs = statement.executeQuery("select *from author where auhorname='" + fake.get(i) + "'");
+                        rs = statement.executeQuery("select * from author where auhorname='" + fake.get(i) + "'");
                         if (rs.next()) {
 
                         } else {
@@ -201,12 +201,12 @@ public class MediaJdbcClass {
                         }
                     }
                     for (int i = 0; i < fake.size(); i++) {
-                        rs = statement.executeQuery("select *from author where auhorname='" + fake.get(i) + "'");
+                        rs = statement.executeQuery("select * from author where auhorname='" + fake.get(i) + "'");
                         rs.next();
 
                         prepared3.setString(2, rs.getString("authorID"));
 
-                        rs = statement.executeQuery("select *from media where mediaCode='" + m.getEbook_ISBN() + "'");
+                        rs = statement.executeQuery("select * from media where mediaCode='" + m.getEbook_ISBN() + "'");
 
                         rs.next();
 
@@ -460,7 +460,7 @@ public class MediaJdbcClass {
         connect(); // First, it must be connected to the database 
 
         try {
-            rs = statement.executeQuery("select *from media");
+            rs = statement.executeQuery("select * from media");
         } catch (SQLException ex) {
             Logger.getLogger(MediaJdbcClass.class.getName()).log(Level.SEVERE, null, ex);
         }

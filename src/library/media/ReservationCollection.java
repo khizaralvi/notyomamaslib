@@ -53,8 +53,9 @@ public class ReservationCollection {
      * @return an ArrayList with all reserved items in the library
      */
     public ArrayList<Reservation> viewLibReserveList() {
-        ArrayList<Reservation> list = new ArrayList<> (rj.viewLibReserveList());
-        return list;
+        this.reserveList.clear();
+        rj.viewLibReserveList(this.reserveList);
+        return this.reserveList;
     }
 
     /**

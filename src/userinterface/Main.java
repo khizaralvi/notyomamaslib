@@ -8,18 +8,18 @@ import static userinterface.LibrarianInterface.librarianInterface;
 
 public class Main {
 
-    public static final String staffMenu = "1. Look up Account\n2. Media Managment\n3. Update Account\n4. Logout\n";
+    public static final String staffMenu = "\n\n\n=========MENU OPTIONS:=========\n1. Look up Account\n2. Media Managment\n3. Update Account\n4. Logout";
     public static final String patronMenu = "";
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         boolean login = false;
-        System.out.println("\n\nWelcome to Not Your Mamas's Library!");
+        System.out.println("\n\nWelcome to Not Your Mamas's Library!\n====================================");
         int input = 0;
         Login a;
         PatronAccount p;
         while (!login) {
-            System.out.print("=========MENU OPTIONS:=========\n1. Staff Login\n2. Patron Login\n3. Register (Patron Only)\n0. Exit\nType an option: ");
+            System.out.print("\n\n\n=========MENU OPTIONS:=========\n1. Staff Login\n2. Patron Login\n3. Register (Patron Only)\n0. Exit\nType an option: ");
             input = scan.nextInt();
             switch (input) {
                 case 0:
@@ -38,12 +38,11 @@ public class Main {
                          System.out.println("Could not login!");
                     } else {
                         login = true;
-                         System.out.println("Welcome " + a.getUsername());
-                        // print(staffMenu);
+                         System.out.println("\n\n======== Welcome " + a.getUsername() + " ========");
 
                         while (login) {
                             
-                            print(staffMenu);
+                             System.out.println(staffMenu);
                              System.out.print("Please enter an option: ");
 
                             input = scan.nextInt();

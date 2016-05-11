@@ -8,7 +8,6 @@ package userinterface;
 import java.util.ArrayList;
 import java.util.Scanner;
 import library.jdbc.MediaJdbcClass;
-import library.jdbc.ReservationJdbc;
 import library.media.Media;
 import library.media.MediaCollection;
 import library.media.Reservation;
@@ -32,15 +31,14 @@ public class LibrarianInterface {
         Scanner scan = new Scanner(System.in);
 
         do {
-            System.out.println("\n\nWelcome to Not Your Mamas's Library!");
-            System.out.println("=========MENU OPTIONS:=========");
+            System.out.println("\n\n\n=========MENU OPTIONS:=========");
             System.out.println("1. Search media");
             System.out.println("2. Add media");
             System.out.println("3. Delete media");
             System.out.println("4. Edit media");
             System.out.println("5. Manage reservations");
             System.out.println("6. Renew media");
-            System.out.println("0. Exit");
+            System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
             option = scan.nextInt(); // Implement a parser to check if is int
 
@@ -104,7 +102,6 @@ public class LibrarianInterface {
             if (op > 0 && op <= 6) {
                 System.out.print("Type your search and press <ENTER>: ");
                 query = scan.next();
-                System.out.println("Your search resulted in " + 0 + "results");
                 System.out.println(mc.searchMedia(op, query).toString());
             } else {
                 System.out.println("Type a valid option!");
