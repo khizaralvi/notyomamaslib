@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS `library_system`.`author` (
   `authorName` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`authorID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -34,7 +33,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `library_system`.`media`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`media` (
-  `mediaId` INT(5) NOT NULL AUTO_INCREMENT,
+  `mediaId` INT(10) NOT NULL,
   `mediaTitle` VARCHAR(45) NULL DEFAULT NULL,
   `mediaYear` VARCHAR(4) NULL DEFAULT NULL,
   `mediaCategory` VARCHAR(20) NULL DEFAULT NULL,
@@ -49,7 +48,6 @@ CREATE TABLE IF NOT EXISTS `library_system`.`media` (
   `movieDirector` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`mediaId`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -76,19 +74,21 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `library_system`.`patronaccount`
+-- Table `library_system`.`patron`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `library_system`.`patronaccount` (
-  `patronId` INT(5) NOT NULL AUTO_INCREMENT,
-  `patronFname` VARCHAR(45) NULL DEFAULT NULL,
-  `patronLname` VARCHAR(45) NULL DEFAULT NULL,
-  `patronPhoneNumber` VARCHAR(45) NULL DEFAULT NULL,
-  `patronEmail` VARCHAR(45) NULL DEFAULT NULL,
-  `patronAccountBalance` VARCHAR(45) NULL DEFAULT NULL,
-  `accounttype` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`patronId`))
+CREATE TABLE IF NOT EXISTS `library_system`.`patron` (
+  `pID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `pFname` VARCHAR(64) NOT NULL,
+  `pLname` VARCHAR(64) NOT NULL,
+  `pPhone` VARCHAR(11) NOT NULL,
+  `pEmail` VARCHAR(128) NOT NULL,
+  `pAddress` VARCHAR(264) NOT NULL,
+  `pBalance` FLOAT(10,2) NULL DEFAULT 0.0,
+  `enrollDate` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lastModified` TIMESTAMP(0) NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`pID`),
+  UNIQUE INDEX `pID_UNIQUE` (`pID` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 51
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -96,11 +96,11 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `library_system`.`cancellation`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`cancellation` (
-  `cancellationId` INT(5) NOT NULL AUTO_INCREMENT,
-  `patronId` INT(5) NULL DEFAULT NULL,
-  `mediaId` INT(5) NULL DEFAULT NULL,
-  `reservedDate` VARCHAR(10) NULL DEFAULT NULL,
-  `cancellationDate` VARCHAR(10) NULL DEFAULT NULL,
+  `cancellationId` INT(15) NOT NULL,
+  `patronId` INT(10) UNSIGNED NOT NULL,
+  `mediaId` INT(10) NOT NULL,
+  `reservedDate` DATE NOT NULL,
+  `cancellationDate` DATE NOT NULL,
   PRIMARY KEY (`cancellationId`),
   INDEX `fk3_idx` (`mediaId` ASC),
   INDEX `fk32_idx` (`patronId` ASC),
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `library_system`.`cancellation` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk32`
     FOREIGN KEY (`patronId`)
-    REFERENCES `library_system`.`patronaccount` (`patronId`)
+    REFERENCES `library_system`.`patron` (`pID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -122,11 +122,11 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `library_system`.`checkedoutmedia`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`checkedoutmedia` (
-  `mediaID` INT(5) NOT NULL,
-  `patronID` INT(5) NOT NULL,
-  `borrowDate` VARCHAR(10) NOT NULL,
-  `dueDate` VARCHAR(10) NOT NULL,
-  `patronEmail` VARCHAR(45) NULL DEFAULT NULL,
+  `mediaID` INT(10) NOT NULL,
+  `patronID` INT(10) UNSIGNED NOT NULL,
+  `borrowDate` DATE NOT NULL,
+  `dueDate` DATE NOT NULL,
+  `patronEmail` VARCHAR(64) NULL DEFAULT NULL,
   PRIMARY KEY (`mediaID`, `patronID`, `borrowDate`),
   INDEX `fk20_idx` (`patronID` ASC),
   CONSTRAINT `fk1`
@@ -136,32 +136,7 @@ CREATE TABLE IF NOT EXISTS `library_system`.`checkedoutmedia` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk20`
     FOREIGN KEY (`patronID`)
-    REFERENCES `library_system`.`patronaccount` (`patronId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `library_system`.`reservation`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `library_system`.`reservation` (
-  `reservationId` INT(5) NOT NULL AUTO_INCREMENT,
-  `patronId` INT(5) NOT NULL,
-  `mediaId` INT(5) NOT NULL,
-  `reservedDate` VARCHAR(10) NULL DEFAULT NULL,
-  PRIMARY KEY (`reservationId`),
-  INDEX `fk2_idx` (`mediaId` ASC),
-  INDEX `fk25_idx` (`patronId` ASC),
-  CONSTRAINT `fk2`
-    FOREIGN KEY (`mediaId`)
-    REFERENCES `library_system`.`media` (`mediaId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk25`
-    FOREIGN KEY (`patronId`)
-    REFERENCES `library_system`.`patronaccount` (`patronId`)
+    REFERENCES `library_system`.`patron` (`pID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -172,8 +147,8 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `library_system`.`income`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`income` (
-  `invoice` INT NOT NULL,
-  `patronId` INT NOT NULL AUTO_INCREMENT,
+  `invoice` INT(11) UNSIGNED NOT NULL,
+  `patronId` INT(10) UNSIGNED NOT NULL,
   `date` DATE NOT NULL,
   `type` VARCHAR(1) NOT NULL,
   `amountPaid` DOUBLE NOT NULL,
@@ -181,10 +156,36 @@ CREATE TABLE IF NOT EXISTS `library_system`.`income` (
   INDEX `patronId_idx` (`patronId` ASC),
   CONSTRAINT `patronId`
     FOREIGN KEY (`patronId`)
-    REFERENCES `library_system`.`patronaccount` (`patronId`)
+    REFERENCES `library_system`.`patron` (`pID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `library_system`.`reservation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `library_system`.`reservation` (
+  `reservationId` INT(15) NOT NULL,
+  `patronId` INT(10) UNSIGNED NOT NULL,
+  `mediaId` INT(10) NOT NULL,
+  `reservedDate` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`reservationId`),
+  INDEX `fk2_idx` (`mediaId` ASC),
+  INDEX `fk25_idx` (`patronId` ASC),
+  CONSTRAINT `fk2`
+    FOREIGN KEY (`mediaId`)
+    REFERENCES `library_system`.`media` (`mediaId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk25`
+    FOREIGN KEY (`patronId`)
+    REFERENCES `library_system`.`patron` (`pID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
