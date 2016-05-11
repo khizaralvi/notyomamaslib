@@ -156,7 +156,7 @@ public class LoginJDBC {
 	 * @param newPass
 	 * @return Confirmation of action
 	 */
-	public static boolean updatePatronLogin(PatronAccount associatedAccount, String newUser, String newPass){
+	public static boolean updatePatronLogin(String id, String newUser, String newPass){
 		
 		Connection connection = null;
 		PreparedStatement statement;
@@ -168,13 +168,13 @@ public class LoginJDBC {
 			
 			statement.setString(1, newUser);
 			statement.setString(2, newPass);
-			statement.setString(3, associatedAccount.getId());
+			statement.setString(3, id);
 			
 			statement.execute();
 			
-			if(statement != null)
+		
 				statement.close();
-			if(connection != null)
+			
 				connection.close();
 		
 		} catch (Exception e) {
@@ -191,7 +191,7 @@ public class LoginJDBC {
 	 * @param newPass
 	 * @return Confirmation of action
 	 */
-	public static boolean updateStaffLogin(StaffAccount associatedAccount, String newUser, String newPass){
+	public static boolean updateStaffLogin(String id, String newUser, String newPass){
 		
 		Connection connection = null;
 		PreparedStatement statement;
@@ -209,16 +209,14 @@ public class LoginJDBC {
 			//replace the second ? with the password
 			statement.setString(2, newPass);
 			//replace the third ? with the account id
-			statement.setString(3, associatedAccount.getId());
+			statement.setString(3,id);
 			
 			//Execute the SQL statement
 			statement.execute();
 			
 			//Close statement and connection
-			if(statement != null)
-				statement.close();
-			if(connection != null)
-				connection.close();
+			statement.close();
+			connection.close();
 		
 		} catch (SQLException e) {
 			//if any issues return false to signal failure

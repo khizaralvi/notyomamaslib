@@ -12,6 +12,8 @@ import library.media.Media;
 import library.media.MediaCollection;
 import library.media.Reservation;
 import library.media.ReservationCollection;
+import library.account.Login;
+import library.account.LoginCollection;
 
 /**
  * Interface that will be displayed for librarian users.
@@ -26,9 +28,14 @@ public class LibrarianInterface {
     static ReservationJdbc rj = new ReservationJdbc();
     static ReservationCollection rc = new ReservationCollection();
     static int patronId; // This will be replaced by a PatronAccount object
+    
 
-    public static void librarianInterface() {
+    public static void librarianInterface(Login login) {
         int option;
+        //edit by Ben 5/11 
+        //TODO make it into a StaffAccount object
+        patronId = Integer.parseInt(login.getId());
+        
         Scanner scan = new Scanner(System.in);
 
         do {
@@ -40,6 +47,8 @@ public class LibrarianInterface {
             System.out.println("4. Edit media");
             System.out.println("5. Manage reservations");
             System.out.println("6. Renew media");
+            System.out.println("7. View Login");
+            System.out.println("8. Change Password");
             System.out.println("0. Exit");
             System.out.print("Type your option: ");
             option = scan.nextInt(); // Implement a parser to check if is int
@@ -75,6 +84,20 @@ public class LibrarianInterface {
                         System.out.println("An error occured!");
                     }
                     break;
+//              -----------------------
+//              | Edit by Ben - 5/11  |                                 
+//              -----------------------
+                case 7:
+                    System.out.println(login.toString());
+                    
+                    break;
+                case 8: 
+                    changePassword(login);
+                    break;
+                    
+//              ----------------------                  
+//              | Finish Edit - 5/11 |      
+//              ----------------------      
                 case 0:
                     System.out.println("Bye bye!");
                     break;
@@ -291,5 +314,24 @@ public class LibrarianInterface {
         } catch (final Exception e) {
             //  Handle any exceptions.
         }
+    }
+    //Edit by Ben 5/11
+    public static void changePassword(Login login){
+        Scanner scan = new Scanner(System.in);
+        String curPass;
+        for(int i = 0; i < 3;i++){
+            System.out.println("Please enter your current password");
+            curPass = scan.next();
+            if(login.getPassword().equals(curPass)){
+                System.out.println("Please enter your new password:");
+                String newPass = scan.next();
+                login.setPassword(newPass);
+                if(LoginCollection.updateStaffLogin(login.getId(), login.getUsername(), login.getPassword()))
+                    System.out.println("Password Change Successful!!");
+                break;
+            }
+            System.out.println("Incorrect Password");
+        }
+    
     }
 }

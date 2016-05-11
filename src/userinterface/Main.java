@@ -19,7 +19,7 @@ public class Main {
 		Login a;
 		PatronAccount p;
 		while(!login){
-			print("Please Enter,\n[1] Staff Login\n[2] Patron Login\n[3] Register (Patron Only)");
+			print("Please Enter,\n1. Staff Login\n2. Patron Login\n3. Register (Patron Only)");
 			input = scan.nextInt();
 			switch(input){
 		
@@ -38,7 +38,7 @@ public class Main {
 					login = true;
 					print("Welcome "+a.getUsername());
 					// print(staffMenu);
-                                        librarianInterface();
+                                        librarianInterface(a);
 					input = scan.nextInt();
 					switch(input){
 					case 4:
@@ -71,4 +71,8 @@ public class Main {
 	private static void print(String x){
 		System.out.println(x);
 	}
+        private static void loginStaff(){
+            
+        }
+        
 }

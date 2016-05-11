@@ -127,8 +127,11 @@ public class Login {
 	}
 	
 	public String toString(){
-		return username +"\n"+password+"\n";
+		return "Username: "+username +"\nPassword: "+password+"\n";
 	}
+        public String getId(){
+            return userID;
+        }
 	
 	
 }
