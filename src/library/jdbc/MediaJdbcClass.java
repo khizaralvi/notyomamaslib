@@ -41,12 +41,22 @@ public class MediaJdbcClass {
      * Constructor for MediaJdbcClass.
      */
     public MediaJdbcClass() {
+    }
+
+    /**
+     * This methods will stablish a connection with the database.
+     */
+    public void connect() {
         try {
-            //fake.add("Bard pitt");
-            connect();
-            statement = con.createStatement();
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false", "root", "");
+
         } catch (SQLException ex) {
-            Logger.getLogger(MediaJdbcClass.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 
@@ -59,17 +69,17 @@ public class MediaJdbcClass {
      */
     public boolean addMedia(Media m) throws SQLException {
 
-        connect();
+        connect(); // First, it must be connected to the database 
 
         // prepared2=con.prepareStatement("insert into mydb.authorbooks values(?,?)");
-        prepared2 = con.prepareStatement("insert into mydb.author (auhorname) value(?)");
-        prepared3 = con.prepareStatement("insert into mydb.authorbooks values(?,?)");
+        prepared2 = con.prepareStatement("insert into author (auhorname) value(?)");
+        prepared3 = con.prepareStatement("insert into authorbooks values(?,?)");
 
         try {
 
             String str = m.getMediaType();
 
-            prepared = con.prepareStatement("insert into mydb.media(mediaTitle,mediaYear,mediaCategory,mediaCost,"
+            prepared = con.prepareStatement("insert into media(mediaTitle,mediaYear,mediaCategory,mediaCost,"
                     + "mediaType," + "mediaQuantity,mediaPublisher,"
                     + "mediaCode,bookEdition,bookVolume,runningTime,movieDirector)"
                     + "values(?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -238,8 +248,10 @@ public class MediaJdbcClass {
 
         String type = editedMedia.getMediaType();
 
+        connect(); // First, it must be connected to the database 
+
         try {
-            prepared = con.prepareStatement("update mydb.media set mediaTitle=?,mediaYear=?,mediaCategory=?,mediaCost=?,mediaType=?,mediaQuantity=?,mediaPublisher=?,bookEdition=?,bookVolume=?,runningTime=?,movieDirector=?"
+            prepared = con.prepareStatement("update media set mediaTitle=?,mediaYear=?,mediaCategory=?,mediaCost=?,mediaType=?,mediaQuantity=?,mediaPublisher=?,bookEdition=?,bookVolume=?,runningTime=?,movieDirector=?"
                     + " where mediaId=?");
 
             switch (type) {
@@ -321,10 +333,10 @@ public class MediaJdbcClass {
      */
     public Media deleteMedia(String mediaId) {
 
-        connect();
+        connect(); // First, it must be connected to the database 
         try {
 
-            prepared = con.prepareStatement("delete from mydb.media where mediaId=?");
+            prepared = con.prepareStatement("delete from media where mediaId=?");
             prepared.setString(1, mediaId);
 
             int i = prepared.executeUpdate();
@@ -348,37 +360,41 @@ public class MediaJdbcClass {
      * @return MediaCollection object which contains an ArrayList of media
      */
     public MediaCollection searchMedia(int attribute, String value) {
-        //ArrayList<Media> resultSet = new ArrayList<>();
-        connect();
+        ArrayList<Media> resultSet = new ArrayList<>();
+        connect(); // First, it must be connected to the database 
         try {
-            precall = con.prepareCall("call Search_Media_by_Year(?)");
-            CallableStatement precall1 = con.prepareCall("call search_books_by_author(?)");
+            prepared = con.prepareStatement("select * from (media join authorbooks using(mediaId)) \n"
+                    + " where authorId=(select authorID from author where authorname=?);");
+            // precall=con.prepareCall("call mydb.Search_Media_by_Year(?)");
+            PreparedStatement prepared2 = con.prepareStatement("select *from media where media.mediaYear=?;");
             switch (attribute) {
 
                 case 1: {
                     //  precall.setString(1,"");
-                    precall.setString(1, value);
-                    rs = precall.executeQuery();
+                    prepared2.setString(1, value);
+                    rs = prepared2.executeQuery();
 
                     break;
                 }
                 case 2: {
                     // precall.setString(1,"mydb.search_books_by_author");
-                    precall1.setString(1, value);
-                    rs = precall1.executeQuery();
-                    break;
-                }
-                case 3: {
-                    rs = statement.executeQuery("select *from media where mediaTitle='" + value + "'");
+
+                    prepared.setString(1, value);
+                    rs = prepared.executeQuery();
 
                     break;
                 }
+                case 3: {
+                    rs = statement.executeQuery("select *from media where mediaId='" + value + "'");
+                }
                 case 4: {
-                    rs = statement.executeQuery("select *from mydb.media where mediaCategory='" + value + "'");
+                    rs = statement.executeQuery("select *from media where mediaCategory='" + value + "'");
                     break;
                 }
                 case 5: {
-                    rs = statement.executeQuery("select *from mydb.media where mediaId='" + value + "'");
+                    rs = statement.executeQuery("select *from media where mediaTitle='" + value + "'");
+                    break;
+
                 }
                 default:
                     break;
@@ -396,58 +412,35 @@ public class MediaJdbcClass {
         return collection;
     }
 
-    private void connect() {
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            //     System.out.println("Driver Found");
-        } catch (ClassNotFoundException ex) {
-
-            ex.printStackTrace();
-        }
-
-        String url = "jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false";
-        String user = "root";
-        String password = "";
-
-        try {
-            con = DriverManager.getConnection(url, user, password);
-
-            //          System.out.println("Connection successful");
-        } catch (SQLException se) {
-            se.printStackTrace();
-        }
-
-    }
-
     private void unpack(ResultSet rs) {
+
         try {
             while (rs.next()) {
                 switch (rs.getString("mediaType")) {
-                    case "b": {
+                    case "B": {
                         book = new MediaBook(rs.getInt("mediaId"), rs.getString("mediaTitle"), rs.getString("mediaYear"),
                                 rs.getString("mediaCode"), rs.getString("bookEdition"), rs.getString("bookVolume"),
                                 null, rs.getString("mediaPublisher"), rs.getString("mediaCost"), rs.getInt("mediaQuantity"), null, rs.getString("mediaCategory"));
 
-                        collection.getMedia().add(book);
+                        collection.addMedia(book);
 
                         break;
 
                     }
-                    case "m": {
+                    case "M": {
 
                         movie = new MediaMovie(rs.getInt("mediaId"), rs.getString("mediaTitle"), rs.getString("mediaYear"),
                                 rs.getString("mediaCost"), rs.getString("mediaCategory"), rs.getString("movieDirector"), rs.getString("runningTime"), rs.getInt("mediaQuantity"), rs.getString("mediaCode"));
 
-                        collection.getMedia().add(movie);
+                        collection.addMedia(movie);
 
                         break;
                     }
-                    case "a": {
+                    case "A": {
                         academic = new MediaAcademic(rs.getInt("mediaId"), rs.getString("mediaTitle"), rs.getString("mediaYear"),
                                 rs.getString("mediaCost"), rs.getString("mediaPublisher"), null, null, rs.getString("mediaCategory"), rs.getInt("mediaQuantity"), rs.getString("mediaCode"));
 
-                        collection.getMedia().add(academic);
+                        collection.addMedia(academic);
 
                         break;
                     }
@@ -458,28 +451,13 @@ public class MediaJdbcClass {
         }
     }
 
-    /*
-  public void testPrint(ResultSet rs)
-  {
-      
-
-        try {
-
-    rs.next();
-            System.out.println(rs.getString("mediaId")+" "+rs.getString("mediaTitle")+" "+rs.getString("mediaYear")+" "+ rs.getString("bookISBN"));
-        } catch (SQLException ex) {
-            Logger.getLogger(MediaJdbcClass.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-}
-     */
     /**
-     * Browse Media
+     * Browse Media.
      *
-     * @return
+     * @return an ArrayList of Media objects
      */
     public MediaCollection Browse_Media() {
-        connect();
+        connect(); // First, it must be connected to the database 
 
         try {
             rs = statement.executeQuery("select *from media");

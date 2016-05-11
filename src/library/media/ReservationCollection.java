@@ -13,7 +13,7 @@ import library.jdbc.ReservationJdbc;
 public class ReservationCollection {
 
     private ArrayList<Reservation> reserveList;
-    private ReservationJdbc rj;
+    private final ReservationJdbc rj;
 
     public ReservationCollection() {
         reserveList = new ArrayList();
@@ -28,8 +28,7 @@ public class ReservationCollection {
      * @return true if the desired operation was successful, false otherwise
      */
     public boolean reserveMedia(Media m, int patronId) {
-        String date = new SimpleDateFormat("MM-dd-yyyy").format(new Date());
-        Reservation r = new Reservation(m.getMediaId(), patronId, date);
+        Reservation r = new Reservation(m.getMediaId(), patronId);
         return rj.reserveMedia(r);
     }
 
@@ -51,7 +50,8 @@ public class ReservationCollection {
      * @return an ArrayList with all reserved items in the library
      */
     public ArrayList<Reservation> viewLibReserveList() {
-        reserveList = rj.viewLibReserveList();
+        ArrayList<Reservation> list = new ArrayList<> (rj.viewLibReserveList());
+        this.reserveList = (ArrayList<Reservation>) list.clone();
         return reserveList;
     }
 
@@ -117,7 +117,9 @@ public class ReservationCollection {
      * @param reservationId the reservation ID
      * @return a cancellation object
      */
-    public Reservation deleteReservation(int reservationId) {
-        return rj.deleteReservation(reservationId);
+    public Reservation deleteReservation(Reservation reservation) {
+        Reservation r = null;
+        r = this.searchReservation(reservation.getMediaId(), reservation.getPatronId());
+        return rj.deleteReservation(r.getReservationId());
     }
 }

@@ -1,6 +1,7 @@
 package userinterface;
 
 import java.util.Scanner;
+import library.jdbc.MediaJdbcClass;
 import library.jdbc.ReservationJdbc;
 import library.media.MediaCollection;
 import library.media.Reservation;
@@ -13,7 +14,7 @@ import library.media.ReservationCollection;
  */
 public class PatronInterface {
 
-    static MediaCollection mc = new MediaCollection();
+    static MediaJdbcClass media_jdbc = new MediaJdbcClass();
     static Reservation reservation = new Reservation();
     static ReservationJdbc rj = new ReservationJdbc();
     static ReservationCollection rc = new ReservationCollection();
@@ -24,8 +25,8 @@ public class PatronInterface {
         Scanner scan = new Scanner(System.in);
 
         do {
-            System.out.println("Welcome to Not Your Mamas's Library!");
-            System.out.println("MENU OPTIONS:");
+            System.out.println("\n\nWelcome to Not Your Mamas's Library!");
+            System.out.println("=========MENU OPTIONS:=========");
             System.out.println("1. Search media");
             System.out.println("2. View checked out media");
             System.out.println("3. Make reservation");
@@ -33,30 +34,31 @@ public class PatronInterface {
             System.out.println("0. Exit");
             System.out.print("Type your option: ");
             option = scan.nextInt(); // Implement a parser to check if is int
-
-            if (option == 1) {
-                if (!searchingModule()) {
-                    System.out.println("An error occured!");
-                }
-            } else if (option == 2) {
-                if (!checkedOutModule()) {
-                    System.out.println("An error occured!");
-                }
-            } else if (option == 3) {
-                if (!reservationModule(option)) {
-                    System.out.println("An error occured!");
-                }
-
-            } else if (option == 4) {
-                if (!reservationModule(option)) {
-                    System.out.println("An error occured!");
-                }
-            } else if (option == 0) {
-                System.out.println("Bye bye!");
-            } else {
-                System.out.println("Please, type a valid option: ");
+            
+            switch (option) {
+                case 1:
+                    if (!searchingModule()) {
+                        System.out.println("An error occured!");
+                    }   break;
+                case 2:
+                    if (!checkedOutModule()) {
+                        System.out.println("An error occured!");
+                    }   break;
+                case 3:
+                    if (!reservationModule(option)) {
+                        System.out.println("An error occured!");
+                    }   break;
+                case 4:
+                    if (!reservationModule(option)) {
+                        System.out.println("An error occured!");
+                    }   break;
+                case 0:
+                    System.out.println("Bye bye!");
+                    break;
+                default:
+                    System.out.println("Please, type a valid option: ");
+                    break;
             }
-            clearConsole();
         } while (option != 0);
     }
 
@@ -66,7 +68,7 @@ public class PatronInterface {
         Scanner scan = new Scanner(System.in);
 
         do {
-            System.out.println("MENU OPTIONS:");
+            System.out.println("\n\n=========MENU OPTIONS:=========");
             System.out.println("1. Search by author");
             System.out.println("2. Search by category");
             System.out.println("3. Search by ID");
@@ -80,9 +82,7 @@ public class PatronInterface {
             if (op > 0 && op <= 6) {
                 System.out.print("Type your search and press <ENTER>: ");
                 query = scan.next();
-                // mc.setMedia(mc.searchMedia((String) op, query));
-                System.out.println("Your search resulted in " + 0 + "results");
-                // System.out.println(mc.toString());
+                System.out.println(media_jdbc.searchMedia(op, query).toString()); // Print search
             } else {
                 System.out.println("Type a valid option!");
             }
@@ -101,7 +101,7 @@ public class PatronInterface {
 
         if (option == 3) {
             do {
-                System.out.println("MENU OPTIONS:");
+                System.out.println("\n\n=========MENU OPTIONS:=========");
                 System.out.println("1. Reserve media");
                 System.out.println("0. Return to previous menu");
                 System.out.print("Type your option: ");
@@ -111,7 +111,12 @@ public class PatronInterface {
                     System.out.println("Type the media ID: ");
                     int mediaId = scan.nextInt();
                     reservation.setMediaId(mediaId);
-                    rj.reserveMedia(reservation);
+                    if(rj.reserveMedia(reservation)) { // Try to reserve
+                        System.out.println("Your reservation was successful!");
+                    }
+                    else {
+                        return false;
+                    }
                 }
                 else if(op != 0) {
                     System.out.println("Type a valid option.");
@@ -121,7 +126,7 @@ public class PatronInterface {
         }
         if (option == 4) {
             do {
-                System.out.println("MENU OPTIONS:");
+                System.out.println("\n\n=========MENU OPTIONS:=========");
                 System.out.println("1. Cancel reservation");
                 System.out.println("0. Return to previous menu");
                 System.out.print("Type your option: ");
@@ -134,10 +139,15 @@ public class PatronInterface {
                     // Print the reservation list for the current patron
                     System.out.println(rc.toString());
                     
-                    // Cancel the reservation
+                    // Ask for media ID
+                    System.out.print("Type the media ID: ");
                     int mediaId = scan.nextInt();
+                    
+                    // Cancel the reservation
                     reservation.setMediaId(mediaId);
-                    rj.deleteReservation(reservation.getReservationId());
+                    reservation = rj.deleteReservation(reservation.getReservationId());
+                    System.out.println("The following reservation was deleted: " + reservation.toString());
+
                 }
                 else if(op != 0) {
                     System.out.println("Type a valid option.");
@@ -149,17 +159,18 @@ public class PatronInterface {
 
     }
 
-    public final static void clearConsole() {
-        try {
-            final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows")) {
-                Runtime.getRuntime().exec("cls");
-            } else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (final Exception e) {
-            //  Handle any exceptions.
-        }
-    }
+// Try to make this work
+//    public final static void clearConsole() {
+//        try {
+//            final String os = System.getProperty("os.name");
+//
+//            if (os.contains("Windows")) {
+//                Runtime.getRuntime().exec("cls");
+//            } else {
+//                Runtime.getRuntime().exec("clear");
+//            }
+//        } catch (final Exception e) {
+//            //  Handle any exceptions.
+//        }
+//    }
 }

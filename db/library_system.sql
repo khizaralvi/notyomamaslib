@@ -5,9 +5,6 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
 -- Schema library_system
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `library_system` ;
@@ -110,7 +107,7 @@ ENGINE = InnoDB;
 -- Table `library_system`.`staff_account`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`staff_account` (
-  `staffId` INT(11) NOT NULL,
+  `staffId` INT(11) NOT NULL AUTO_INCREMENT,
   `StaffFname` VARCHAR(45) NULL,
   `staffLname` VARCHAR(45) NULL DEFAULT NULL,
   `StaffPhoneNumber` VARCHAR(45) NULL DEFAULT NULL,
@@ -140,7 +137,7 @@ ENGINE = InnoDB;
 -- Table `library_system`.`cancellation`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`cancellation` (
-  `cancellationId` INT(15) NOT NULL,
+  `cancellationId` INT(15) NOT NULL AUTO_INCREMENT,
   `patronId` INT(10) UNSIGNED NOT NULL,
   `mediaId` INT(10) NOT NULL,
   `reservedDate` DATE NOT NULL,
@@ -191,7 +188,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `library_system`.`income`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`income` (
-  `invoice` INT(11) UNSIGNED NOT NULL,
+  `invoice` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `patronId` INT(10) UNSIGNED NOT NULL,
   `date` DATE NOT NULL,
   `type` VARCHAR(1) NOT NULL,
@@ -211,7 +208,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `library_system`.`reservation`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`reservation` (
-  `reservationId` INT(15) NOT NULL,
+  `reservationId` INT(15) NOT NULL AUTO_INCREMENT,
   `patronId` INT(10) UNSIGNED NOT NULL,
   `mediaId` INT(10) NOT NULL,
   `reservedDate` DATE NULL DEFAULT NULL,

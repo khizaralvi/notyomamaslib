@@ -26,6 +26,14 @@ public class Media {
     private String mediaType; // Media types: A (Academic), B (Book), M (Movie)
     private int quantity;
     
+    
+    /**
+     * Default Constructor.
+     */
+    public Media() {
+        
+    }
+    
     /**
      * Constructor for Media.
      *
@@ -63,8 +71,8 @@ public class Media {
      * @param id Media unique identifier
      * @return true if mediaId is set successfully or false otherwise
      */
-    public boolean setMediaId(int id) {
-    return true;
+    public void setMediaId(int id) {
+        this.mediaId = id;
     }
 
     /**
