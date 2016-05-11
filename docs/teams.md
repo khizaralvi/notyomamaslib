@@ -11,10 +11,10 @@
 * [Jéssica Carneiro](mailto:jessicaccarneiro91@gmail.com) (_team leader_)
 * [Abdul Basit](mailto:abasit1@oldwestbury.edu)
 * [Adil Imam](mailto:aimam1@oldwestbury.edu)
+* [Brett Landau](mailto:blandau@oldwestbury.edu)
 
 ## Team #3 ##
 
 * [Elbin Martinez](mailto:emarti45@oldwestbury.edu) (_team leader_)
 * [Adnan Alam](mailto:aalam29@gmail.com)
-* [Brett Landau](mailto:blandau@oldwestbury.edu)
-* [Khiyau Alvi](mailto:kalvi@oldwestbury.edu)
+* [Khizar Alvi](mailto:kalvi@oldwestbury.edu)
