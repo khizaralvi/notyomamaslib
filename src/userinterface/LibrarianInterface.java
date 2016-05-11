@@ -7,6 +7,7 @@ package userinterface;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import library.jdbc.MediaJdbcClass;
 import library.jdbc.ReservationJdbc;
 import library.media.Media;
 import library.media.MediaCollection;
@@ -20,7 +21,7 @@ import library.media.ReservationCollection;
  */
 public class LibrarianInterface {
 
-    static MediaCollection mc = new MediaCollection();
+    static MediaJdbcClass mc = new MediaJdbcClass();
     static ArrayList<Media> media = new ArrayList<>();
     static Reservation reservation = new Reservation();
     static ReservationJdbc rj = new ReservationJdbc();
@@ -105,9 +106,8 @@ public class LibrarianInterface {
             if (op > 0 && op <= 6) {
                 System.out.print("Type your search and press <ENTER>: ");
                 query = scan.next();
-                // mc.setMedia(mc.searchMedia((String) op, query));
                 System.out.println("Your search resulted in " + 0 + "results");
-                // System.out.println(mc.toString());
+                System.out.println(mc.searchMedia(op, query).toString());
             } else {
                 System.out.println("Type a valid option!");
             }

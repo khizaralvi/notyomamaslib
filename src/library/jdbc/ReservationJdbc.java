@@ -30,7 +30,7 @@ public class ReservationJdbc {
             ex.printStackTrace();
         }
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mediamanagement?autoReconnect=true&useSSL=false", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false", "root", "");
 
         } catch (SQLException ex) {
             ex.printStackTrace();

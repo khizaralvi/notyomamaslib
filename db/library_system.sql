@@ -33,7 +33,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `library_system`.`media`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`media` (
-  `mediaId` INT(10) NOT NULL,
+  `mediaId` INT(10) NOT NULL AUTO_INCREMENT,
   `mediaTitle` VARCHAR(45) NULL DEFAULT NULL,
   `mediaYear` VARCHAR(4) NULL DEFAULT NULL,
   `mediaCategory` VARCHAR(20) NULL DEFAULT NULL,
@@ -90,6 +90,50 @@ CREATE TABLE IF NOT EXISTS `library_system`.`patron` (
   UNIQUE INDEX `pID_UNIQUE` (`pID` ASC))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+-- -----------------------------------------------------
+-- Table `library_system`.`patron_Login`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `library_system`.`patron_Login` (
+  `username` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  `patronId` INT NOT NULL,
+  PRIMARY KEY (`patronId`),
+  CONSTRAINT `fk66`
+    FOREIGN KEY (`patronId`)
+    REFERENCES `library`.`patronaccount` (`patronId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `library_system`.`staff_account`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `library_system`.`staff_account` (
+  `staffId` INT(11) NOT NULL,
+  `StaffFname` VARCHAR(45) NULL,
+  `staffLname` VARCHAR(45) NULL DEFAULT NULL,
+  `StaffPhoneNumber` VARCHAR(45) NULL DEFAULT NULL,
+  `staffEmail` VARCHAR(45) NULL DEFAULT NULL,
+  `accounttype` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`staffId`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+-- -----------------------------------------------------
+-- Table `library_system`.`staff_Login`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `library_system`.`staff_Login` (
+  `login_id` INT NOT NULL,
+  `username` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  PRIMARY KEY (`login_id`),
+  CONSTRAINT `fk72`
+    FOREIGN KEY (`login_id`)
+    REFERENCES `library`.`staff_account` (`staffId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------

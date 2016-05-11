@@ -19,6 +19,18 @@ insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Elbin", "
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Adnan", "Alam", "1223432", "aalam29@oldwestbury.edu", "223 Store Hill Rd");
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Khizar", "Alvi", "9872161", "kalvi@oldwestbury.edu", "223 Store Hill Rd");
 
+/* Staff account */
+
+insert into staff_account (StaffFname, staffLname, StaffPhoneNumber, staffEmail, accounttype) values ("Jessica", "Carneiro", "12143353", "jcarneir@oldwestbury.edu", "223 Store Hill Rd");
+insert into staff_account (StaffFname, staffLname, StaffPhoneNumber, staffEmail, accounttype) values ("Jeff", "Godoy", "12345678", "jgodoy@oldwestbury.edu", "223 Store Hill Rd");
+insert into staff_account (StaffFname, staffLname, StaffPhoneNumber, staffEmail, accounttype) values ("Benny", "Penna", "12839042", "bpena5@oldwestbury.edu", "223 Store Hill Rd");
+
+/* Staff login */
+
+insert into staff_login (login_id, username, password) values (1, "jcarneir", "123456");
+insert into staff_login (login_id, username, password) values (2, "jgodoy", "123456");
+insert into staff_login (login_id, username, password) values (3, "aimam1", "123456");
+
 
 /* Media books */
 

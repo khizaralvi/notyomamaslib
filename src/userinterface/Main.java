@@ -39,17 +39,17 @@ public class Main {
 					print("Welcome "+a.getUsername());
 					// print(staffMenu);
                                         librarianInterface();
-					input = scan.nextInt();
-					switch(input){
-					case 4:
-						//update any changes
-						print("Goodbye!");
-						login = false;
-						break;
-					default:
-						print("Something went wrong");
-						break;
-					}
+//					input = scan.nextInt();
+//					switch(input){
+//					case 4:
+//						//update any changes
+//						print("Goodbye!");
+//						login = false;
+//						break;
+//					default:
+//						print("Something went wrong");
+//						break;
+//					}
 						
 				}
 				break;
