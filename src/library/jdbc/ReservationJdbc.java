@@ -18,7 +18,6 @@ public class ReservationJdbc {
     private Statement st = null; // To select data
     private PreparedStatement ps = null; // To update, add, or delete data
     private ResultSet rs = null; // Result set from queries
-    private Reservation reservation;
     private static final java.util.Date UTIL_DATE = new java.util.Date();
     private final java.sql.Date SQL_DATE = new java.sql.Date(UTIL_DATE.getTime());
 
@@ -192,6 +191,7 @@ public class ReservationJdbc {
     public ArrayList<Reservation> viewPatronReserveList(int patronId) {
         connect(); // First, it must be connected to the database 
         ArrayList<Reservation> rc = new ArrayList<>();
+        Reservation reservation = new Reservation();
 
         try {
             st = con.createStatement();
@@ -217,6 +217,7 @@ public class ReservationJdbc {
     public ArrayList<Reservation> viewLibReserveList() {
         connect(); // First, it must be connected to the database
         ArrayList<Reservation> rc = new ArrayList<>();
+        Reservation reservation = new Reservation();
 
         try {
             st = con.createStatement();
@@ -227,7 +228,6 @@ public class ReservationJdbc {
                 reservation.setMediaId(rs.getInt("mediaId"));
                 reservation.setReservationDate(rs.getDate("ReservedDate"));
                 rc.add(reservation);
-                System.out.println("Added one!");
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);

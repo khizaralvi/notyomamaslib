@@ -118,8 +118,7 @@ public class Reservation {
      */
     @Override
     public String toString() {
-        return "ID:" + reservationId + " Media:" + mediaId + " Patron:" + patronId + " Date:"
-                + reservationDate;
+        return String.format("%15d\t%10d\t%10d\t%12s\n", reservationId, mediaId, patronId, reservationDate);
     }
 
     /**

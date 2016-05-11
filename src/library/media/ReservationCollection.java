@@ -15,9 +15,12 @@ public class ReservationCollection {
     private ArrayList<Reservation> reserveList;
     private final ReservationJdbc rj;
 
+    /**
+     * Default constructor for Reservation Collection.
+     */
     public ReservationCollection() {
-        reserveList = new ArrayList();
-        rj = new ReservationJdbc();
+        this.reserveList = new ArrayList();
+        this.rj = new ReservationJdbc();
     }
 
     /**
@@ -51,8 +54,7 @@ public class ReservationCollection {
      */
     public ArrayList<Reservation> viewLibReserveList() {
         ArrayList<Reservation> list = new ArrayList<> (rj.viewLibReserveList());
-        this.reserveList = (ArrayList<Reservation>) list.clone();
-        return reserveList;
+        return list;
     }
 
     /**
@@ -64,9 +66,7 @@ public class ReservationCollection {
     public String toString() {
         String s = "";
         for (int i = 0; i < reserveList.size(); i++) {
-            s += reserveList.get(i).toString();
-            System.out.println(reserveList.get(i).toString());
-            s += "\n";
+            s += " " + reserveList.get(i).toString();
         }
         return s;
     }

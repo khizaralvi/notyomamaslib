@@ -7,68 +7,83 @@ import library.account.Login;
 import static userinterface.LibrarianInterface.librarianInterface;
 
 public class Main {
-	
-	public static final String staffMenu = "Please Enter,\n[1] Look up Account\n[2] Restock Media\n[3] Update Account\n[4] Logout";
-	public static final String patronMenu = "";
-	
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		boolean login = false;
-		print("Hello, Welcome to the Libaray System");
-		int input = 0;
-		Login a;
-		PatronAccount p;
-		while(!login){
-			print("Please Enter,\n[1] Staff Login\n[2] Patron Login\n[3] Register (Patron Only)");
-			input = scan.nextInt();
-			switch(input){
-		
-			case 1:
-				print("Username:");
-				String user = scan.next();
-				print("Password:");
-				String pass = scan.next();
-				a = LoginCollection.loginStaff(user, pass);
-				
-				if(a == null){
-					login = false;
-					print("Could not login!");
-				}
-				else{
-					login = true;
-					print("Welcome "+a.getUsername());
-					// print(staffMenu);
-                                        librarianInterface();
-//					input = scan.nextInt();
-//					switch(input){
-//					case 4:
-//						//update any changes
-//						print("Goodbye!");
-//						login = false;
-//						break;
-//					default:
-//						print("Something went wrong");
-//						break;
-//					}
-						
-				}
-				break;
-			
-			case 2:
-				print("");
-				break;
-			case 3:
-				print("");
-				break;
-			default:
-				print("");
-				break;
-			}
-		}
-		
-	}
-	
-	private static void print(String x){
-		System.out.println(x);
-	}
+
+    public static final String staffMenu = "1. Look up Account\n2. Media Managment\n3. Update Account\n4. Logout\n";
+    public static final String patronMenu = "";
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        boolean login = false;
+        System.out.println("\n\nWelcome to Not Your Mamas's Library!");
+        int input = 0;
+        Login a;
+        PatronAccount p;
+        while (!login) {
+            System.out.print("=========MENU OPTIONS:=========\n1. Staff Login\n2. Patron Login\n3. Register (Patron Only)\nType an option: ");
+            input = scan.nextInt();
+            switch (input) {
+
+                case 1:
+                    System.out.print("Username: ");
+                    String user = scan.next();
+                    System.out.print("Password: ");
+                    String pass = scan.next();
+                    a = LoginCollection.loginStaff(user, pass);
+
+                    if (a == null) {
+                        login = false;
+                         System.out.println("Could not login!");
+                    } else {
+                        login = true;
+                         System.out.println("Welcome " + a.getUsername());
+                        // print(staffMenu);
+
+                        while (login) {
+                            
+                            print(staffMenu);
+                             System.out.print("Please enter an option: ");
+
+                            input = scan.nextInt();
+                            switch (input) {
+                                case 1:
+                                    //update any changes
+                                    // print("Goodbye!");
+                                    break;
+                                case 2:
+                                    librarianInterface();
+                                    break;
+                                case 3:
+                                    
+                                    break;
+                                case 4:
+                                    login = false;
+                                    System.out.println("Bye bye!");
+                                    System.exit(0);
+                                    break;
+                                default:
+                                    print("Type a valid options");
+                                    break;
+                            }
+                        }
+
+                    }
+                    break;
+
+                case 2:
+                    print("");
+                    break;
+                case 3:
+                    print("");
+                    break;
+                default:
+                    print("");
+                    break;
+            }
+        }
+
+    }
+
+    private static void print(String x) {
+        System.out.println(x);
+    }
 }

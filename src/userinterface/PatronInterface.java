@@ -25,7 +25,6 @@ public class PatronInterface {
         Scanner scan = new Scanner(System.in);
 
         do {
-            System.out.println("\n\nWelcome to Not Your Mamas's Library!");
             System.out.println("=========MENU OPTIONS:=========");
             System.out.println("1. Search media");
             System.out.println("2. View checked out media");
@@ -34,26 +33,29 @@ public class PatronInterface {
             System.out.println("0. Exit");
             System.out.print("Type your option: ");
             option = scan.nextInt(); // Implement a parser to check if is int
-            
+
             switch (option) {
                 case 1:
                     if (!searchingModule()) {
                         System.out.println("An error occured!");
-                    }   break;
+                    }
+                    break;
                 case 2:
                     if (!checkedOutModule()) {
                         System.out.println("An error occured!");
-                    }   break;
+                    }
+                    break;
                 case 3:
                     if (!reservationModule(option)) {
                         System.out.println("An error occured!");
-                    }   break;
+                    }
+                    break;
                 case 4:
                     if (!reservationModule(option)) {
                         System.out.println("An error occured!");
-                    }   break;
+                    }
+                    break;
                 case 0:
-                    System.out.println("Bye bye!");
                     break;
                 default:
                     System.out.println("Please, type a valid option: ");
@@ -111,14 +113,12 @@ public class PatronInterface {
                     System.out.println("Type the media ID: ");
                     int mediaId = scan.nextInt();
                     reservation.setMediaId(mediaId);
-                    if(rj.reserveMedia(reservation)) { // Try to reserve
+                    if (rj.reserveMedia(reservation)) { // Try to reserve
                         System.out.println("Your reservation was successful!");
-                    }
-                    else {
+                    } else {
                         return false;
                     }
-                }
-                else if(op != 0) {
+                } else if (op != 0) {
                     System.out.println("Type a valid option.");
                 }
 
@@ -135,21 +135,20 @@ public class PatronInterface {
                 if (op == 1) {
                     // Search all reservations for this patron
                     rc.setArr(rj.viewPatronReserveList(patronId));
-                   
+
                     // Print the reservation list for the current patron
                     System.out.println(rc.toString());
-                    
+
                     // Ask for media ID
                     System.out.print("Type the media ID: ");
                     int mediaId = scan.nextInt();
-                    
+
                     // Cancel the reservation
                     reservation.setMediaId(mediaId);
                     reservation = rj.deleteReservation(reservation.getReservationId());
                     System.out.println("The following reservation was deleted: " + reservation.toString());
 
-                }
-                else if(op != 0) {
+                } else if (op != 0) {
                     System.out.println("Type a valid option.");
                 }
             } while (op != 0);

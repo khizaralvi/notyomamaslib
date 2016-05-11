@@ -21,11 +21,11 @@ import library.media.ReservationCollection;
  */
 public class LibrarianInterface {
 
-    static MediaJdbcClass mc = new MediaJdbcClass();
-    static Media media = new Media();
-    static MediaCollection media_collection = new MediaCollection();
-    static Reservation reservation = new Reservation();
-    static ReservationCollection reservation_collection = new ReservationCollection();
+    public static MediaJdbcClass mc = new MediaJdbcClass();
+    public static Media media = new Media();
+    public static MediaCollection media_collection = new MediaCollection();
+    public static Reservation reservation = new Reservation();
+    public static ReservationCollection reservation_collection = new ReservationCollection();
 
     public static void librarianInterface() {
         int option;
@@ -76,7 +76,6 @@ public class LibrarianInterface {
                     }
                     break;
                 case 0:
-                    System.out.println("Bye bye!");
                     break;
                 default:
                     System.out.println("Please, type a valid option: ");
@@ -304,7 +303,8 @@ public class LibrarianInterface {
                     }
                     break;
                 case 3:
-                    System.out.println(reservation_collection.viewLibReserveList().toString());
+                    String table_header = String.format("\t%15s\t%10s\t%10s\t%12s\n", "Reservation ID", "Media ID", "Patron ID", "Date");
+                    System.out.println(table_header + reservation_collection.viewLibReserveList().toString());
                     break;
                 case 4:
                     // Not implemented yet
