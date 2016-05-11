@@ -114,23 +114,26 @@ public class MediaCollection {
         type =media.get(i).getMediaType();
         
             if(type.equals("b"))
-             {
-                 aggregate+=media.get(i).getMediaId()+" "+media.get(i).getMediaTitle()+" "
-                 +" "+media.get(i).getMediaCost()+" "+media.get(i).getEdition()+" "+media.get(i).getPublisher()
-                         
-                +" "+media.get(i).getIsbn()+" "+media.get(i).getMediaYear()+" "+media.get(i).getNumOfPages_of_Books()+"\n";
-                                             
-             }    
+            {
+       aggregate+=String.valueOf(media.get(i).getMediaId())+"\t"+media.get(i).getMediaTitle()+"\t"
+       +media.get(i).getMediaCost()+"\t"+media.get(i).getMediaYear()+"\t"+media.get(i).getBookGenre()+"\t\tBook\t"
+        +media.get(i).getQuantity()+"\t"+media.get(i).getPublisher()               
+        +"\t"+media.get(i).getIsbn()+"\t"+media.get(i).getEdition()+"\t"+media.get(i).getVolume()+"\t*\t*\n";
+             
+               }                                
+                 
           if(type.equals("m"))
           {
-         aggregate+=media.get(i).getMediaId()+" "+media.get(i).getMediaTitle()+" "+media.get(i).getMediaCost()+
-         " "+media.get(i).getMediaYear()+" "+media.get(i).getDirector()+" "+media.get(i).getRunning_time()+"\n";
+       aggregate+=String.valueOf(media.get(i).getMediaId())+"\t"+media.get(i).getMediaTitle()+"\t\t"+media.get(i).getMediaCost()+
+       "\t"+media.get(i).getMediaYear()+"\t"+media.get(i).getGenre()+"\t\tMovie\t"+media.get(i).getQuantity()+"\t*\t\t"+media.get(i).getMovie_Code()+"\t*\t*\t"
+       +media.get(i).getRunning_time()+"\t"+media.get(i).getDirector()+ "\n";
            
           }
           if(type.equals("a"))
           {
-             aggregate+=media.get(i).getMediaId()+" "+media.get(i).getMediaTitle()+" "+media.get(i).getMediaCost()+
-         " "+media.get(i).getMediaYear()+" "+media.get(i).getNumberOfPages_of_Ebook()+" "+media.get(i).get_Ebook_Publisher()+"\n";
+             aggregate+=String.valueOf(media.get(i).getMediaId())+"\t"+media.get(i).getMediaTitle()+"\t\t"+media.get(i).getMediaCost()+
+         "\t"+media.get(i).getMediaYear()+"\t"+media.get(i).getDocumentType()+"\t\tEbook\t"+media.get(i).getQuantity()+"\t"+media.get(i).get_Ebook_Publisher()+
+        "\t\t"+media.get(i).getEbook_ISBN()+"\t*\t*\t*\t*\n";
               
           
           }
