@@ -58,7 +58,6 @@ public class Main {
                                 case 4:
                                     login = false;
                                     System.out.println("Bye bye!");
-                                    System.exit(0);
                                     break;
                                 default:
                                     print("Type a valid options");
