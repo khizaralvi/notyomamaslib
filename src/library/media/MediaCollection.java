@@ -17,7 +17,7 @@ public class MediaCollection {
      * Default constructor for MediaCollection
      */
     public MediaCollection() {
-        this.media = new ArrayList<> ();
+        this.media = new ArrayList<>();
     }
 
     /**
@@ -26,7 +26,7 @@ public class MediaCollection {
      * @param media an ArrayList of Media
      */
     public MediaCollection(ArrayList<Media> media) {
-        this.media = new ArrayList<> (media);
+        this.media = new ArrayList<>(media);
     }
 
     /**
@@ -55,6 +55,14 @@ public class MediaCollection {
      */
     public void addMedia(Media m) {
         this.media.add(m);
+    }
+
+    /**
+     * Clean collection of Media.
+     */
+    public void cleanCollection() {
+        this.media.clear();
+        this.media = new ArrayList<>();
     }
 
     /**

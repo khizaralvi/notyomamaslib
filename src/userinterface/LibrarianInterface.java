@@ -101,11 +101,13 @@ public class LibrarianInterface {
             System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
             op = scan.nextInt(); // Implement a parser to check if is int
-
+            String skip = scan.nextLine();
+            
             if (op > 0 && op <= 6) {
                 System.out.print("Type your search and press <ENTER>: ");
-                query = scan.next();
-                System.out.println(mc.searchMedia(op, query).toString());
+                query = scan.nextLine();
+                System.out.println(mc.searchMedia(op, query));
+                return true;
             } else {
                 System.out.println("Type a valid option!");
             }
