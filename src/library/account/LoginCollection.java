@@ -42,18 +42,18 @@ public class LoginCollection {
 	 * @param newPass
 	 * @return Confirmation of action
 	 */
-	public static boolean updateStaffLogin(StaffAccount associatedAccount, String newUser, String newPass){
-		return LoginJDBC.updateStaffLogin(associatedAccount, newUser, newPass);
+	public static boolean updateStaffLogin(String id, String newUser, String newPass){
+		return LoginJDBC.updateStaffLogin(id, newUser, newPass);
 	}
 	/**
 	 * Updates a patron account's login credentials
-	 * @param associatedAccount
+	 * @param id
 	 * @param newUser
 	 * @param newPass
 	 * @return Confirmation of action
 	 */
-	public static boolean updatePatronLogin(PatronAccount associatedAccount, String newUser, String newPass){
-		return LoginJDBC.updatePatronLogin(associatedAccount, newUser, newPass);
+	public static boolean updatePatronLogin(String id, String newUser, String newPass){
+		return LoginJDBC.updatePatronLogin(id, newUser, newPass);
 	}
 	/**
 	 * Deletes a Patron account's login credentials

@@ -7,6 +7,8 @@ package userinterface;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import library.account.Login;
+import library.account.LoginCollection;
 import library.jdbc.MediaJdbcClass;
 import library.media.Media;
 import library.media.MediaCollection;
@@ -25,8 +27,10 @@ public class LibrarianInterface {
     public static MediaCollection media_collection = new MediaCollection();
     public static Reservation reservation = new Reservation();
     public static ReservationCollection reservation_collection = new ReservationCollection();
+    public static Login login;
 
-    public static void librarianInterface() {
+    public static void librarianInterface(Login a) {
+        login = a;
         int option;
         Scanner scan = new Scanner(System.in);
 
@@ -38,6 +42,8 @@ public class LibrarianInterface {
             System.out.println("4. Edit media");
             System.out.println("5. Manage reservations");
             System.out.println("6. Renew media");
+            System.out.println("7. View Login");
+            System.out.println("8. Change Password");
             System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
             option = scan.nextInt(); // Implement a parser to check if is int
@@ -73,6 +79,20 @@ public class LibrarianInterface {
                         System.out.println("An error occured!");
                     }
                     break;
+//              -----------------------
+//              | Edit by Ben - 5/11  |                                 
+//              -----------------------
+                case 7:
+                    System.out.println(login.toString());
+                    
+                    break;
+                case 8: 
+                    changePassword(login);
+                    break;
+                    
+//              ----------------------                  
+//              | Finish Edit - 5/11 |      
+//              ----------------------  
                 case 0:
                     break;
                 default:
@@ -314,6 +334,25 @@ public class LibrarianInterface {
             }
 
         } while (true);
+    }
+    //Edit by Ben 5/11
+    public static void changePassword(Login login){
+        Scanner scan = new Scanner(System.in);
+        String curPass;
+        for(int i = 0; i < 3;i++){
+            System.out.println("Please enter your current password");
+            curPass = scan.next();
+            if(login.getPassword().equals(curPass)){
+                System.out.println("Please enter your new password:");
+                String newPass = scan.next();
+                login.setPassword(newPass);
+                if(LoginCollection.updateStaffLogin(login.getId(), login.getUsername(), login.getPassword()))
+                    System.out.println("Password Change Successful!!");
+                break;
+            }
+            System.out.println("Incorrect Password");
+        }
+    
     }
 
 // Try to make this work

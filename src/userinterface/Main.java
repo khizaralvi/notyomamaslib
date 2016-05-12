@@ -52,7 +52,7 @@ public class Main {
                                     // print("Goodbye!");
                                     break;
                                 case 2:
-                                    librarianInterface();
+                                    librarianInterface(a);
                                     break;
                                 case 3:
                                     
