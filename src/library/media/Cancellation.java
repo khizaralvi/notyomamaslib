@@ -1,6 +1,8 @@
 package library.media;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.lang.*;
+import java.sql.*;
 
 /**
  * This class holds the attributes required to cancel a reservation of media by a patron.
@@ -9,35 +11,38 @@ import java.util.Date;
  * <li>Patron ID</li>
  * <li>Cancellation ID</li>
  * <li>Reservation date</li>
- * <li>Cancelled data<li>
+ * <li>Cancellation data<li>
  * </ul>
  * @author <a>Brett Landau</a>
  */
 
 public class Cancellation {
 
-    private int MediaId;
-    private int PatronId;
-    private String reserved_date;
+    private String MediaId;
+    private String PatronId;
+    private Date reserved_date;
     private int cancellationId;
-    private String cancelled_date;
+    private Date cancelled_date;
 
     /**
-     *
-     * @param cancellationId CancellationID is the unique id for the cancellation
-     * @param MediaId MediaId is the unique id for every single media
-     * @param PatronId PatronId is the unique id for every single patron
-     * @param reserved_date records date the book was reserved
-     * @param cancelled_date records date the book was Cancelled
+     /*
+     * 
+     * @param cancelled_date records date the book cancellation occurred
      *
      */
-    public Cancellation(int cancellationId, int MediaId, int PatronId, String reserved_date, String cancelled_date) {
+    
+    public Cancellation(int cancellationId, Reservation reservation, Date cancelled_date ) {
+        this.cancellationId = cancellationId;
+        this.cancelled_date = cancelled_date;
+    }
+    
+    /* public Cancellation(int cancellationId, String MediaId, String PatronId, Date reserved_date, Date cancelled_date) {
         this.cancellationId = cancellationId;
         this.MediaId = MediaId;
         this.PatronId = PatronId;
         this.reserved_date = reserved_date;
         this.cancelled_date = cancelled_date;
-    }
+    }*/
 
     Cancellation() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -48,7 +53,7 @@ public class Cancellation {
      *
      * @return String
      */
-    public int getMediaId() {
+    public String getMediaId() {
         return MediaId;
     }
 
@@ -57,7 +62,7 @@ public class Cancellation {
      *
      * @param MediaId Media Id
      */
-    public void setMediaId(int MediaId) {
+    public void setMediaId(String MediaId) {
         this.MediaId = MediaId;
     }
 
@@ -66,7 +71,7 @@ public class Cancellation {
      *
      * @return String
      */
-    public int getPatronId() {
+    public String getPatronId() {
         return PatronId;
     }
 
@@ -75,7 +80,7 @@ public class Cancellation {
      *
      * @param PatronId Patron unique identifies
      */
-    public void setPatronId(int PatronId) {
+    public void setPatronId(String PatronId) {
         this.PatronId = PatronId;
     }
 
@@ -84,7 +89,7 @@ public class Cancellation {
      *
      * @return Date
      */
-    public String getReserved_date() {
+    public Date getReserved_date() {
         return reserved_date;
     }
 
@@ -93,7 +98,7 @@ public class Cancellation {
      *
      * @param reserved_date date media was reserved
      */
-    public void setReserved_date(String reserved_date) {
+    public void setReserved_date(Date reserved_date) {
         this.reserved_date = reserved_date;
     }
 
@@ -102,16 +107,16 @@ public class Cancellation {
      *
      * @return cancelled_date cancellation date
      */
-    public String getCancelled_date() {
+    public Date getCancelled_date() {
         return cancelled_date;
      }
 
     /**
      * This method lets us return cancellation date attribute of the object
      *
-     * @param cancelled_date date media was cancelled
+     * @param cancelled_date date media cancellation occurred
      */
-    public void setCancelled_date(String cancelled_date) {
+    public void setCancelled_date(Date cancelled_date) {
         this.cancelled_date = cancelled_date;
      }
 
