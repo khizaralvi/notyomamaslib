@@ -11,7 +11,7 @@ public class Main {
 
     public static final String staffMenu = "\n\n\n=========MENU OPTIONS:=========\n1. Look up Account\n2. Media Managment\n3. Update Account\n4. View Income\n0. Logout";
     public static final String patronMenu = "";
-    IncomeCol income_collection = new IncomeCol();
+    
     
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -20,6 +20,7 @@ public class Main {
         int input = 0;
         Login a;
         PatronAccount p;
+        IncomeCol income_collection = new IncomeCol();
         while (!login) {
             System.out.print("\n\n\n=========MENU OPTIONS:=========\n1. Staff Login\n2. Patron Login\n3. Register (Patron Only)\n0. Exit\nType an option: ");
             input = scan.nextInt();
