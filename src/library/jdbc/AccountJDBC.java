@@ -72,8 +72,9 @@ public class AccountJDBC {
     }
     */
     
-    public void insertPatron(String fName, String lName, String phone, String email, String address) {
+    public boolean insertPatron(String fName, String lName, String phone, String email, String address) {
         int rowsAffected = 0;
+        boolean successful = false;
         String mySQL;
         PreparedStatement prepMySQL;
         
@@ -88,11 +89,15 @@ public class AccountJDBC {
             prepMySQL.setString(4, email);
             prepMySQL.setString(5, address);
             
-            prepMySQL.execute();
+            successful = prepMySQL.execute();
         }
         
         catch (Exception exc) {
-                exc.printStackTrace();
+            exc.printStackTrace();
+        }
+        
+        finally{
+            return successful;
         }
         
     }

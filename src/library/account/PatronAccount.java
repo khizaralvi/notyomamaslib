@@ -1,6 +1,7 @@
 package library.account;
 
 
+import java.util.Scanner;
 import library.account.Account;
 
 
@@ -27,7 +28,7 @@ public class PatronAccount extends Account {
      * @param address	Patron's Address
      * @param phone     Patron's Phone number
      */
-    public PatronAccount(String first, String last, String phone, String address)
+    public PatronAccount(String first, String last, String address, String phone)
     {
         super(first, last, phone);
         this.address = address;
@@ -44,7 +45,7 @@ public class PatronAccount extends Account {
      * @param email     Patron's Email Address
      * @param address   Patron's Street Address
      */
-    public PatronAccount(String first, String last, String phone, String email, String address){
+    public PatronAccount(String first, String last, String phone, String address, String email){
     	super(first, last, phone);
         this.address = address;
         this.email = email;
@@ -60,7 +61,7 @@ public class PatronAccount extends Account {
      * @param address 	Patron's Street Address
      * @param balance 	Sets the starting balance for account
      */ 
-    PatronAccount(String first ,String last, String phone, String email, String address, double balance){
+    PatronAccount(String first ,String last, String phone, String address, String email, double balance){
     	super(first, last, phone);
         this.address = address;
         this.accountBalance = balance;
@@ -192,6 +193,30 @@ public class PatronAccount extends Account {
     {
     	accountBalance += amount;
         return "New Balance: " + accountBalance;
+    }
+    
+    public static PatronAccount createPatronAccount(){
+        String firstName, lastName, phoneNumber, address, email;
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.print("\nEnter info for new Patron Account: ");
+        firstName = Account.enterFirstName();
+        lastName = Account.enterLastName();
+        phoneNumber = Account.enterPhoneNum();
+        address = Account.enterAddress();
+        email = Account.enterEmail();
+        
+        PatronAccount p1 = new PatronAccount(firstName, lastName, phoneNumber, address, email);
+        
+        AccountJDBC a1 = new AccountJDBC();
+        
+        a1.connect();
+        boolean result = AccountCollection.insertPatron(p1);
+        
+        if(!result)
+            p1 = null;
+        
+        return p1;
     }
 
 }

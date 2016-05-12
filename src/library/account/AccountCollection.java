@@ -29,12 +29,12 @@ public class AccountCollection {
 	public static boolean insertPatron(PatronAccount pAccount){
             AccountJDBC a1 = new AccountJDBC();
             a1.connect();
-            a1.insertPatron(pAccount.getFirstName(),
+            boolean result = a1.insertPatron(pAccount.getFirstName(),
                     pAccount.getLastName(),
                     pAccount.getPhoneNumber(),
                     pAccount.getEmail(),
                     pAccount.getAddress());
-	    return SUCCESS;
+	    return result;
 	}
 	/**
 	 * Insert Staff Account

@@ -142,6 +142,27 @@ public abstract class Account {
      * 
      * @return true if accounts are equal.
      */
-    public abstract char getAccountType();    
+    public abstract char getAccountType();
+    
+    public static String enterFirstName(){
+        return TypeSafe.name("First Name: ");
+    }
+    
+    public static String enterLastName(){
+        return TypeSafe.name("Last Name: ");
+    }
+    
+    public static String enterPhoneNum(){
+        return TypeSafe.phone("Phone Number: ");
+    }
+    
+    public static String enterAddress(){
+        return TypeSafe.address("Address: ");
+    }
+    
+    public static String enterEmail(){
+        return TypeSafe.address("Email: ");
+    }
+    
     
 }
