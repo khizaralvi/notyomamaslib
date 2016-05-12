@@ -4,13 +4,15 @@ import library.account.LoginCollection;
 import library.account.PatronAccount;
 import java.util.Scanner;
 import library.account.Login;
+import library.income.IncomeCol;
 import static userinterface.LibrarianInterface.librarianInterface;
 
 public class Main {
 
-    public static final String staffMenu = "\n\n\n=========MENU OPTIONS:=========\n1. Look up Account\n2. Media Managment\n3. Update Account\n4. Logout";
+    public static final String staffMenu = "\n\n\n=========MENU OPTIONS:=========\n1. Look up Account\n2. Media Managment\n3. Update Account\n4. View Income\n0. Logout";
     public static final String patronMenu = "";
-
+    IncomeCol income_collection = new IncomeCol();
+    
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         boolean login = false;
@@ -47,6 +49,10 @@ public class Main {
 
                             input = scan.nextInt();
                             switch (input) {
+                                case 0:
+                                    login = false;
+                                    System.out.println("Bye bye!");
+                                    break;
                                 case 1:
                                     staffAccountInterface(scan, a);
                                     break;
@@ -54,11 +60,9 @@ public class Main {
                                     librarianInterface();
                                     break;
                                 case 3:
-                                    
                                     break;
                                 case 4:
-                                    login = false;
-                                    System.out.println("Bye bye!");
+                                    System.out.println(income_collection.view('D').toString());
                                     break;
                                 default:
                                     print("Type a valid options");
