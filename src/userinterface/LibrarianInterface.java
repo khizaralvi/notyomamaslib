@@ -7,7 +7,6 @@ package userinterface;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import library.account.Login;
 import library.account.LoginCollection;
