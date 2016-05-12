@@ -28,11 +28,6 @@ public class MediaAcademic extends Media {
     private String ebook_ISBN;
     
     /**
-     * LOAN_PERIOD is the duration of a loan in days.
-     */
-    public static int LOAN_PERIOD = 28;
-
-    /**
      * LATE_FEE is the amount of money charged in cents per late day by the
      * Patron.
      */

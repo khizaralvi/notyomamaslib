@@ -361,40 +361,44 @@ public class MediaJdbcClass {
      */
     public MediaCollection searchMedia(int attribute, String value) {
         ArrayList<Media> resultSet = new ArrayList<>();
-        connect(); // First, it must be connected to the database 
+        
+        connect(); // First, it must be connected to the database
+
         try {
-            prepared = con.prepareStatement("select * from (media join authorbooks using(mediaId)) \n"
-                    + " where authorId=(select authorID from author where authorname=?);");
-            // precall=con.prepareCall("call mydb.Search_Media_by_Year(?)");
-            PreparedStatement prepared2 = con.prepareStatement("select *from media where media.mediaYear=?;");
+
+            statement = con.createStatement();
+
             switch (attribute) {
-
+                // Author
                 case 1: {
-                    //  precall.setString(1,"");
-                    prepared2.setString(1, value);
-                    rs = prepared2.executeQuery();
-
+                    rs = prepared.executeQuery("select * from (media join authorbooks using(mediaId)) "
+                    + " where authorId=(select authorId from author where authorname=" + value + ")");
                     break;
                 }
+                // Category
                 case 2: {
-                    // precall.setString(1,"mydb.search_books_by_author");
-
-                    prepared.setString(1, value);
-                    rs = prepared.executeQuery();
-
+                    rs = statement.executeQuery("select * from media where mediaCategory='" + value + "'");
                     break;
                 }
+                // ID
                 case 3: {
-                    rs = statement.executeQuery("select *from media where mediaId='" + value + "'");
-                }
-                case 4: {
-                    rs = statement.executeQuery("select *from media where mediaCategory='" + value + "'");
+                    rs = statement.executeQuery("select * from media where mediaId='" + value + "'");
                     break;
                 }
+                // ISBN
+                case 4: {
+                    rs = statement.executeQuery("select * from media where mediaCode='" + value + "'");
+                    break;
+                }
+                // Title
                 case 5: {
                     rs = statement.executeQuery("select *from media where mediaTitle='" + value + "'");
                     break;
-
+                }
+                // Year
+                case 6: {
+                    rs = statement.executeQuery("select * from media where mediaYear='" + value + "'");
+                    break;
                 }
                 default:
                     break;
@@ -413,7 +417,8 @@ public class MediaJdbcClass {
     }
 
     private void unpack(ResultSet rs) {
-
+       collection.cleanCollection();
+       
         try {
             while (rs.next()) {
                 switch (rs.getString("mediaType")) {
