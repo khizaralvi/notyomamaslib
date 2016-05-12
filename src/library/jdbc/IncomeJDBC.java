@@ -34,7 +34,7 @@ public class IncomeJDBC {
 			ex.printStackTrace();
 		}
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library?autoReconnect=true&useSSL=false", "root", "    ");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false", "root", "    ");
 
 		} catch (SQLException ex) {
 
