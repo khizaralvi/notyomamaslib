@@ -26,11 +26,6 @@ public class ReservationJdbc {
      */
     public void connect() {
         try {
-            Class.forName("xtfcom.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false", "root", "");
 
         } catch (SQLException ex) {
