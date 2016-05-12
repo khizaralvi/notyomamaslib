@@ -371,8 +371,12 @@ public class MediaJdbcClass {
             switch (attribute) {
                 // Author
                 case 1: {
-                    rs = prepared.executeQuery("select * from (media join authorbooks using(mediaId)) "
-                    + " where authorId=(select authorId from author where authorname=" + value + ")");
+                    
+                    
+                    rs = statement.executeQuery("select * from (media join authorbooks "
+                            + "using(mediaId))"
+                            + "where authorId=(select authorID from "
+                            + "author where authorname='"+value+"')");
                     break;
                 }
                 // Category
