@@ -1,11 +1,13 @@
 package userinterface;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import library.jdbc.MediaJdbcClass;
 import library.jdbc.ReservationJdbc;
 import library.media.MediaCollection;
 import library.media.Reservation;
 import library.media.ReservationCollection;
+import static userinterface.SharedFunctions.searchingModule;
 
 /**
  * Interface that will be displayed for patron users.
@@ -21,7 +23,7 @@ public class PatronInterface {
     static int patronId = 2; // This will be replaced by a PatronAccount object
 
     public static void patronInterface() {
-        int option;
+        int option = -1;
         Scanner scan = new Scanner(System.in);
 
         do {
@@ -32,65 +34,43 @@ public class PatronInterface {
             System.out.println("4. Cancel reservation");
             System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
-            option = scan.nextInt(); // Implement a parser to check if is int
 
-            switch (option) {
-                case 1:
-                    if (!searchingModule()) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 2:
-                    if (!checkedOutModule()) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 3:
-                    if (!reservationModule(option)) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 4:
-                    if (!reservationModule(option)) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Please, type a valid option: ");
-                    break;
+            try {
+                option = scan.nextInt(); // Implement a parser to check if is int
+
+                switch (option) {
+                    case 1:
+                        if (!searchingModule(media_jdbc)) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 2:
+                        if (!checkedOutModule()) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 3:
+                        if (!reservationModule(option)) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 4:
+                        if (!reservationModule(option)) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Please, type a valid option: ");
+                        break;
+                }
+            } catch (InputMismatchException ime) {
+                System.out.println("Invalid input");
+            } catch (Exception e) {
+                System.out.println("An error occured. Try again.");
             }
         } while (option != 0);
-    }
-
-    public static boolean searchingModule() {
-        int op;
-        String query;
-        Scanner scan = new Scanner(System.in);
-
-        do {
-            System.out.println("\n\n=========MENU OPTIONS:=========");
-            System.out.println("1. Search by author");
-            System.out.println("2. Search by category");
-            System.out.println("3. Search by ID");
-            System.out.println("4. Search by ISBN");
-            System.out.println("5. Search by title");
-            System.out.println("6. Search by year");
-            System.out.println("0. Return to previous menu");
-            System.out.print("Type your option: ");
-            op = scan.nextInt(); // Implement a parser to check if is int
-
-            if (op > 0 && op <= 6) {
-                System.out.print("Type your search and press <ENTER>: ");
-                query = scan.next();
-                System.out.println(media_jdbc.searchMedia(op, query).toString()); // Print search
-            } else {
-                System.out.println("Type a valid option!");
-            }
-
-        } while (op != 0);
-        return true;
     }
 
     public static boolean checkedOutModule() {

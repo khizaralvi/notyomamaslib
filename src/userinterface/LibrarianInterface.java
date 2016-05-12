@@ -6,6 +6,8 @@
 package userinterface;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import library.account.Login;
 import library.account.LoginCollection;
@@ -14,6 +16,7 @@ import library.media.Media;
 import library.media.MediaCollection;
 import library.media.Reservation;
 import library.media.ReservationCollection;
+import static userinterface.SharedFunctions.searchingModule;
 
 /**
  * Interface that will be displayed for librarian users.
@@ -22,7 +25,7 @@ import library.media.ReservationCollection;
  */
 public class LibrarianInterface {
 
-    public static MediaJdbcClass mc = new MediaJdbcClass();
+    public static MediaJdbcClass media_jdbc = new MediaJdbcClass();
     public static Media media = new Media();
     public static MediaCollection media_collection = new MediaCollection();
     public static Reservation reservation = new Reservation();
@@ -30,7 +33,7 @@ public class LibrarianInterface {
     public static Login login;
 
     public static void librarianInterface() {
-        int option;
+        int option = -1;
         Scanner scan = new Scanner(System.in);
 
         do {
@@ -43,81 +46,60 @@ public class LibrarianInterface {
             System.out.println("6. Renew media");
             System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
-            option = scan.nextInt(); // Implement a parser to check if is int
 
-            switch (option) {
-                case 1:
-                    if (!searchingModule()) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 2:
-                    if (!addingModule()) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 3:
-                    if (!deletingModule()) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 4:
-                    if (!editingModule()) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 5:
-                    if (!reservationModule()) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 6:
-                    if (!renewingModule()) {
-                        System.out.println("An error occured!");
-                    }
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Please, type a valid option: ");
-                    break;
+            // Check if it is a valid input
+            try {
+                option = scan.nextInt();
+                switch (option) {
+                    case 1:
+                        if (!searchingModule(media_jdbc)) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 2:
+                        if (!addingModule()) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 3:
+                        if (!deletingModule()) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 4:
+                        if (!editingModule()) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 5:
+                        if (!reservationModule()) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 6:
+                        if (!renewingModule()) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Please, type a valid option: ");
+                        break;
+                }
+            } catch (InputMismatchException ime) {
+                System.out.println("Invalid input");
+            } catch (Exception e) {
+                System.out.println("An error occured. Try again.");
             }
+
         } while (option != 0);
     }
 
-    public static boolean searchingModule() {
-        int op;
-        String query;
-        Scanner scan = new Scanner(System.in);
-
-        do {
-            System.out.println("\n\n=========MENU OPTIONS:=========");
-            System.out.println("1. Search by author");
-            System.out.println("2. Search by category");
-            System.out.println("3. Search by ID");
-            System.out.println("4. Search by ISBN");
-            System.out.println("5. Search by title");
-            System.out.println("6. Search by year");
-            System.out.println("0. Return to previous menu");
-            System.out.print("Type your option: ");
-            op = scan.nextInt(); // Implement a parser to check if is int
-            String skip = scan.nextLine();
-            
-            if (op > 0 && op <= 6) {
-                System.out.print("Type your search and press <ENTER>: ");
-                query = scan.nextLine();
-                System.out.println(mc.searchMedia(op, query));
-                return true;
-            } else {
-                System.out.println("Type a valid option!");
-            }
-
-        } while (op != 0);
-        return true;
-    }
+  
 
     public static boolean addingModule() {
-        int op;
+        int op = -1;
         String field;
         double cost;
         Scanner scan = new Scanner(System.in);
@@ -130,84 +112,93 @@ public class LibrarianInterface {
             System.out.println("3. Add a movie");
             System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
-            op = scan.nextInt(); // Implement a parser to check if is int
-            switch (op) {
-                case 1:
-                    System.out.print("Type the title and press <ENTER>: ");
-                    field = scan.next();
-                    // academic.setTitle(field);
-                    System.out.print("Type the year of the publication and press <ENTER>: ");
-                    field = scan.next();
-                    // academic.setYear(field);
-                    System.out.print("Type the publisher name and press <ENTER>: ");
-                    field = scan.next();
-                    // academic.setPublisher(field);
-                    System.out.print("Type the type of academic material and press <ENTER>: ");
-                    field = scan.next();
-                    // academic.setCategory(field);
-                    System.out.print("Type the number of pages and press <ENTER>: ");
-                    field = scan.next();
-                    // academic.setNumberOfPages(field);
-                    System.out.print("Type the cost of the material and press <ENTER>: ");
-                    cost = scan.nextDouble();
-                    // academic.setCost(cost);
-                    System.out.println("Type the author names separated by comma and press <ENTER> to finish the author list: ");
-                    // scan.useDelimiter(",");
-                    //System.out.println(field);
-                    // field = scan.nextLine();
-                    // academic.addAuthor(field);
-                    break;
-                case 2:
-                    System.out.print("Type the title and press <ENTER>: ");
-                    field = scan.next();
-                    // book.setTitle(field);
-                    System.out.print("Type the year of the book and press <ENTER>: ");
-                    field = scan.next();
-                    // book.setYear(field);
-                    System.out.print("Type the publisher name and press <ENTER>: ");
-                    field = scan.next();
-                    // book.setPublisher(field);
-                    System.out.print("Type the type of book and press <ENTER>: ");
-                    field = scan.next();
-                    // book.setCategory(field);
-                    System.out.print("Type the number of pages and press <ENTER>: ");
-                    field = scan.next();
-                    // book.setNumberOfPages(field);
-                    System.out.print("Type the edition and press <ENTER>: ");
-                    field = scan.next();
-                    // book.setEdition(field);
-                    System.out.print("Type the volume and press <ENTER>: ");
-                    field = scan.next();
-                    // book.setVolume(field);
-                    System.out.print("Type the ISBN and press <ENTER>: ");
-                    field = scan.next();
-                    // book.setIsbn(field);
-                    System.out.print("Type the cost of the material and press <ENTER>: ");
-                    cost = scan.nextDouble();
-                    // book.setCost(cost);
-                    break;
-                case 3:
-                    System.out.print("Type the title and press <ENTER>: ");
-                    field = scan.next();
-                    // movie.setTitle(field);
-                    System.out.print("Type the year of the movie and press <ENTER>: ");
-                    field = scan.next();
-                    // movie.setYear(field);
-                    System.out.print("Type the director name and press <ENTER>: ");
-                    field = scan.next();
-                    // movie.setDirector(field);
-                    System.out.print("Type the running time and press <ENTER>: ");
-                    field = scan.next();
-                    // movie.setRunningTime(field);
-                    System.out.print("Type the cost of the material and press <ENTER>: ");
-                    cost = scan.nextDouble();
-                    // movie.setCost(cost);
-                    break;
-                case 0:
-                    return true;
-                default:
-                    System.out.println("Type a valid option!");
-                    break;
+            // Check if it is a valid input
+            try {
+                op = scan.nextInt();
+                String skip = scan.nextLine(); // Skipping \n character
+
+                switch (op) {
+                    case 1:
+                        System.out.print("Type the title and press <ENTER>: ");
+                        field = scan.next();
+                        // academic.setTitle(field);
+                        System.out.print("Type the year of the publication and press <ENTER>: ");
+                        field = scan.next();
+                        // academic.setYear(field);
+                        System.out.print("Type the publisher name and press <ENTER>: ");
+                        field = scan.next();
+                        // academic.setPublisher(field);
+                        System.out.print("Type the type of academic material and press <ENTER>: ");
+                        field = scan.next();
+                        // academic.setCategory(field);
+                        System.out.print("Type the number of pages and press <ENTER>: ");
+                        field = scan.next();
+                        // academic.setNumberOfPages(field);
+                        System.out.print("Type the cost of the material and press <ENTER>: ");
+                        cost = scan.nextDouble();
+                        // academic.setCost(cost);
+                        System.out.println("Type the author names separated by comma and press <ENTER> to finish the author list: ");
+                        // scan.useDelimiter(",");
+                        //System.out.println(field);
+                        // field = scan.nextLine();
+                        // academic.addAuthor(field);
+                        break;
+                    case 2:
+                        System.out.print("Type the title and press <ENTER>: ");
+                        field = scan.next();
+                        // book.setTitle(field);
+                        System.out.print("Type the year of the book and press <ENTER>: ");
+                        field = scan.next();
+                        // book.setYear(field);
+                        System.out.print("Type the publisher name and press <ENTER>: ");
+                        field = scan.next();
+                        // book.setPublisher(field);
+                        System.out.print("Type the type of book and press <ENTER>: ");
+                        field = scan.next();
+                        // book.setCategory(field);
+                        System.out.print("Type the number of pages and press <ENTER>: ");
+                        field = scan.next();
+                        // book.setNumberOfPages(field);
+                        System.out.print("Type the edition and press <ENTER>: ");
+                        field = scan.next();
+                        // book.setEdition(field);
+                        System.out.print("Type the volume and press <ENTER>: ");
+                        field = scan.next();
+                        // book.setVolume(field);
+                        System.out.print("Type the ISBN and press <ENTER>: ");
+                        field = scan.next();
+                        // book.setIsbn(field);
+                        System.out.print("Type the cost of the material and press <ENTER>: ");
+                        cost = scan.nextDouble();
+                        // book.setCost(cost);
+                        break;
+                    case 3:
+                        System.out.print("Type the title and press <ENTER>: ");
+                        field = scan.next();
+                        // movie.setTitle(field);
+                        System.out.print("Type the year of the movie and press <ENTER>: ");
+                        field = scan.next();
+                        // movie.setYear(field);
+                        System.out.print("Type the director name and press <ENTER>: ");
+                        field = scan.next();
+                        // movie.setDirector(field);
+                        System.out.print("Type the running time and press <ENTER>: ");
+                        field = scan.next();
+                        // movie.setRunningTime(field);
+                        System.out.print("Type the cost of the material and press <ENTER>: ");
+                        cost = scan.nextDouble();
+                        // movie.setCost(cost);
+                        break;
+                    case 0:
+                        return true;
+                    default:
+                        System.out.println("Type a valid option!");
+                        break;
+                }
+            } catch (InputMismatchException ime) {
+                System.out.println("Invalid input");
+            } catch (Exception e) {
+                System.out.println("An error occured. Try again.");
             }
 
         } while (true);
@@ -217,7 +208,7 @@ public class LibrarianInterface {
         int mediaID;
         Scanner scan = new Scanner(System.in);
 
-        if (searchingModule()) {
+        if (searchingModule(media_jdbc)) {
             System.out.println("Type the media ID for the media you want to delete: ");
             // check quantity, ask the user to type how many copies will be deleted
             // if number == total copies, delete from database the row
@@ -231,7 +222,7 @@ public class LibrarianInterface {
         int mediaID;
         Scanner scan = new Scanner(System.in);
 
-        if (searchingModule()) {
+        if (searchingModule(media_jdbc)) {
             System.out.println("Type the media ID for the media you want to edit: ");
             // prints all media attributes
             // gets type of media... different editions for different types of media
@@ -297,10 +288,9 @@ public class LibrarianInterface {
                     patronID = scan.nextInt();
                     reservation.setPatronId(patronID);
                     reservation = reservation_collection.deleteReservation(reservation);
-                    if(reservation != null) {
+                    if (reservation != null) {
                         System.out.println("The following reservation was deleted: " + reservation.toString());
-                    }
-                    else {
+                    } else {
                         return false;
                     }
                     break;
@@ -320,7 +310,6 @@ public class LibrarianInterface {
 
         } while (true);
     }
-
 
 // Try to make this work
 //    public final static void clearConsole() {
