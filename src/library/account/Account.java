@@ -12,19 +12,20 @@ package library.account;
  * @version 1.1
  */
 
-public class Account {
+public abstract class Account {
 
     private String id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
-   
+    
     /**
      * Constructor
+     * Account Type ('P' for Patron, 'L' for Librarian, 'A' for Administrator)
      * 
-     * @param first User's first name
-     * @param last User's last name
-     * @param number User's phone number
+     * @param first     First Name on Account
+     * @param last      Last Name on Account
+     * @param number    Phone Number on Account
      */
     public Account(String first ,String last, String number){
     	firstName = first;
@@ -32,61 +33,101 @@ public class Account {
     	phoneNumber = number;
     }
     
-	/** Returns ID number associated with the account. */
+    /** 
+     * Returns Account ID number.
+     * 
+     * @return Account ID as String
+     */
     public String getId() {
         return id;
     }
     
-	/**
-	 * This method sets the ID of the Account.
-	 * 
-	 * @param id This parameter represents id of the patron or librarian.
-	 */
+    /**
+     * Sets the ID of the Account.
+     * 
+     * @param id The ID number of an Account as String
+     */
     public void setId(String id) {
         this.id = id;
     }
     
-	/** Returns the first name associated with the account. */
+    /**
+     * Returns the First Name associated with the account.
+     * 
+     * @return First Name as String.
+     */
     public String getFirstName() {
         return firstName;
     }
     
-	/**
-	 * This method sets the first name.
-	 * 
-	 * @param firstName Sets the first name associated with the account.
-	 */
+    /**
+     * Sets the First Name on the account.
+     * 
+     * @param firstName First Name as String.
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     
-	/** Returns the last name associated with the account. */
+    /** Returns the Last Name associated with the account.
+     * 
+     * @return Last Name as String
+     */
     public String getLastName() {
         return lastName;
     }
     
-	/**
-	 * This method set last name.
-	 * 
-	 * @param lastName Changes the last name associated with the account.
-	 */
+    /**
+     * Sets the Last Name on the Account.
+     * 
+     * @param lastName Changes the last name associated with the account.
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
     
-	/** Returns account's current phone number. */
+    /** 
+     * Returns the Phone Number associated with the Account.
+     * 
+     * @return Phone Number as String.
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
     
-	/**
-	 * This method set the phone number.
-	 * @param phoneNumber Account's new phone number.
-	 */
+    /**
+     * Sets the phone number on the Account.
+     * 
+     * @param phoneNumber Phone Number as String.
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+    
+    /** 
+     * Displays basic account information:
+     * First name,
+     * @return String
+     * toString for Account class */
+    @Override
+    public String toString(){
+        String v1,v2,v3,v4,tPhone;
+        
+        v1 = getId();
+        v2 = getFirstName();
+        v3 = getLastName();
+        
+        tPhone = getPhoneNumber();
+        v4 = "(" + tPhone.substring(0, 3) + ") "
+                + tPhone.substring(3, 6)
+                + "-" + tPhone.substring(6);
+        
+        return String.format("ID: %s %n"
+                + "First Name: %s %n"
+                + "Last Name: %s %n"
+                + "Tel. Number: %s",v1,v2,v3,v4);
+    }
+    
     /**
      * Compares two accounts to see if they are equal.
      * @param a Account to compare to.
@@ -95,18 +136,32 @@ public class Account {
     public boolean equals(Account a){
     	return true;
     }
-    
-    /** toString for Account class */
-    public String toString(){
-    	return null;
-    }
-    
+            
     /**
-     * Return 'P' for default account type, 'L' for Librarian, 'A' for Administrator 
+     * Returns 'P' for Patron (default account type), 'L' for Librarian, 'A' for Administrator 
+     * 
      * @return true if accounts are equal.
      */
-    public char getAccountType(){
-    	return 'P';
+    public abstract char getAccountType();
+    
+    public static String enterFirstName(){
+        return TypeSafe.name("First Name: ");
+    }
+    
+    public static String enterLastName(){
+        return TypeSafe.name("Last Name: ");
+    }
+    
+    public static String enterPhoneNum(){
+        return TypeSafe.phone("Phone Number: ");
+    }
+    
+    public static String enterAddress(){
+        return TypeSafe.address("Address: ");
+    }
+    
+    public static String enterEmail(){
+        return TypeSafe.address("Email: ");
     }
     
     

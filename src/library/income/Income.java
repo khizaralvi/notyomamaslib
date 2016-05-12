@@ -103,8 +103,4 @@ public class Income {
     	return str;
     }
     
-    
-    
-    
-    
 }
