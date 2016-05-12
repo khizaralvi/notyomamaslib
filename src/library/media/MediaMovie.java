@@ -24,10 +24,6 @@ public class MediaMovie extends Media {
     private String director;
     private String running_time;
     private String movie_code;
-    /**
-     * Loan period is the duration of a loan in days.
-     */
-    public static int LOAN_PERIOD = 7;
 
     /**
      * Late fee is the amount of money charged in cents per late day by the

@@ -1,5 +1,7 @@
 package library.media;
 
+import java.util.Date;
+
 /**
  * This class holds attributes required to a reservation of a specific media by
  * a specific patron.
@@ -15,7 +17,7 @@ public class Reservation {
     private int mediaId;
     private int patronId;
     private int reservationId;
-    private String reservationDate;
+    private Date reservationDate;
 
     /**
      * Default constructor.
@@ -30,10 +32,9 @@ public class Reservation {
      * @param date date
      *
      */
-    public Reservation(int mediaId, int patronId, String date) {
+    public Reservation(int mediaId, int patronId) {
         setMediaId(mediaId);
         setPatronId(patronId);
-        setReservationDate(date);
     }
 
     /**
@@ -95,7 +96,7 @@ public class Reservation {
      *
      * @return the date in which the reservation was made
      */
-    public String getReservationDate() {
+    public Date getReservationDate() {
         return reservationDate;
     }
 
@@ -104,7 +105,7 @@ public class Reservation {
      *
      * @param date Current date
      */
-    public void setReservationDate(String date) {
+    public void setReservationDate(Date date) {
         this.reservationDate = date;
     }
 
@@ -117,8 +118,7 @@ public class Reservation {
      */
     @Override
     public String toString() {
-        return "ID:" + reservationId + " Media:" + mediaId + " Patron:" + patronId + " Date:"
-                + reservationDate;
+        return String.format("%15d\t%10d\t%10d\t%12s\n", reservationId, mediaId, patronId, reservationDate);
     }
 
     /**

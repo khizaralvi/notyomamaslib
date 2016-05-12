@@ -125,13 +125,12 @@ public class Login {
 		// can it change info on account b?
 		return true;
 	}
-	
-	public String toString(){
-		return "Username: "+username +"\nPassword: "+password+"\n";
-	}
         public String getId(){
             return userID;
         }
 	
-	
+	public String toString(){
+		return "Username: "+username +"\nPassword: "+password+"\n";
+	}
+		
 }

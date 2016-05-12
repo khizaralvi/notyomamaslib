@@ -31,11 +31,6 @@ public class MediaBook extends Media {
     private String bookGenre;
 
     /**
-     * Loan period is the duration of a loan in days.
-     */
-    public static int LOAN_PERIOD = 28;
-
-    /**
      * Late fee is the amount of money charged in cents per late day by the
      * Patron.
      */

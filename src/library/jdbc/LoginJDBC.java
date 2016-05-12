@@ -9,11 +9,10 @@ import java.sql.*;
 
 public class LoginJDBC {
 	
-	private static String url = "jdbc:mysql://localhost:3306/localschema";
+	private static String url = "jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false";
 	private static String username = "root";
-	private static String password = "bekind123";
+	private static String password = "";
 	
-
 	
 	/**
 	 * Value when the an operation is successful
@@ -208,9 +207,7 @@ public class LoginJDBC {
 			statement.setString(1, newUser);
 			//replace the second ? with the password
 			statement.setString(2, newPass);
-			//replace the third ? with the account id
-			statement.setString(3,id);
-			
+			statement.setString(3, id);
 			//Execute the SQL statement
 			statement.execute();
 			
@@ -289,7 +286,8 @@ public class LoginJDBC {
 			a = new Login(set.getString(2),set.getString(3),set.getString(1));
 			
 	 	}catch(Exception e){
-	 		e.printStackTrace();
+	 		//e.printStackTrace();
+                        
 	 	}
 		return a;
 	}

@@ -47,7 +47,7 @@ public class LoginCollection {
 	}
 	/**
 	 * Updates a patron account's login credentials
-	 * @param associatedAccount
+	 * @param id
 	 * @param newUser
 	 * @param newPass
 	 * @return Confirmation of action
@@ -97,10 +97,15 @@ public class LoginCollection {
 	
 	public static Login loginStaff(String username, String password){
 		Login l = LoginJDBC.searchStaffUsername(username);
-		if(l.getPassword().equals(password))
+                if(l != null){
+                    if(l.getPassword().equals(password))
 			return l;
-		else{
+                    else{
 			return null;
-		}
+                    }
+                }
+                else{
+                    return null;
+                }
 	}
 }

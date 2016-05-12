@@ -9,7 +9,7 @@ import library.media.Reservation;
 /**
  * This is the class that uses JDBC service package to manipulate the data in
  * Reservation.
- * 
+ *
  * @author Jéssica Carneiro
  */
 public class ReservationJdbc {
@@ -18,19 +18,15 @@ public class ReservationJdbc {
     private Statement st = null; // To select data
     private PreparedStatement ps = null; // To update, add, or delete data
     private ResultSet rs = null; // Result set from queries
-    private Reservation reservation;
+    private static final java.util.Date UTIL_DATE = new java.util.Date();
+    private final java.sql.Date SQL_DATE = new java.sql.Date(UTIL_DATE.getTime());
 
     /**
      * This methods will stablish a connection with the database.
      */
     public void connect() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mediamanagement?autoReconnect=true&useSSL=false", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false", "root", "");
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -65,7 +61,7 @@ public class ReservationJdbc {
             ps = con.prepareStatement("INSERT INTO reservation (patronId, mediaId, reservedDate) values(?,?,?)");
             ps.setInt(1, r.getPatronId());
             ps.setInt(2, r.getMediaId());
-            ps.setString(3, r.getReservationDate());
+            ps.setDate(3, SQL_DATE);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,9 +73,9 @@ public class ReservationJdbc {
             System.out.println("An error occured.");
             return false;
         }
-        
+
         r.setReservationId(this.searchReservation(r.getMediaId(), r.getPatronId()).getReservationId());
-        
+
         return true;
     }
 
@@ -190,6 +186,7 @@ public class ReservationJdbc {
     public ArrayList<Reservation> viewPatronReserveList(int patronId) {
         connect(); // First, it must be connected to the database 
         ArrayList<Reservation> rc = new ArrayList<>();
+        Reservation reservation = new Reservation();
 
         try {
             st = con.createStatement();
@@ -198,10 +195,11 @@ public class ReservationJdbc {
                 reservation.setReservationId(rs.getInt("reservationId"));
                 reservation.setPatronId(rs.getInt("patronId"));
                 reservation.setMediaId(rs.getInt("mediaId"));
-                reservation.setReservationDate(rs.getString("reservedDate"));
+                reservation.setReservationDate(rs.getDate("reservedDate"));
                 rc.add(reservation);
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rc;
@@ -210,27 +208,27 @@ public class ReservationJdbc {
     /**
      * This method display all the reserved media in the library.
      *
-     * @return an ArrayList with all reserved items in the library
+     * @param collection an ArrayList of Reservations where the Reservation
+     * retrieved will be added
      */
-    public ArrayList<Reservation> viewLibReserveList() {
+    public void viewLibReserveList(ArrayList<Reservation> collection) {
         connect(); // First, it must be connected to the database
-        ArrayList<Reservation> rc = new ArrayList<>();
+        Reservation reservation = new Reservation();
 
         try {
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM reservation");
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 reservation.setReservationId(rs.getInt("ReservationId"));
                 reservation.setPatronId(rs.getInt("patronId"));
                 reservation.setMediaId(rs.getInt("mediaId"));
-                reservation.setReservationDate(rs.getString("ReservedDate"));
-                rc.add(reservation);
-
+                reservation.setReservationDate(rs.getDate("ReservedDate"));
+                collection.add(reservation);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return rc;
     }
 
     /**

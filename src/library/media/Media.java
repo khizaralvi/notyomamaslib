@@ -27,7 +27,11 @@ public class Media {
     private int quantity;
     
     
+    /**
+     * Default Constructor.
+     */
     public Media() {
+        
     }
     
     /**
@@ -67,8 +71,8 @@ public class Media {
      * @param id Media unique identifier
      * @return true if mediaId is set successfully or false otherwise
      */
-    public boolean setMediaId(int id) {
-    return true;
+    public void setMediaId(int id) {
+        this.mediaId = id;
     }
 
     /**
