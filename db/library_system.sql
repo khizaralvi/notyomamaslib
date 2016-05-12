@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `library_system`.`patron_Login` (
   PRIMARY KEY (`patronId`),
   CONSTRAINT `fk66`
     FOREIGN KEY (`patronId`)
-    REFERENCES `library`.`patronaccount` (`patronId`)
+    REFERENCES `library_system`.`patronaccount` (`patronId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `library_system`.`staff_Login` (
   PRIMARY KEY (`login_id`),
   CONSTRAINT `fk72`
     FOREIGN KEY (`login_id`)
-    REFERENCES `library`.`staff_account` (`staffId`)
+    REFERENCES `library_system`.`staff_account` (`staffId`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

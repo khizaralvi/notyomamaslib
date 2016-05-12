@@ -26,7 +26,7 @@ public class ReservationJdbc {
      */
     public void connect() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("xtfcom.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
@@ -203,7 +203,8 @@ public class ReservationJdbc {
                 reservation.setReservationDate(rs.getDate("reservedDate"));
                 rc.add(reservation);
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rc;
@@ -222,7 +223,8 @@ public class ReservationJdbc {
         try {
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM reservation");
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 reservation.setReservationId(rs.getInt("ReservationId"));
                 reservation.setPatronId(rs.getInt("patronId"));
                 reservation.setMediaId(rs.getInt("mediaId"));

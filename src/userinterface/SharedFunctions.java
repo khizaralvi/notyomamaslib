@@ -14,10 +14,9 @@ import library.jdbc.MediaJdbcClass;
  * @author jessicacarneiro
  */
 public class SharedFunctions {
-    
-    
-      public static boolean searchingModule(MediaJdbcClass media_jdbc) {
-        int op = -1;
+
+    public static boolean searchingModule(MediaJdbcClass media_jdbc) {
+        int op = 0;
         String query;
         Scanner scan = new Scanner(System.in);
 

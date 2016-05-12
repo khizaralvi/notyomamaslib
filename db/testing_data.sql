@@ -80,6 +80,9 @@ insert into author (authorName) values("Milind Tambe");
 insert into authorbooks (mediaId, authorId) values (7, 11);
 
 
+select *from reservation;
+s
+insert into reservation (patronId,mediaid,reservedDate)values(5,12,)
 /* Media movies */
 
 insert into media (mediaTitle, mediaYear, mediaCategory, mediaCost, mediaType, mediaQuantity, mediaPublisher, bookISBN, bookEdition, bookVolume, runningTime, movieDirector) 
@@ -94,4 +97,7 @@ values ("Frozen", "2013", "animation", 25.00, "M", 2, null, null, null, null, "1
 insert into media (mediaTitle, mediaYear, mediaCategory, mediaCost, mediaType, mediaQuantity, mediaPublisher, bookISBN, bookEdition, bookVolume, runningTime, movieDirector) 
 values ("Frances Ha", "2013", "drama", 49.50, "M", 1, null, null, null, null, "86", "");
 
+/* Income */
 
+insert into income (patronId, date, type, amountPaid) values(1, current_date(), "*", 5.00);
+insert into income (patronId, date, type, amountPaid) values(4, current_date(), "*", 15.00);

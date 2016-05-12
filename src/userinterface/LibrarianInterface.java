@@ -288,7 +288,8 @@ public class LibrarianInterface {
                     reservation.setPatronId(patronID);
                     reservation = reservation_collection.deleteReservation(reservation);
                     if (reservation != null) {
-                        System.out.println("The following reservation was deleted: " + reservation.toString());
+                        System.out.println("The following reservation was deleted:\n" + 
+                                "ReservationID\tMediaID\tPatronID\n" + reservation.toString());
                     } else {
                         return false;
                     }

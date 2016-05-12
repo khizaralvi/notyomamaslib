@@ -29,7 +29,6 @@ public class IncomeJDBC {
 	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("It works!!");
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
