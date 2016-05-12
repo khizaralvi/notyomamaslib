@@ -97,10 +97,15 @@ public class LoginCollection {
 	
 	public static Login loginStaff(String username, String password){
 		Login l = LoginJDBC.searchStaffUsername(username);
-		if(l.getPassword().equals(password))
+                if(l != null){
+                    if(l.getPassword().equals(password))
 			return l;
-		else{
+                    else{
 			return null;
-		}
+                    }
+                }
+                else{
+                    return null;
+                }
 	}
 }
