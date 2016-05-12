@@ -48,11 +48,10 @@ public class Main {
                             input = scan.nextInt();
                             switch (input) {
                                 case 1:
-                                    //update any changes
-                                    // print("Goodbye!");
+                                    staffAccountInterface(scan, a);
                                     break;
                                 case 2:
-                                    librarianInterface(a);
+                                    librarianInterface();
                                     break;
                                 case 3:
                                     
@@ -86,5 +85,55 @@ public class Main {
 
     private static void print(String x) {
         System.out.println(x);
+    }
+    private static void staffAccountInterface(Scanner scan, Login login){
+        System.out.println("1. View Login");
+        System.out.println("2. Change Password");
+        print("0. Exit");
+        int input;
+        do{
+            input = scan.nextInt();
+            switch(input){
+            
+//              -----------------------
+//              | Edit by Ben - 5/11  |                                 
+//              -----------------------
+                case 0:
+                    break;
+                case 1:
+                    System.out.println(login.toString());
+                    break;
+                case 2: 
+                    changePassword(login);
+                    break;
+                default:
+                    print("Invalid input!");
+                    break;
+                
+                    
+//              ----------------------                  
+//              | Finish Edit - 5/11 |      
+//              ----------------------  
+            }
+        }while(input != 0);
+    }
+        //Edit by Ben 5/11
+    public static void changePassword(Login login){
+        Scanner scan = new Scanner(System.in);
+        String curPass;
+        for(int i = 0; i < 3;i++){
+            System.out.println("Please enter your current password");
+            curPass = scan.next();
+            if(login.getPassword().equals(curPass)){
+                System.out.println("Please enter your new password:");
+                String newPass = scan.next();
+                login.setPassword(newPass);
+                if(LoginCollection.updateStaffLogin(login.getId(), login.getUsername(), login.getPassword()))
+                    System.out.println("Password Change Successful!!");
+                break;
+            }
+            System.out.println("Incorrect Password");
+        }
+    
     }
 }

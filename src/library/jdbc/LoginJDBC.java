@@ -290,7 +290,8 @@ public class LoginJDBC {
 			a = new Login(set.getString(2),set.getString(3),set.getString(1));
 			
 	 	}catch(Exception e){
-	 		e.printStackTrace();
+	 		//e.printStackTrace();
+                        
 	 	}
 		return a;
 	}
