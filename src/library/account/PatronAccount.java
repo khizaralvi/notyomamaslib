@@ -111,6 +111,12 @@ public class PatronAccount extends Account {
         super.setLastName(last);
     }
     
+    public String getPhoneNumber(){
+        return super.getPhoneNumber();
+    }
+    public void setPhoneNumber(String phone){
+        super.setPhoneNumber(phone);
+    }
     
     /** 
      * email address associated with the account.
@@ -178,6 +184,31 @@ public class PatronAccount extends Account {
     public char getAccountType(){
         return 'P';
     }
+    
+    //public PatronAccount(String myID, String first ,String last, String phone, String email, String address, double balance){
+    @Override
+    public String toString(){
+        String v1,v2,v3,v4,v5,v6,tPhone;
+        double v7;
+        
+        v1 = getId();
+        v2 = getFirstName();
+        v3 = getLastName();
+        v4 = get
+        
+        tPhone = getPhoneNumber();
+        v4 = "(" + tPhone.substring(0, 3) + ") "
+                + tPhone.substring(3, 6)
+                + "-" + tPhone.substring(6);
+        
+        return String.format("ID: %s %n"
+                + "First Name: %s %n"
+                + "Last Name: %s %n"
+                + "Tel. Number: %s",v1,v2,v3,v4);
+    }
+    
+    
+    
     /**
      * Take a customer's payment and deduct's it from the account balance.
      * 
