@@ -1,6 +1,7 @@
 package library.account;
 
 import java.util.Scanner;
+import java.util.regex.*;
 
 public class TypeSafe {
 
@@ -85,7 +86,7 @@ public static String name(String prompt) {
 public static int posInt(String prompt) {
 	Scanner scan = new Scanner(System.in);
 	int userInt;
-
+        
 	do {
 		System.out.print(prompt);
 		while (!scan.hasNextInt()) {
@@ -108,42 +109,47 @@ return userInt;
 public static String phone(String prompt) {
 	Scanner scan = new Scanner(System.in);
 	String userPhone;
+        boolean tryAgain;
         
         //temp code
-        
-        userPhone = scan.nextLine();
-        
-        //create Validation code
-/*
-        //possible validation code:
-        userPhone = userPhone.replaceAll("[^()d.]", "");
-        
-	do {
-		System.out.print(prompt);
-		while (!scan.hasNextInt()) {
-			garbage = scan.nextLine();
-			System.out.print("\nThis is not valid.  It must be an integer.\n\n"
-							+ prompt);
-		}
-
-		userInt = scan.nextInt();
-
-		if(userInt < 1) {
-			garbage = scan.nextLine();
-			System.out.println("\nThe number cannot be 0 or a negative number.\n\n");
-		}
-	}while (userInt < 1);
-*/
-return userPhone;
+        do {
+            
+            tryAgain = false;
+                        
+            System.out.print(prompt);
+            userPhone = scan.nextLine();
+            
+            userPhone = userPhone.replaceAll("[^0-9]+", "");
+            
+            if (userPhone.length()>10 || userPhone.length()<10){
+                System.out.println("Your number you entered is invalid.\n\n");
+                tryAgain = true;
+            }
+                       
+        }while (tryAgain);
+    
+    return userPhone;
 }
 
 public static String address(String prompt) {
 	Scanner scan = new Scanner(System.in);
 	String userAddress;
+        boolean tryAgain;
         
         //temp code
-        
-        userAddress = scan.nextLine();
+        do {
+            tryAgain = false;
+                        
+            System.out.print(prompt);
+            userAddress = scan.nextLine();
+            
+            if (userAddress.length()<10) {
+                tryAgain = true;
+                System.out.println("The data entered is too short to be a valid Street Address.\n\n");
+            }
+                
+        }while(tryAgain);    
+            
         
         //create Validation code
 /*
@@ -172,32 +178,25 @@ return userAddress;
 public static String email(String prompt) {
 	Scanner scan = new Scanner(System.in);
 	String userEmail;
+        boolean tryAgain;
         
-        //temp code
-        
-        userEmail = scan.nextLine();
-        
-        //create Validation code
-/*
-        //possible validation code:
-        
-        
-	do {
-		System.out.print(prompt);
-		while (!scan.hasNextInt()) {
-			garbage = scan.nextLine();
-			System.out.print("\nThis is not valid.  It must be an integer.\n\n"
-							+ prompt);
-		}
+        do {
+            tryAgain = false;
 
-		userInt = scan.nextInt();
+            System.out.print(prompt);
+            userEmail = scan.nextLine();
 
-		if(userInt < 1) {
-			garbage = scan.nextLine();
-			System.out.println("\nThe number cannot be 0 or a negative number.\n\n");
-		}
-	}while (userInt < 1);
-*/
+            Pattern validEmail = 
+                Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+            Matcher matcher = validEmail.matcher(userEmail);
+
+            if(!matcher.find()) {
+                tryAgain = true;
+                System.out.println("The E-mail Address entered is invalid.\n\n");
+            }
+        }while(tryAgain);
+        
 return userEmail;
 }
 

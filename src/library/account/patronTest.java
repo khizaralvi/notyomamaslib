@@ -5,6 +5,8 @@
  */
 package library.account;    
 
+import library.jdbc.*;
+
 /**
  *
  * @author ookik
@@ -12,9 +14,11 @@ package library.account;
 public class patronTest {
     
     public static void main(String[] args) {
-        PatronAccount p1 = new PatronAccount("jeff", "godoy","5555555555","jeff@domain.com","123 Sesame St.");
-        AccountCollection.insertPatron(p1);
-        
+        AccountJDBC.connect();
+        //PatronAccount.createPatronAccount();
+        PatronAccount p1 = AccountCollection.searchPatronByID("1");
+        System.out.println("test");
+        System.out.println(p1);
         
     }
 }

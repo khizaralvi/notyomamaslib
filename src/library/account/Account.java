@@ -152,23 +152,23 @@ public abstract class Account {
     public abstract char getAccountType();
     
     public static String enterFirstName(){
-        return TypeSafe.name("First Name: ");
+        return TypeSafe.name("Please enter the First Name: ");
     }
     
     public static String enterLastName(){
-        return TypeSafe.name("Last Name: ");
+        return TypeSafe.name("Please enter the Last Name: ");
     }
     
     public static String enterPhoneNum(){
-        return TypeSafe.phone("Phone Number: ");
+        return TypeSafe.phone("Please enter a valid 10-digit number: ");
     }
     
     public static String enterAddress(){
-        return TypeSafe.address("Address: ");
+        return TypeSafe.address("Please enter the Street Address: ");
     }
     
     public static String enterEmail(){
-        return TypeSafe.address("Email: ");
+        return TypeSafe.address("Please enter a valid E-mail Address (name@domain.com): ");
     }
     
     

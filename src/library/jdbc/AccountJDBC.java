@@ -6,7 +6,7 @@ import javax.sql.*;
 import library.account.*;
 
 public class AccountJDBC {
-    private static String dbUrl = "jdbc:mysql://localhost:3306/patron";
+    private static String dbUrl = "jdbc:mysql://localhost:3306/library_system";
     private static String dbUsername = "root";
     private static String dbPassword = "admin";
     private static Connection myConn = null;
@@ -172,17 +172,26 @@ public class AccountJDBC {
             ResultSet myRs = null;
             PatronAccount p1 = null;
 
-            mySQL = "SELECT pFname,pLname,pPhone,pEmail,pAddress "
-                    + "FROM patron "
-                    + "WHERE id = ?";
+            mySQL = "SELECT * FROM library_system.patron "
+                    + "WHERE pId = ?";
 
             try {
                 prepMySQL = myConn.prepareStatement(mySQL);
-                prepMySQL.setString(1, key);
+                prepMySQL.setInt(1, Integer.parseInt(key));
 
                 myRs = prepMySQL.executeQuery();
-            
-                if (myRs.isBeforeFirst()){
+                
+                if(myRs.next()){
+                
+                System.out.println(myRs.getString(1));
+                System.out.println(myRs.getString(2));
+                System.out.println(myRs.getString(3));
+                System.out.println(myRs.getString(4));
+                System.out.println(myRs.getString(5));
+                System.out.println(myRs.getString(6));
+                System.out.println(myRs.getString(7));
+                               
+                System.out.println("enter");
                     p1 = new PatronAccount(
                         myRs.getString(1),
                         myRs.getString(2),
@@ -191,8 +200,9 @@ public class AccountJDBC {
                         myRs.getString(5),
                         myRs.getString(6),
                         myRs.getDouble(7));
-                }
+                                
                 
+                }
                 return p1;
             }
             catch (Exception exc) {
