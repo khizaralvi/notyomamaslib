@@ -1,14 +1,15 @@
-package library.account;
+package library.jdbc;
 
 import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
+import library.account.*;
 
 public class AccountJDBC {
-    private String dbUrl = "jdbc:mysql://localhost:3306/patron";
-    private String dbUsername = "root";
-    private String dbPassword = "admin";
-    private Connection myConn = null;
+    private static String dbUrl = "jdbc:mysql://localhost:3306/patron";
+    private static String dbUsername = "root";
+    private static String dbPassword = "admin";
+    private static Connection myConn = null;
 
     public AccountJDBC() {
     }
@@ -20,14 +21,14 @@ public class AccountJDBC {
     }
     
     //CONNECT
-    public void connect() {
+    public static void connect(String url, String username, String password) {
        
         try {
             // 1. Get a connection to database
             myConn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
         }
         catch (Exception exc) {
-                exc.printStackTrace();
+            exc.printStackTrace();
         }
     }
 
@@ -72,6 +73,16 @@ public class AccountJDBC {
     }
     */
     
+    /**
+     * Insert new Patron Account into database.
+     * 
+     * @param fName First Name as String.
+     * @param lName Last Name as String.
+     * @param phone Phone Number as String.
+     * @param email Email Address as String.
+     * @param address Street Address as String.
+     * @return 
+     */
     public boolean insertPatron(String fName, String lName, String phone, String email, String address) {
         int rowsAffected = 0;
         boolean successful = false;
@@ -90,16 +101,14 @@ public class AccountJDBC {
             prepMySQL.setString(5, address);
             
             successful = prepMySQL.execute();
+            return successful;
         }
         
         catch (Exception exc) {
             exc.printStackTrace();
-        }
-        
-        finally{
             return successful;
         }
-        
+                
     }
     
     /*
@@ -112,15 +121,6 @@ public class AccountJDBC {
 	 */
 	public static final boolean FAILED = false;
 
-	/**
-	 * Insert Patron Account
-	 * 
-	 * @param  patron  PatronAccount object
-	 * @return  returns either success or failed value.
-	 */
-	public static boolean insertPatron(Account patron){
-	    return SUCCESS;
-	}
 	/**
 	 * Insert Staff Account
 	 * 
@@ -161,11 +161,30 @@ public class AccountJDBC {
 	/**
 	 *search Patron Account by ID number
 	 * @param  key  The account ID (library card number)
-	 * @return  resultAccount  PatronAccount object.
+	 * @return  myResultSet  SQL ResultSet object.
 	 */
-	 public static PatronAccount searchPatronByID(String key) {
-		PatronAccount resultAccount = null; 
-	 	return resultAccount;
+	 public ResultSet searchPatronByID(String key) {
+            int rowsAffected = 0;
+            boolean successful = false;
+            String mySQL = null;
+            PreparedStatement prepMySQL = null;
+            ResultSet myRs = null;
+
+            mySQL = "SELECT pFname,pLname,pPhone,pEmail,pAddress "
+                    + "FROM patron "
+                    + "WHERE id = ?";
+
+            try {
+                prepMySQL = myConn.prepareStatement(mySQL);
+                prepMySQL.setString(1, key);
+
+                myRs = prepMySQL.executeQuery();
+                return myRs;
+            }
+            catch (Exception exc) {
+                exc.printStackTrace();
+                return myRs;
+            }
 	 }
 	 
 	/**
@@ -217,6 +236,8 @@ public class AccountJDBC {
 		ArrayList<StaffAccount> resultList = new ArrayList<StaffAccount>();
 	 	return resultList;
 	 }
+         
+        
         
 
          
