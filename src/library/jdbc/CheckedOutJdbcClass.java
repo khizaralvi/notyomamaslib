@@ -7,16 +7,10 @@ import java.util.ArrayList;
 import library.media.Media;
 import library.media.Reservation;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
-import org.joda.time.Seconds;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
@@ -44,6 +38,9 @@ public class CheckedOutJdbcClass {
     public CheckedOutJdbcClass() {
     }
     
+    /**
+     * This method connects to MySQL using JDBC
+     */
     public void connect() throws SQLException {
 	// 1: Get a connection to MySQL database
 	con = DriverManager.getConnection(dbUrl, username, password);
@@ -94,8 +91,11 @@ public class CheckedOutJdbcClass {
     public boolean renewMedia(CheckedOutMedia renewMedia) {
         return true;
     }
+    
+    
 
     /**
+     * @author Khizar Alvi
      * This method uses JDBC to retrieve Patron Emails and
      * his/her due dates from the checkedOutMedia table in Database, stores them
      * into
