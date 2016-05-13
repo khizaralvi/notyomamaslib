@@ -115,7 +115,7 @@ public class CheckedOutJdbcClass {
 	statement = con.createStatement();
 	//3: Execute SQL query
 	 rs = statement.executeQuery("SELECT * from checkedoutmedia");
-	//4: Process the result set
+	//4: Process the result set..
 	 while (rs.next()) {
 		dueDates.add(rs.getDate("dueDate"));
 		PatronEmails.add(rs.getString("patronEmail"));
