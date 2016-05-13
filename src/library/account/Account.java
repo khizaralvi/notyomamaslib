@@ -33,6 +33,13 @@ public abstract class Account {
     	phoneNumber = number;
     }
     
+    public Account(String myID, String first ,String last, String number){
+    	id = myID;
+        firstName = first;
+    	lastName = last;
+    	phoneNumber = number;
+    }
+    
     /** 
      * Returns Account ID number.
      * 

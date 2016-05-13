@@ -21,7 +21,7 @@ public class AccountJDBC {
     }
     
     //CONNECT
-    public static void connect(String url, String username, String password) {
+    public static void connect() {
        
         try {
             // 1. Get a connection to database
@@ -159,16 +159,18 @@ public class AccountJDBC {
 	}
 
 	/**
-	 *search Patron Account by ID number
+	 * Search Patron Account by ID number.
+         * 
 	 * @param  key  The account ID (library card number)
 	 * @return  myResultSet  SQL ResultSet object.
 	 */
-	 public ResultSet searchPatronByID(String key) {
+	 public static PatronAccount searchPatronByID(String key) {
             int rowsAffected = 0;
             boolean successful = false;
             String mySQL = null;
             PreparedStatement prepMySQL = null;
             ResultSet myRs = null;
+            PatronAccount p1 = null;
 
             mySQL = "SELECT pFname,pLname,pPhone,pEmail,pAddress "
                     + "FROM patron "
@@ -179,12 +181,26 @@ public class AccountJDBC {
                 prepMySQL.setString(1, key);
 
                 myRs = prepMySQL.executeQuery();
-                return myRs;
+            
+                if (myRs.isBeforeFirst()){
+                    p1 = new PatronAccount(
+                        myRs.getString(1),
+                        myRs.getString(2),
+                        myRs.getString(3),
+                        myRs.getString(4),
+                        myRs.getString(5),
+                        myRs.getString(6),
+                        myRs.getDouble(7));
+                }
+                
+                return p1;
             }
             catch (Exception exc) {
                 exc.printStackTrace();
-                return myRs;
+                return p1;
             }
+        
+            
 	 }
 	 
 	/**

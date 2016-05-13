@@ -8,6 +8,7 @@ package library.account;
  * @version 1.0
  */
 import java.util.ArrayList;
+import library.jdbc.AccountJDBC;
 
 public class AccountCollection {
 	
@@ -77,11 +78,10 @@ public class AccountCollection {
 	/**
 	 *search Patron Account by ID number
 	 * @param  key  The account ID (library card number)
-	 * @return  resultAccount  PatronAccount object.
+	 * @return  PatronAccount object.
 	 */
 	 public static PatronAccount searchPatronByID(String key) {
-		PatronAccount resultAccount = null; 
-	 	return resultAccount;
+            return AccountJDBC.searchPatronByID(key);
 	 }
 	 
 	/**

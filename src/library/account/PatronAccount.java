@@ -2,7 +2,7 @@ package library.account;
 
 
 import java.util.Scanner;
-import library.account.Account;
+import library.jdbc.AccountJDBC;
 
 
 /**
@@ -61,11 +61,18 @@ public class PatronAccount extends Account {
      * @param address 	Patron's Street Address
      * @param balance 	Sets the starting balance for account
      */ 
-    PatronAccount(String first ,String last, String phone, String address, String email, double balance){
+    public PatronAccount(String first ,String last, String phone, String email, String address, double balance){
     	super(first, last, phone);
+        this.email = email;
         this.address = address;
         this.accountBalance = balance;
+    }
+    
+    public PatronAccount(String myID, String first ,String last, String phone, String email, String address, double balance){
+    	super(myID, first, last, phone);
         this.email = email;
+        this.address = address;
+        this.accountBalance = balance;
     }
     
     /**
@@ -210,7 +217,7 @@ public class PatronAccount extends Account {
         
         AccountJDBC a1 = new AccountJDBC();
         
-        a1.connect();
+        AccountJDBC.connect();
         boolean result = AccountCollection.insertPatron(p1);
         
         if(!result)
