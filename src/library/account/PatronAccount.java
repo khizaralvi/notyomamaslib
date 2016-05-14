@@ -1,6 +1,7 @@
 package library.account;
 
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 import library.jdbc.AccountJDBC;
 
@@ -19,6 +20,8 @@ public class PatronAccount extends Account {
  
     private String email, address;
     private double accountBalance;
+    
+    public final NumberFormat US_DOLLAR = NumberFormat.getCurrencyInstance();
  
     /**
      * Constructor: Basic Parameters
@@ -188,15 +191,17 @@ public class PatronAccount extends Account {
     //public PatronAccount(String myID, String first ,String last, String phone, String email, String address, double balance){
     @Override
     public String toString(){
-        String v1,v2,v3,v4,v5,v6,tPhone;
-        double v7;
-        
+        String v1,v2,v3,v4,v5,v6,v7,tPhone;
+                
         v1 = getId();
         v2 = getFirstName();
         v3 = getLastName();
-        v4 = get
-        
         tPhone = getPhoneNumber();
+        v5 = getEmail();
+        v6 = getAddress();
+        v7 = US_DOLLAR.format(getAccountBalance());
+        
+        
         v4 = "(" + tPhone.substring(0, 3) + ") "
                 + tPhone.substring(3, 6)
                 + "-" + tPhone.substring(6);
@@ -204,7 +209,11 @@ public class PatronAccount extends Account {
         return String.format("ID: %s %n"
                 + "First Name: %s %n"
                 + "Last Name: %s %n"
-                + "Tel. Number: %s",v1,v2,v3,v4);
+                + "Tel. Number: %s %n"
+                + "E-mail Address: %s %n"
+                + "Street Address: %s %n"
+                + "Account Balance: %s %n"
+                ,v1,v2,v3,v4,v5,v6,v7);
     }
     
     

@@ -123,8 +123,8 @@ public abstract class Account {
         v1 = getId();
         v2 = getFirstName();
         v3 = getLastName();
-        
         tPhone = getPhoneNumber();
+        
         v4 = "(" + tPhone.substring(0, 3) + ") "
                 + tPhone.substring(3, 6)
                 + "-" + tPhone.substring(6);
