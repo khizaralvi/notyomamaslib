@@ -286,15 +286,19 @@ public class LibrarianInterface {
                     reservation.setPatronId(patronID);
                     reservation = reservation_collection.deleteReservation(reservation);
                     if (reservation != null) {
-                        System.out.println("The following reservation was deleted:\n"
-                                + "ReservationID\tMediaID\tPatronID\n" + reservation.toString());
+                        System.out.println("The following reservation was cancelled:\n"
+                                + "Media ID: " + reservation.getMediaId()
+                                + "Patron ID: " + reservation.getPatronId());
                     } else {
                         return false;
                     }
                     break;
                 case 3:
-                    String table_header = String.format("\t%15s\t%10s\t%10s\t%12s\n", "Reservation ID", "Media ID", "Patron ID", "Date");
-                    System.out.println(table_header + reservation_collection.viewLibReserveList().toString());
+                    if (reservation_collection.viewLibReserveList().equals("")) {
+                        System.out.println("No reservations were made");
+                    } else {
+                        System.out.println(reservation_collection.toString());
+                    }
                     break;
                 case 4:
                     // Not implemented yet

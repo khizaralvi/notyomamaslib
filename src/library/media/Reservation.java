@@ -27,14 +27,31 @@ public class Reservation {
 
     /**
      * Constructor for Reservation.
+     *
      * @param mediaId the unique id for every single media
      * @param patronId the unique id for every single patron
      * @param date date
      *
      */
     public Reservation(int mediaId, int patronId) {
-        setMediaId(mediaId);
-        setPatronId(patronId);
+        this.setMediaId(mediaId);
+        this.setPatronId(patronId);
+    }
+
+    /**
+     * Constructor for Reservation.
+     *
+     * @param reservationId the unique reservation id
+     * @param mediaId the unique id for every single media
+     * @param patronId the unique id for every single patron
+     * @param reservationDate the reservation date
+     *
+     */
+    public Reservation(int reservationId, int mediaId, int patronId, Date reservationDate) {
+        this.setReservationId(reservationId);
+        this.setMediaId(mediaId);
+        this.setPatronId(patronId);
+        this.setReservationDate(reservationDate);
     }
 
     /**

@@ -198,8 +198,7 @@ public class ReservationJdbc {
                 reservation.setReservationDate(rs.getDate("reservedDate"));
                 rc.add(reservation);
             }
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rc;
@@ -208,26 +207,17 @@ public class ReservationJdbc {
     /**
      * This method display all the reserved media in the library.
      *
-     * @param collection an ArrayList of Reservations where the Reservation
-     * retrieved will be added
      */
-    public void viewLibReserveList(ArrayList<Reservation> collection) {
+    public ArrayList<Reservation> viewLibReserveList() {
         connect(); // First, it must be connected to the database
         Reservation reservation = new Reservation();
-
         try {
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM reservation");
-            while (rs.next()) 
-            {
-                reservation.setReservationId(rs.getInt("ReservationId"));
-                reservation.setPatronId(rs.getInt("patronId"));
-                reservation.setMediaId(rs.getInt("mediaId"));
-                reservation.setReservationDate(rs.getDate("ReservedDate"));
-                collection.add(reservation);
-            }
+            return unpack(rs);
         } catch (SQLException ex) {
             Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
 
@@ -284,4 +274,22 @@ public class ReservationJdbc {
         return null;
     }
 
+    /**
+     * Unpack result set.
+     * @param rs result set
+     * @return ArrayList of reservations
+     */
+    private ArrayList<Reservation> unpack(ResultSet rs) {
+        ArrayList<Reservation> collection = new ArrayList<>();
+
+        try {
+            while (rs.next()) {
+                Reservation r = new Reservation(rs.getInt("reservationId"),
+                        rs.getInt("mediaId"), rs.getInt("patronId"), rs.getDate("reservedDate"));
+                collection.add(r);
+            }
+        } catch (SQLException se) {
+        }
+        return collection;
+    }
 }

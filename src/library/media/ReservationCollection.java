@@ -53,8 +53,7 @@ public class ReservationCollection {
      * @return an ArrayList with all reserved items in the library
      */
     public ArrayList<Reservation> viewLibReserveList() {
-        this.reserveList.clear();
-        rj.viewLibReserveList(this.reserveList);
+        this.reserveList = rj.viewLibReserveList();
         return this.reserveList;
     }
 
@@ -67,7 +66,10 @@ public class ReservationCollection {
     public String toString() {
         String s = "";
         for (int i = 0; i < reserveList.size(); i++) {
-            s += " " + reserveList.get(i).toString();
+            s += "Media ID: " + reserveList.get(i).getMediaId() 
+                    + "\tPatron ID: " + reserveList.get(i).getPatronId()
+                    + "\tDate: " + reserveList.get(i).getReservationDate()
+                    + "\n";
         }
         return s;
     }
