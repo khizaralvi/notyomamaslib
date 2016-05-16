@@ -43,8 +43,8 @@ public class ReservationCollection {
      * @return an ArrayList with all reservations for that specific patron
      */
     public ArrayList<Reservation> viewPatronReserveList(int patronId) {
-        reserveList = rj.viewPatronReserveList(patronId);
-        return reserveList;
+        this.reserveList = rj.viewPatronReserveList(patronId);
+        return this.reserveList;
     }
 
     /**
@@ -66,7 +66,7 @@ public class ReservationCollection {
     public String toString() {
         String s = "";
         for (int i = 0; i < reserveList.size(); i++) {
-            s += "Media ID: " + reserveList.get(i).getMediaId() 
+            s += "Reservation ID: " + reserveList.get(i).getReservationId() + "\tMedia ID: " + reserveList.get(i).getMediaId() 
                     + "\tPatron ID: " + reserveList.get(i).getPatronId()
                     + "\tDate: " + reserveList.get(i).getReservationDate()
                     + "\n";
@@ -134,7 +134,7 @@ public class ReservationCollection {
      * otherwise
      */
     public Reservation deleteReservation(int reservationId) {
-        return this.deleteReservation(reservationId);
+        return this.rj.deleteReservation(reservationId);
     }
  
 }

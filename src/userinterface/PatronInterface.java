@@ -94,15 +94,17 @@ public class PatronInterface {
             System.out.println("\n\nSearch for media to reserve first.");
             if (searchingModule(media_jdbc)) {
                 // Ask mediaID
-                System.out.print("Type the media ID: ");
+                System.out.print("Type the media ID or 0 to return: ");
                 mediaID = scan.nextInt(); // Implement a parser to check if is int
-                media.setMediaId(mediaID);
+                if (mediaID != 0) {
+                    media.setMediaId(mediaID);
 
-                // Try to reserve
-                if (reservation_collection.reserveMedia(media, patronID)) {
-                    System.out.println("Reservation was successful!");
-                } else {
-                    return false;
+                    // Try to reserve
+                    if (reservation_collection.reserveMedia(media, patronID)) {
+                        System.out.println("Reservation was successful!");
+                    } else {
+                        return false;
+                    }
                 }
             }
 
@@ -111,28 +113,31 @@ public class PatronInterface {
 
             System.out.println("\n\nYour reservations:");
 
-            if (reservation_collection.viewPatronReserveList(patronID).equals("")) {
+            if (reservation_collection.viewPatronReserveList(patronID).toString().equals("")) {
                 System.out.println("No reservations were made");
             } else {
                 System.out.println(reservation_collection.toString());
-                System.out.print("Type the reservationID to delete your reservation: ");
+                System.out.print("Type the reservationID to delete your reservation or 0 to return: ");
                 int reservationID = scan.nextInt(); // Implement a parser to check if is int
-                reservation.setReservationId(reservationID);
-                reservation = reservation_collection.deleteReservation(reservationID);
 
-                if (reservation != null) {
-                    System.out.println("The following reservation was cancelled:\n"
-                            + "Media ID: " + reservation.getMediaId()
-                            + "Patron ID: " + reservation.getPatronId());
-                } else {
-                    return false;
+                if (reservationID != 0) {
+                    reservation.setReservationId(reservationID);
+                    reservation = reservation_collection.deleteReservation(reservationID);
+
+                    if (reservation != null) {
+                        System.out.println("The following reservation was cancelled:\n"
+                                + "Media ID: " + reservation.getMediaId()
+                                + "\tPatron ID: " + reservation.getPatronId());
+                    } else {
+                        return false;
+                    }
                 }
             }
         }
         if (option == 5) {
             System.out.println("\n\nYour reservations:");
 
-            if (reservation_collection.viewPatronReserveList(patronID).equals("")) {
+            if (reservation_collection.viewPatronReserveList(patronID).toString().equals("")) {
                 System.out.println("No reservations were made");
             } else {
                 System.out.println(reservation_collection.toString());

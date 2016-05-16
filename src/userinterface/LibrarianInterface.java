@@ -311,7 +311,7 @@ public class LibrarianInterface {
                     }
                     break;
                 case 3:
-                    if (reservation_collection.viewLibReserveList().equals("")) {
+                    if (reservation_collection.viewLibReserveList().toString().equals("")) {
                         System.out.println("No reservations were made");
                     } else {
                         System.out.println(reservation_collection.toString());

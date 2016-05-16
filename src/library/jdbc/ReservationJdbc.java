@@ -165,7 +165,6 @@ public class ReservationJdbc {
             ps.setInt(1, r.getReservationId());
             ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
 
@@ -185,28 +184,24 @@ public class ReservationJdbc {
      */
     public ArrayList<Reservation> viewPatronReserveList(int patronId) {
         connect(); // First, it must be connected to the database 
-        ArrayList<Reservation> rc = new ArrayList<>();
-        Reservation reservation = new Reservation();
 
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM reservation WHERE patronId = " + patronId);
-            while (rs.next()) {
-                reservation.setReservationId(rs.getInt("reservationId"));
-                reservation.setPatronId(rs.getInt("patronId"));
-                reservation.setMediaId(rs.getInt("mediaId"));
-                reservation.setReservationDate(rs.getDate("reservedDate"));
-                rc.add(reservation);
-            }
+            rs = st.executeQuery("SELECT * FROM reservation WHERE patronId = "
+                    + patronId);
+            return unpack(rs);
         } catch (SQLException ex) {
-            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE,
+                    null, ex);
+            return null;
         }
-        return rc;
     }
 
     /**
      * This method display all the reserved media in the library.
      *
+     * @return an ArrayList with Reservation objects or null if no reservation
+     * found
      */
     public ArrayList<Reservation> viewLibReserveList() {
         connect(); // First, it must be connected to the database
@@ -216,7 +211,8 @@ public class ReservationJdbc {
             rs = st.executeQuery("SELECT * FROM reservation");
             return unpack(rs);
         } catch (SQLException ex) {
-            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, 
+                    null, ex);
             return null;
         }
     }
@@ -234,14 +230,16 @@ public class ReservationJdbc {
 
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM reservation WHERE reservationId = " + reservationId);
+            rs = st.executeQuery("SELECT * FROM reservation WHERE reservationId = " 
+                    + reservationId);
             while (rs.next()) {
                 r.setReservationId(rs.getInt("reservationId"));
                 r.setPatronId(rs.getInt("patronId"));
                 r.setMediaId(rs.getInt("mediaId"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, 
+                    null, ex);
             return null;
         }
         return r;
@@ -269,13 +267,15 @@ public class ReservationJdbc {
                 return r;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservationJdbc.class.getName()).log(Level.SEVERE, 
+                    null, ex);
         }
         return null;
     }
 
     /**
      * Unpack result set.
+     *
      * @param rs result set
      * @return ArrayList of reservations
      */
@@ -285,7 +285,8 @@ public class ReservationJdbc {
         try {
             while (rs.next()) {
                 Reservation r = new Reservation(rs.getInt("reservationId"),
-                        rs.getInt("mediaId"), rs.getInt("patronId"), rs.getDate("reservedDate"));
+                        rs.getInt("mediaId"), rs.getInt("patronId"), 
+                        rs.getDate("reservedDate"));
                 collection.add(r);
             }
         } catch (SQLException se) {
