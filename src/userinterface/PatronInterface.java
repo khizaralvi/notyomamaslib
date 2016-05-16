@@ -4,9 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import library.jdbc.MediaJdbcClass;
 import library.jdbc.ReservationJdbc;
-import library.media.MediaCollection;
 import library.media.Reservation;
 import library.media.ReservationCollection;
+import static userinterface.LibrarianInterface.media;
+import static userinterface.LibrarianInterface.reservation_collection;
 import static userinterface.SharedFunctions.searchingModule;
 
 /**
@@ -20,10 +21,10 @@ public class PatronInterface {
     static Reservation reservation = new Reservation();
     static ReservationJdbc rj = new ReservationJdbc();
     static ReservationCollection rc = new ReservationCollection();
-    static int patronId = 2; // This will be replaced by a PatronAccount object
+    static int patronID = 2; // This will be replaced by a PatronAccount object
 
     public static void patronInterface() {
-        int option = -1;
+        int option = 0;
         Scanner scan = new Scanner(System.in);
 
         do {
@@ -32,6 +33,7 @@ public class PatronInterface {
             System.out.println("2. View checked out media");
             System.out.println("3. Make reservation");
             System.out.println("4. Cancel reservation");
+            System.out.println("5. View reservations");
             System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
 
@@ -59,6 +61,11 @@ public class PatronInterface {
                             System.out.println("An error occured!");
                         }
                         break;
+                    case 5:
+                        if (!reservationModule(option)) {
+                            System.out.println("An error occured!");
+                        }
+                        break;
                     case 0:
                         break;
                     default:
@@ -78,78 +85,59 @@ public class PatronInterface {
     }
 
     public static boolean reservationModule(int option) {
-        int op;
+        int op = 0;
+        int mediaID;
         Scanner scan = new Scanner(System.in);
 
         if (option == 3) {
-            do {
-                System.out.println("\n\n=========MENU OPTIONS:=========");
-                System.out.println("1. Reserve media");
-                System.out.println("0. Return to previous menu");
-                System.out.print("Type your option: ");
-                op = scan.nextInt(); // Implement a parser to check if is int
 
-                if (op == 1) {
-                    System.out.println("Type the media ID: ");
-                    int mediaId = scan.nextInt();
-                    reservation.setMediaId(mediaId);
-                    if (rj.reserveMedia(reservation)) { // Try to reserve
-                        System.out.println("Your reservation was successful!");
-                    } else {
-                        return false;
-                    }
-                } else if (op != 0) {
-                    System.out.println("Type a valid option.");
+            System.out.println("\n\nSearch for media to reserve first.");
+            if (searchingModule(media_jdbc)) {
+                // Ask mediaID
+                System.out.print("Type the media ID: ");
+                mediaID = scan.nextInt(); // Implement a parser to check if is int
+                media.setMediaId(mediaID);
+
+                // Try to reserve
+                if (reservation_collection.reserveMedia(media, patronID)) {
+                    System.out.println("Reservation was successful!");
+                } else {
+                    return false;
                 }
+            }
 
-            } while (op != 0);
         }
         if (option == 4) {
-            do {
-                System.out.println("\n\n=========MENU OPTIONS:=========");
-                System.out.println("1. Cancel reservation");
-                System.out.println("0. Return to previous menu");
-                System.out.print("Type your option: ");
-                op = scan.nextInt(); // Implement a parser to check if is int
 
-                if (op == 1) {
-                    // Search all reservations for this patron
-                    rc.setArr(rj.viewPatronReserveList(patronId));
+            System.out.println("\n\nYour reservations:");
 
-                    // Print the reservation list for the current patron
-                    System.out.println(rc.toString());
+            if (reservation_collection.viewPatronReserveList(patronID).equals("")) {
+                System.out.println("No reservations were made");
+            } else {
+                System.out.println(reservation_collection.toString());
+                System.out.print("Type the reservationID to delete your reservation: ");
+                int reservationID = scan.nextInt(); // Implement a parser to check if is int
+                reservation.setReservationId(reservationID);
+                reservation = reservation_collection.deleteReservation(reservationID);
 
-                    // Ask for media ID
-                    System.out.print("Type the media ID: ");
-                    int mediaId = scan.nextInt();
-
-                    // Cancel the reservation
-                    reservation.setMediaId(mediaId);
-                    reservation = rj.deleteReservation(reservation.getReservationId());
-                    System.out.println("The following reservation was deleted: " + reservation.toString());
-
-                } else if (op != 0) {
-                    System.out.println("Type a valid option.");
+                if (reservation != null) {
+                    System.out.println("The following reservation was cancelled:\n"
+                            + "Media ID: " + reservation.getMediaId()
+                            + "Patron ID: " + reservation.getPatronId());
+                } else {
+                    return false;
                 }
-            } while (op != 0);
+            }
+        }
+        if (option == 5) {
+            System.out.println("\n\nYour reservations:");
 
+            if (reservation_collection.viewPatronReserveList(patronID).equals("")) {
+                System.out.println("No reservations were made");
+            } else {
+                System.out.println(reservation_collection.toString());
+            }
         }
         return true;
-
     }
-
-// Try to make this work
-//    public final static void clearConsole() {
-//        try {
-//            final String os = System.getProperty("os.name");
-//
-//            if (os.contains("Windows")) {
-//                Runtime.getRuntime().exec("cls");
-//            } else {
-//                Runtime.getRuntime().exec("clear");
-//            }
-//        } catch (final Exception e) {
-//            //  Handle any exceptions.
-//        }
-//    }
 }

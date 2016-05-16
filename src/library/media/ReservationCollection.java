@@ -117,12 +117,24 @@ public class ReservationCollection {
     /**
      * Delete a reservation.
      *
-     * @param reservationId the reservation ID
-     * @return a cancellation object
+     * @param reservation a reservation object
+     * @return a reservation object
      */
     public Reservation deleteReservation(Reservation reservation) {
         Reservation r = null;
         r = this.searchReservation(reservation.getMediaId(), reservation.getPatronId());
         return rj.deleteReservation(r.getReservationId());
     }
+    
+     /**
+     * Delete a reservation given its reservation id.
+     *
+     * @param reservationId reservation ID
+     * @return the deleted reservation object if operation was successful, null
+     * otherwise
+     */
+    public Reservation deleteReservation(int reservationId) {
+        return this.deleteReservation(reservationId);
+    }
+ 
 }
