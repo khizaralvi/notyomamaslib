@@ -13,11 +13,24 @@ insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Jessica",
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Jeff", "Godoy", "12345678", "jgodoy@oldwestbury.edu", "223 Store Hill Rd");
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Benny", "Penna", "12839042", "bpena5@oldwestbury.edu", "223 Store Hill Rd");
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Junaid", "Farooq", "12345356", "jfarooq@oldwestbury.edu", "223 Store Hill Rd");
-insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Basit", "Khan", "92018321", "abasit1@oldwestbury.edu", "223 Store Hill Rd");
+insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Abdul", "Basit", "92018321", "abasit1@oldwestbury.edu", "223 Store Hill Rd");
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Adil", "Imam", "121342432", "aimam1@oldwestbury.edu", "223 Store Hill Rd");
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Elbin", "Martinez", "12901282", "emarti45@oldwestbury.edu", "223 Store Hill Rd");
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Adnan", "Alam", "1223432", "aalam29@oldwestbury.edu", "223 Store Hill Rd");
 insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Khizar", "Alvi", "9872161", "kalvi@oldwestbury.edu", "223 Store Hill Rd");
+insert into patron (pFname, pLname, pPhone, pEmail, pAddress) values ("Brett", "Landau", "9872161", "blaundau@oldwestbury.edu", "223 Store Hill Rd");
+
+/* Patron login */
+insert into patron_Login (username, password, patronId) values ("jcarneiro", "123456", 1);
+insert into patron_Login (username, password, patronId) values ("jgodoy", "123456", 2);
+insert into patron_Login (username, password, patronId) values ("bpenny", "123456", 3);
+insert into patron_Login (username, password, patronId) values ("jfarooq", "123456", 4);
+insert into patron_Login (username, password, patronId) values ("abasit", "123456", 5);
+insert into patron_Login (username, password, patronId) values ("aimam", "123456", 6);
+insert into patron_Login (username, password, patronId) values ("emartinez", "123456", 7);
+insert into patron_Login (username, password, patronId) values ("aalam", "123456", 8);
+insert into patron_Login (username, password, patronId) values ("kalvi", "123456", 9);
+insert into patron_Login (username, password, patronId) values ("blandau", "123456", 10);
 
 /* Staff account */
 

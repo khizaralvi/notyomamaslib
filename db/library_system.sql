@@ -94,11 +94,11 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `library_system`.`patron_Login` (
   `username` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
-  `patronId` INT NOT NULL,
+  `patronId` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`patronId`),
   CONSTRAINT `fk66`
     FOREIGN KEY (`patronId`)
-    REFERENCES `library_system`.`patronaccount` (`patronId`)
+    REFERENCES `library_system`.`patron` (`pID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
