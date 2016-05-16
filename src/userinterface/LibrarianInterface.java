@@ -16,6 +16,7 @@ import library.media.MediaCollection;
 import library.media.Reservation;
 import library.media.ReservationCollection;
 import static userinterface.SharedFunctions.searchingModule;
+
 /**
  * Interface that will be displayed for librarian users.
  *
@@ -31,7 +32,7 @@ public class LibrarianInterface {
     public static Login login;
 
     public static void librarianInterface() {
-        int option = -1;
+        int option = 0;
         Scanner scan = new Scanner(System.in);
 
         do {
@@ -94,10 +95,8 @@ public class LibrarianInterface {
         } while (option != 0);
     }
 
-  
-
     public static boolean addingModule() {
-        int op = -1;
+        int op = 0;
         String field;
         double cost;
         Scanner scan = new Scanner(System.in);
@@ -206,13 +205,14 @@ public class LibrarianInterface {
         int mediaID;
         Scanner scan = new Scanner(System.in);
 
-        if (searchingModule(media_jdbc)) {
-            System.out.println("Type the media ID for the media you want to delete: ");
-            // check quantity, ask the user to type how many copies will be deleted
-            // if number == total copies, delete from database the row
-            // else decrease the quantity
-            mediaID = scan.nextInt();
+        System.out.print("Type the media ID for the media you want to delete: ");
+        mediaID = scan.nextInt();
+        if (media_jdbc.deleteMedia(mediaID)) {
+            System.out.println("Media deleted successfully!");
+        } else {
+            return false;
         }
+
         return true;
     }
 
@@ -222,9 +222,8 @@ public class LibrarianInterface {
 
         if (searchingModule(media_jdbc)) {
             System.out.println("Type the media ID for the media you want to edit: ");
-            // prints all media attributes
-            // gets type of media... different editions for different types of media
             mediaID = scan.nextInt();
+            // retrieve data
         }
         return true;
     }
@@ -287,8 +286,8 @@ public class LibrarianInterface {
                     reservation.setPatronId(patronID);
                     reservation = reservation_collection.deleteReservation(reservation);
                     if (reservation != null) {
-                        System.out.println("The following reservation was deleted:\n" + 
-                                "ReservationID\tMediaID\tPatronID\n" + reservation.toString());
+                        System.out.println("The following reservation was deleted:\n"
+                                + "ReservationID\tMediaID\tPatronID\n" + reservation.toString());
                     } else {
                         return false;
                     }
@@ -309,52 +308,26 @@ public class LibrarianInterface {
 
         } while (true);
     }
-    
-    public final static void clearConsole() {
-        try {
-            final String os = System.getProperty("os.name");
 
-            if (os.contains("Windows")) {
-                Runtime.getRuntime().exec("cls");
-            } else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (final Exception e) {
-            //  Handle any exceptions.
-        }
-    }
     //Edit by Ben 5/11
-    public static void changePassword(Login login){
+    public static void changePassword(Login login) {
         Scanner scan = new Scanner(System.in);
         String curPass;
-        for(int i = 0; i < 3;i++){
+        for (int i = 0; i < 3; i++) {
             System.out.println("Please enter your current password");
             curPass = scan.next();
-            if(login.getPassword().equals(curPass)){
+            if (login.getPassword().equals(curPass)) {
                 System.out.println("Please enter your new password:");
                 String newPass = scan.next();
                 login.setPassword(newPass);
-                if(LoginCollection.updateStaffLogin(login.getId(), login.getUsername(), login.getPassword()))
+                if (LoginCollection.updateStaffLogin(login.getId(), login.getUsername(), login.getPassword())) {
                     System.out.println("Password Change Successful!!");
+                }
                 break;
             }
             System.out.println("Incorrect Password");
         }
-    
+
     }
 
-// Try to make this work
-//    public final static void clearConsole() {
-//        try {
-//            final String os = System.getProperty("os.name");
-//
-//            if (os.contains("Windows")) {
-//                Runtime.getRuntime().exec("cls");
-//            } else {
-//                Runtime.getRuntime().exec("clear");
-//            }
-//        } catch (final Exception e) {
-//            //  Handle any exceptions.
-//        }
-//    }
 }

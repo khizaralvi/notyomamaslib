@@ -331,25 +331,26 @@ public class MediaJdbcClass {
      * @param mediaId Media id to delete
      * @return Media object thats deleted
      */
-    public Media deleteMedia(String mediaId) {
+    public boolean deleteMedia(int mediaId) {
 
         connect(); // First, it must be connected to the database 
         try {
 
             prepared = con.prepareStatement("delete from media where mediaId=?");
-            prepared.setString(1, mediaId);
+            prepared.setInt(1, mediaId);
 
             int i = prepared.executeUpdate();
             if (i > 0) {
-                return null;
+                return true;
             } else {
-                return null;  //when it returns false, it means no tuple got deleted
+                return false;  //when it returns false, it means no tuple got deleted
             }
 
         } catch (SQLException se) {
+            // catch exceptions
         }
 
-        return null;
+        return true;
     }
 
     /**
@@ -361,7 +362,7 @@ public class MediaJdbcClass {
      */
     public MediaCollection searchMedia(int attribute, String value) {
         ArrayList<Media> resultSet = new ArrayList<>();
-        
+
         connect(); // First, it must be connected to the database
 
         try {
@@ -371,12 +372,11 @@ public class MediaJdbcClass {
             switch (attribute) {
                 // Author
                 case 1: {
-                    
-                    
+
                     rs = statement.executeQuery("select * from (media join authorbooks "
                             + "using(mediaId))"
                             + "where authorId=(select authorID from "
-                            + "author where authorname='"+value+"')");
+                            + "author where authorname='" + value + "')");
                     break;
                 }
                 // Category
@@ -421,8 +421,8 @@ public class MediaJdbcClass {
     }
 
     private void unpack(ResultSet rs) {
-       collection.cleanCollection();
-       
+        collection.cleanCollection();
+
         try {
             while (rs.next()) {
                 switch (rs.getString("mediaType")) {
