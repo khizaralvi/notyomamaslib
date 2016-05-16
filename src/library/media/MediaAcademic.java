@@ -26,7 +26,7 @@ public class MediaAcademic extends Media {
     private ArrayList<String> authors;
     private String documentType;
     private String ebook_ISBN;
-    
+
     /**
      * LATE_FEE is the amount of money charged in cents per late day by the
      * Patron.
@@ -45,6 +45,13 @@ public class MediaAcademic extends Media {
     public static int RENEW_TIMES = 1;
 
     /**
+     * Default constructor.
+     */
+    public MediaAcademic() {
+        super();
+    }
+
+    /**
      * Constructor for MediaAcademic
      *
      * @param id Media unique identifier
@@ -58,16 +65,16 @@ public class MediaAcademic extends Media {
      * @param quantity amount of media available
      * @param ebook_ISBN unique EBOOK_ISBN
      */
-    public MediaAcademic(int id, String title, String year, String cost,
+    public MediaAcademic(int id, String title, String year, double cost,
             String publisher, ArrayList<String> author,
             String numberOfPages, String documentType, int quantity, String ebook_ISBN) {
-        super(id,title, year, cost,"a", quantity);
-        
-    this.authors=author;
-    this.documentType=documentType;
-    this.publisher=publisher;
-    this.numberOfPages=numberOfPages;
-    this.ebook_ISBN=ebook_ISBN;
+        super(id, title, year, cost, "a", quantity);
+
+        this.authors = author;
+        this.documentType = documentType;
+        this.publisher = publisher;
+        this.numberOfPages = numberOfPages;
+        this.ebook_ISBN = ebook_ISBN;
     }
 
     /**
@@ -75,9 +82,6 @@ public class MediaAcademic extends Media {
      *
      * @return publisher name.
      */
-    
-    
-    
     @Override
     public String get_Ebook_Publisher() {
         return publisher;
@@ -91,7 +95,7 @@ public class MediaAcademic extends Media {
      */
     @Override
     public boolean set_Ebook_Publisher(String publisher) {
-    return true;
+        return true;
     }
 
     /**
@@ -112,7 +116,7 @@ public class MediaAcademic extends Media {
      */
     @Override
     public boolean setNumberOfPages_of_Ebook(String numberOfPages) {
-    return true;
+        return true;
     }
 
     /**
@@ -133,7 +137,7 @@ public class MediaAcademic extends Media {
      */
     @Override
     public boolean setAuthors_of_Ebook(ArrayList<String> authors) {
-    return true;
+        return true;
     }
 
     /**
@@ -156,20 +160,19 @@ public class MediaAcademic extends Media {
      */
     @Override
     public boolean setDocumentType(String documentType) {
-    return true;
+        return true;
     }
 
     /**
-     * 
+     *
      * @return ISBN
      */
     @Override
-    public String getEbook_ISBN()
-    {
-    return this.ebook_ISBN;
-    
+    public String getEbook_ISBN() {
+        return this.ebook_ISBN;
+
     }
-    
+
     /**
      * toString method for MediaAcademic object.
      *

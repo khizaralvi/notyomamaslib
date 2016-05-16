@@ -22,7 +22,7 @@ public class Media {
     private int mediaId;
     private String mediaTitle;
     private String mediaYear;
-    private String mediaCost;
+    private double mediaCost;
     private String mediaType; // Media types: A (Academic), B (Book), M (Movie)
     private int quantity;
     
@@ -44,7 +44,7 @@ public class Media {
      * @param type Type of Media
      * @param quantity amount of media available
      */
-    public Media(int id,String title, String year, String cost, 
+    public Media(int id,String title, String year, double cost, 
             String type, int quantity) {
         
         this.mediaId=id;
@@ -69,7 +69,6 @@ public class Media {
      * Sets the Media Id
      *
      * @param id Media unique identifier
-     * @return true if mediaId is set successfully or false otherwise
      */
     public void setMediaId(int id) {
         this.mediaId = id;
@@ -88,10 +87,9 @@ public class Media {
      * Sets the Media title
      *
      * @param title Media title
-     * @return true if MediaTitle is set successfully or false otherwise
      */
-    public boolean setMediaTitle(String title) {
-    return true;
+    public void setMediaTitle(String title) {
+        this.mediaTitle = title;
     }
 
     /**
@@ -107,10 +105,9 @@ public class Media {
      * Sets the Media publication year
      *
      * @param year Publication year in format YYYY
-     * @return true if mediaYear is set successfully or false otherwise
      */
-    public boolean setMediaYear(String year) {
-    return true;
+    public void setMediaYear(String year) {
+        this.mediaType = year;
     }
 
     /**
@@ -118,7 +115,7 @@ public class Media {
      *
      * @return mediaCost Cost of media in US$
      */
-    public String getMediaCost() {
+    public double getMediaCost() {
         return mediaCost;
     }
 
@@ -126,11 +123,10 @@ public class Media {
      * Sets the Media cost
      *
      * @param cost Cost of media in US$
-     * @return true if mediaCOst is set successfully or false otherwise
      * 
      */
-    public boolean setMediaCost(String cost) {
-    return true;
+    public void setMediaCost(double cost) {
+        this.mediaCost = cost;
     }
 
     /**
@@ -316,11 +312,10 @@ public class Media {
      * Sets director name.
      *
      * @param director director name
-     * @return true if director is set successfully or false otherwise
      */
-    public boolean setDirector(String director)
+    public void setDirector(String director)
     {
-    return true;
+    
     }
 
     /**

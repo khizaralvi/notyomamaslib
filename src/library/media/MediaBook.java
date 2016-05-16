@@ -47,6 +47,14 @@ public class MediaBook extends Media {
      */
     public static int RENEW_TIMES = 2;
 
+    
+    /**
+     * Default constructor.
+     */
+    public MediaBook() {
+        super();
+    }
+    
     /**
      * Constructor for MediaBook.
      *
@@ -65,7 +73,7 @@ public class MediaBook extends Media {
      */
     public MediaBook(int id, String title, String year,
             String edition, String volume, String pages, String publisher,String isbn,
-            String cost, int quantity, ArrayList<String> auth, String bookGenre) {
+            double cost, int quantity, ArrayList<String> auth, String bookGenre) {
         super(id,title, year, cost,"b", quantity);
         
         this.bookEdition=edition;

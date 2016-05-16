@@ -12,7 +12,10 @@ import library.account.Login;
 import library.account.LoginCollection;
 import library.jdbc.MediaJdbcClass;
 import library.media.Media;
+import library.media.MediaAcademic;
+import library.media.MediaBook;
 import library.media.MediaCollection;
+import library.media.MediaMovie;
 import library.media.Reservation;
 import library.media.ReservationCollection;
 import static userinterface.SharedFunctions.searchingModule;
@@ -30,6 +33,9 @@ public class LibrarianInterface {
     public static Reservation reservation = new Reservation();
     public static ReservationCollection reservation_collection = new ReservationCollection();
     public static Login login;
+    public static MediaAcademic academic = new MediaAcademic();
+    public static MediaBook book = new MediaBook();
+    public static MediaMovie movie = new MediaMovie();
 
     public static void librarianInterface() {
         int option = 0;
@@ -113,7 +119,7 @@ public class LibrarianInterface {
             try {
                 op = scan.nextInt();
                 String skip = scan.nextLine(); // Skipping \n character
-
+                
                 switch (op) {
                     case 1:
                         System.out.print("Type the title and press <ENTER>: ");
@@ -171,20 +177,31 @@ public class LibrarianInterface {
                         break;
                     case 3:
                         System.out.print("Type the title and press <ENTER>: ");
-                        field = scan.next();
-                        // movie.setTitle(field);
+                        field = scan.nextLine();
+                        // skip = scan.nextLine();
+                        movie.setMediaTitle(field);
                         System.out.print("Type the year of the movie and press <ENTER>: ");
                         field = scan.next();
-                        // movie.setYear(field);
+                        skip = scan.nextLine();
+                        movie.setMediaYear(field);
                         System.out.print("Type the director name and press <ENTER>: ");
                         field = scan.next();
-                        // movie.setDirector(field);
+                        skip = scan.nextLine();
+                        movie.setDirector(field);
                         System.out.print("Type the running time and press <ENTER>: ");
                         field = scan.next();
-                        // movie.setRunningTime(field);
+                        skip = scan.nextLine();
+                        movie.setRunning_time(field);
                         System.out.print("Type the cost of the material and press <ENTER>: ");
                         cost = scan.nextDouble();
-                        // movie.setCost(cost);
+                        skip = scan.nextLine();
+                        movie.setMediaCost(cost);
+                        if(!media_jdbc.addMedia(movie)) {
+                            return false;
+                        }
+                        else {
+                            System.out.println("Media was added successfully!");
+                        }
                         break;
                     case 0:
                         return true;

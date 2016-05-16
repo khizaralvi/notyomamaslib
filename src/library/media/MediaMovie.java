@@ -38,6 +38,13 @@ public class MediaMovie extends Media {
     public static boolean RENEWABLE = false;
 
     /**
+     * Default constructor.
+     */
+    public MediaMovie() {
+        super();
+    }
+
+    /**
      * Constructor for MediaMovie
      *
      * @param id Media unique identifier
@@ -51,16 +58,15 @@ public class MediaMovie extends Media {
      * @param movie_code unique code for each movie
      * @param quantity amount of media available
      */
-    public MediaMovie(int id, String title, String year, String cost,
+    public MediaMovie(int id, String title, String year, double cost,
             String Moviegenre, String director,
-            String running_time, int quantity, String movie_code)
-    {
-       super(id,title, year, cost,"m", quantity);
-       this.Movie_genre=Moviegenre;
-       this.director=director;
-    
-       this.running_time=running_time;       
-       this.movie_code=movie_code;
+            String running_time, int quantity, String movie_code) {
+        super(id, title, year, cost, "m", quantity);
+        this.Movie_genre = Moviegenre;
+        this.director = director;
+
+        this.running_time = running_time;
+        this.movie_code = movie_code;
     }
 
     /**
@@ -81,8 +87,8 @@ public class MediaMovie extends Media {
      */
     @Override
     public boolean setGenre(String genre) {
-       this.Movie_genre=genre;
-       return true;
+        this.Movie_genre = genre;
+        return true;
     }
 
     /**
@@ -99,11 +105,10 @@ public class MediaMovie extends Media {
      * Sets director name.
      *
      * @param director director name
-     * @return boolean
      */
     @Override
-    public boolean setDirector(String director) {
-    return true;
+    public void setDirector(String director) {
+        this.director = director;
     }
 
     /**
@@ -111,7 +116,6 @@ public class MediaMovie extends Media {
      *
      * @return an ArrayList of strings with name of main actors
      */
-   
     /**
      * Returns the duration of the movie.
      *
@@ -134,18 +138,15 @@ public class MediaMovie extends Media {
         return true;
     }
 
-   /**
-    * 
-     * @return 
-    */
-  
+    /**
+     *
+     * @return
+     */
     @Override
-     public String getMovie_Code()
-    {
+    public String getMovie_Code() {
         return this.movie_code;
     }
-   
-    
+
     /**
      * toString method for MediaMovie object.
      *
