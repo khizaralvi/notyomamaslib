@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import javax.sql.*;
 import library.account.*;
+import java.util.Date;
 
 public class AccountJDBC {
     private static String dbUrl = "jdbc:mysql://localhost:3306/library_system";
@@ -276,7 +277,7 @@ public class AccountJDBC {
 		connect();
 		try	{
 			String query = "select * from checkedoutmediacoll";
-			Statement stmt = conn.createStatement();
+			Statement stmt = myConn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 
 			while(rs.next())
@@ -308,7 +309,7 @@ public class AccountJDBC {
 		try{
 			connect();
 			String query = "select * from patron where patronId = ?";
-			PreparedStatement stmt = conn.prepareStatement(query);
+			PreparedStatement stmt = myConn.prepareStatement(query);
 			stmt.setString(1,id);
 			ResultSet rs = stmt.executeQuery();
 			double current = 0;
@@ -318,7 +319,7 @@ public class AccountJDBC {
 			}
 			current = current + amountToAdd;
 			String query1 = "update patron set balance = ? where patronId = ?";
-			PreparedStatement prestmt = conn.prepareStatement(query1);
+			PreparedStatement prestmt = myConn.prepareStatement(query1);
 			prestmt.setDouble(1, current);
 			prestmt.setString(2, id);
 			
@@ -333,11 +334,6 @@ public class AccountJDBC {
 		}
 		return true;
 	}
-         
-        
-        
-
-         
 }
 
 
