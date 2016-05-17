@@ -48,13 +48,13 @@ public class CheckedOutJdbcClass {
 
             statement = con.createStatement();
 
-            rs = statement.executeQuery("select *from mydb.checkedoutmedia where mediaid='" + i.getMediaId() + "'AND patronid='" + i.getPatronId() + "'");
+            rs = statement.executeQuery("select *from checkedoutmedia where mediaid='" + i.getMediaId() + "'AND patronid='" + i.getPatronId() + "'");
 
             if (rs.next()) {
                 System.out.println("Cannnot enter duplicate entries");
 
             } else {
-                prepared = con.prepareStatement("insert into mydb.checkedoutmedia values(?,?,?,?,?)");
+                prepared = con.prepareStatement("insert into checkedoutmedia values(?,?,?,?,?)");
                 prepared.setInt(1, i.getMediaId());
                 prepared.setInt(2, i.getPatronId());
                 prepared.setDate(3, i.getBorrowDate());
@@ -88,7 +88,7 @@ public class CheckedOutJdbcClass {
         try {
             statement = con.createStatement();
 
-            rs = statement.executeQuery("select *from mydb.checkedoutmedia where patronID='" + patronid + "'");
+            rs = statement.executeQuery("select *from checkedoutmedia where patronID='" + patronid + "'");
 
             unpack(rs);
 
@@ -112,7 +112,7 @@ public class CheckedOutJdbcClass {
         try {
             statement = con.createStatement();
 
-            prepared = con.prepareStatement("delete from mydb.checkedoutmedia where patronID=? AND mediaId=?");
+            prepared = con.prepareStatement("delete from checkedoutmedia where patronID=? AND mediaId=?");
             prepared.setInt(1, patron);
             prepared.setInt(2, media);
 
@@ -155,17 +155,9 @@ public class CheckedOutJdbcClass {
 
     public void connect() {
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            //     System.out.println("Driver Found");
-        } catch (ClassNotFoundException ex) {
-
-            ex.printStackTrace();
-        }
-
-        String url = "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false";
+        String url = "jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false";
         String user = "root";
-        String password = "rafa2012";
+        String password = "";
 
         try {
             con = DriverManager.getConnection(url, user, password);

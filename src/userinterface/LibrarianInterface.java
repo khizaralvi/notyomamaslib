@@ -6,11 +6,14 @@
 package userinterface;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import library.account.Login;
 import library.account.LoginCollection;
+import library.jdbc.CheckedOutJdbcClass;
 import library.jdbc.MediaJdbcClass;
+import library.media.CheckedOutMedia;
 import library.media.Media;
 import library.media.MediaAcademic;
 import library.media.MediaBook;
@@ -88,6 +91,9 @@ public class LibrarianInterface {
                         }
                         break;
                     case 7:
+                        if (!checkoutMedia()) {
+                            System.out.println("An error occured!");
+                        }
                         break;
                     case 8:
                         break;
@@ -152,7 +158,7 @@ public class LibrarianInterface {
                         System.out.print("Type the number of authors for the media: ");
                         numOfAuthors = scan.nextInt();
                         skip = scan.nextLine();
-                        
+
                         // Receive authors
                         for (int i = 0; i < numOfAuthors; i++) {
                             System.out.print("Type the author name: ");
@@ -160,7 +166,7 @@ public class LibrarianInterface {
                             authors.add(field);
                         }
                         academic.setAuthors(authors);
-                        
+
                         // Add media
                         if (!media_jdbc.addMedia(academic)) {
                             return false;
@@ -197,7 +203,7 @@ public class LibrarianInterface {
                         System.out.print("Type the number of authors for the media: ");
                         numOfAuthors = scan.nextInt();
                         skip = scan.nextLine();
-                        
+
                         // Receive authors
                         for (int i = 0; i < numOfAuthors; i++) {
                             System.out.print("Type the author name: ");
@@ -205,7 +211,7 @@ public class LibrarianInterface {
                             authors.add(field);
                         }
                         book.setAuthors(authors);
-                        
+
                         // Add media
                         if (!media_jdbc.addMedia(book)) {
                             return false;
@@ -256,6 +262,31 @@ public class LibrarianInterface {
             }
 
         } while (true);
+    }
+
+    public static boolean checkoutMedia() {
+        
+        
+        java.util.Date util_date=new java.util.Date();
+        java.util.Date basit=new java.util.Date();
+        
+        Calendar c=Calendar.getInstance();
+        c.setTime(basit);
+        c.add(Calendar.DATE,7);
+     basit=c.getTime();
+        
+     
+     java.sql.Date borrow_date=new java.sql.Date(util_date.getTime());
+     java.sql.Date due_date = new java.sql.Date(basit.getTime());
+     
+     
+     
+        CheckedOutMedia ch=new CheckedOutMedia(3,1,borrow_date,due_date,"xxx@hotmail.com");
+        
+        CheckedOutJdbcClass check=new CheckedOutJdbcClass();
+        check.insertCheckoutMedia(ch);
+        
+        return true;
     }
 
     public static boolean deletingModule() {
