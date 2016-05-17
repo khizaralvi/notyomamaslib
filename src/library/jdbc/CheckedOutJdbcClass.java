@@ -22,212 +22,174 @@ public class CheckedOutJdbcClass {
     private ResultSet rs = null;
     private Statement statement = null;
     private PreparedStatement prepared = null;
-CheckedOutCollection ch=null;
-    
-    
+    CheckedOutCollection ch = null;
+
     /**
      * Constructor for CheckedOutJdbc
      */
     public CheckedOutJdbcClass() {
-    
-    ch=new CheckedOutCollection();
-    
+
+        ch = new CheckedOutCollection();
+
     }
 
     /**
-     * This methods records info of the checked out media  
-     * and the info of the patron checking it out
+     * This methods records info of the checked out media and the info of the
+     * patron checking it out
      *
      * @param insertCheckoutMedia record of info pertaining to check out
      * @return true if recorded successfully or false otherwise
      */
     public boolean insertCheckoutMedia(CheckedOutMedia i) {
-       
-     connect();
-     
+
+        connect();
+
         try {
-    
-    statement=con.createStatement();
-    
-            rs=statement.executeQuery("select *from mydb.checkedoutmedia where mediaid='"+i.getMediaId()+"'AND patronid='"+i.getPatronId()+"'");
-            
-            if(rs.next())
-            {
-             System.out.println("Cannnot enter duplicate entries");
-            
+
+            statement = con.createStatement();
+
+            rs = statement.executeQuery("select *from mydb.checkedoutmedia where mediaid='" + i.getMediaId() + "'AND patronid='" + i.getPatronId() + "'");
+
+            if (rs.next()) {
+                System.out.println("Cannnot enter duplicate entries");
+
+            } else {
+                prepared = con.prepareStatement("insert into mydb.checkedoutmedia values(?,?,?,?,?)");
+                prepared.setInt(1, i.getMediaId());
+                prepared.setInt(2, i.getPatronId());
+                prepared.setDate(3, i.getBorrowDate());
+                prepared.setDate(4, i.getDueDate());
+                prepared.setString(5, i.getPatronEmail());
+
+                prepared.executeUpdate();
+
+                System.out.println("Successfully inserted");
+                return true;
             }
-            else{
-            prepared=con.prepareStatement("insert into mydb.checkedoutmedia values(?,?,?,?,?)");
-    prepared.setInt(1,i.getMediaId());
-    prepared.setInt(2,i.getPatronId());
-    prepared.setDate(3,i.getBorrowDate());
-    prepared.setDate(4,i.getDueDate());
-    prepared.setString(5, i.getPatronEmail());
-    
-    prepared.executeUpdate();
-    
-    System.out.println("Successfully inserted");
-    return true;
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
         }
-        }
-        
-        catch (SQLException ex) {
-     
-           ex.printStackTrace();
-        }
-     
-     
-        
-        
+
         return false;
-        
+
     }
 
-
     /**
-     * This method allows people to search the checked out media
-     * allowing the patron to view borrowing history
+     * This method allows people to search the checked out media allowing the
+     * patron to view borrowing history
      *
-     * @param patronid 
+     * @param patronid
      * @return true if this was successful or false otherwise
      */
     public CheckedOutCollection searchCheckedOutMedia(int patronid) {
-    
+
         connect();
         try {
-            statement=con.createStatement();
-            
-            rs=statement.executeQuery("select *from mydb.checkedoutmedia where patronID='"+patronid+"'");
-            
-       unpack(rs);     
-            
-            
-       
+            statement = con.createStatement();
+
+            rs = statement.executeQuery("select *from mydb.checkedoutmedia where patronID='" + patronid + "'");
+
+            unpack(rs);
+
         } catch (SQLException ex) {
             Logger.getLogger(CheckedOutJdbcClass.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         return ch;
     }
 
-
     /**
-     * This method marks the media that is currently checked out of the catalog, as 
-     * returned. It is only called when checkIn is true
+     * This method marks the media that is currently checked out of the catalog,
+     * as returned. It is only called when checkIn is true
      *
      * @param deletedCheckedOutMedia Media to be marked as returned
      * @return true if this was successful or false otherwise
      */
     public boolean deleteCheckedOutMedia(int patron, int media) {
-        
+
         connect();
         try {
-            statement=con.createStatement();
-            
-     
-       prepared=con.prepareStatement("delete from mydb.checkedoutmedia where patronID=? AND mediaId=?");
-        prepared.setInt(1,patron);
-        prepared.setInt(2,media);
-      
-        prepared.executeUpdate();
-        
-        
+            statement = con.createStatement();
+
+            prepared = con.prepareStatement("delete from mydb.checkedoutmedia where patronID=? AND mediaId=?");
+            prepared.setInt(1, patron);
+            prepared.setInt(2, media);
+
+            prepared.executeUpdate();
+
+        } catch (SQLException se) {
+            se.printStackTrace();
         }
-        
-        catch(SQLException se){se.printStackTrace();}
-       
+
         return true;
     }
 
     /**
-     * This methods validates a renewal for media that is currently checked from the catalog
-     * if it is not currently reserved already
+     * This methods validates a renewal for media that is currently checked from
+     * the catalog if it is not currently reserved already
      *
      * @param patronid
      * @param emailid
-     * @param renewMedia Media is renewed 
+     * @param renewMedia Media is renewed
      * @return true if media was renewed successfully, false otherwise
      */
-    public boolean renewMedia(int patronid,int mediaid) {
-        
+    public boolean renewMedia(int patronid, int mediaid) {
+
         connect();
-        try{
- prepared=con.prepareStatement("update checkedoutmedia set dueDate=Date_add(dueDate,Interval 7 DAY)"
-         + "where patronid=? and mediaid=?");
- 
- 
- prepared.setInt(1, patronid);
- prepared.setInt(2,mediaid);
- 
- prepared.executeUpdate();
- 
-     
+        try {
+            prepared = con.prepareStatement("update checkedoutmedia set dueDate=Date_add(dueDate,Interval 7 DAY)"
+                    + "where patronid=? and mediaid=?");
+
+            prepared.setInt(1, patronid);
+            prepared.setInt(2, mediaid);
+
+            prepared.executeUpdate();
+
+        } catch (SQLException se) {
+            se.printStackTrace();
         }
-        
-        catch(SQLException se)
-        {
-        se.printStackTrace();
-        }
-        
+
         return true;
     }
 
-    
-    public void connect()
-    {
-    
+    public void connect() {
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
-       //     System.out.println("Driver Found");
-        } 
-         catch (ClassNotFoundException ex) {
-           
+            //     System.out.println("Driver Found");
+        } catch (ClassNotFoundException ex) {
+
             ex.printStackTrace();
         }
-         
-        String url="jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false";
-        String user="root";
-        String password="rafa2012";
 
-        try{
-          con=DriverManager.getConnection(url,user,password);
-      
-     //          System.out.println("Connection successful");
-     }
-     
-     catch(SQLException se)
-        {
-           se.printStackTrace();
+        String url = "jdbc:mysql://localhost:3306/mydb?autoReconnect=true&useSSL=false";
+        String user = "root";
+        String password = "rafa2012";
+
+        try {
+            con = DriverManager.getConnection(url, user, password);
+
+            //          System.out.println("Connection successful");
+        } catch (SQLException se) {
+            se.printStackTrace();
         }
-     
-     
-    
-    
-    
+
     }
-    
-    
-    
-    
-  private void unpack(ResultSet rs)
-   {
-       CheckedOutMedia check=null;
-    
-       try{
-       while(rs.next())
-    {
-        check=new CheckedOutMedia(rs.getInt("mediaId"),rs.getInt("patronId"),rs.getDate("borrowDate"),rs.getDate("dueDate"),rs.getString("patronEmail"));
-    ch.getMedia().add(check);
-    
+
+    private void unpack(ResultSet rs) {
+        CheckedOutMedia check = null;
+
+        try {
+            while (rs.next()) {
+                check = new CheckedOutMedia(rs.getInt("mediaId"), rs.getInt("patronId"), rs.getDate("borrowDate"), rs.getDate("dueDate"), rs.getString("patronEmail"));
+                ch.getMedia().add(check);
+
+            }
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
     }
-       
-       }
-       catch(SQLException se)
-       {
-           se.printStackTrace();
-       }
-   }
-    
-    
+
 }

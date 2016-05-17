@@ -9,7 +9,7 @@ import java.sql.Date;
  * @author <a href="abasit1@oldwestbury.edu">Abdul Basit</a>
  * @version 1.0.0
  */
-public class CheckedOutMedia  {
+public class CheckedOutMedia {
 
     private int mediaId;
     private int patronId;
@@ -26,15 +26,15 @@ public class CheckedOutMedia  {
      * @param dueDate date due
      * @param patronEmail Email of Patron
      */
-    public CheckedOutMedia(int mediaId, int patronId, 
-		Date borrowDate,Date dueDate, String patronEmail) {
-    
-    this.patronId=patronId;
-   this.mediaId=mediaId;
-   this.borrowDate=borrowDate;
-   this.dueDate=dueDate;
-   this.patronEmail=patronEmail;
-    
+    public CheckedOutMedia(int mediaId, int patronId,
+            Date borrowDate, Date dueDate, String patronEmail) {
+
+        this.patronId = patronId;
+        this.mediaId = mediaId;
+        this.borrowDate = borrowDate;
+        this.dueDate = dueDate;
+        this.patronEmail = patronEmail;
+
     }
 
     /**
@@ -54,8 +54,7 @@ public class CheckedOutMedia  {
     public void setMediaId(String mediaId) {
     }
 
-   
-     /**
+    /**
      * Returns the Patron ID of the Patron who is checking out the media
      *
      * @return Patron unique identifier
@@ -126,9 +125,8 @@ public class CheckedOutMedia  {
 
     }
 
-
     /**
-     * toString() for printing all the data associated with CheckOutMedia 
+     * toString() for printing all the data associated with CheckOutMedia
      *
      * @return the string with all the information of CheckedOutMedia
      */
@@ -144,7 +142,7 @@ public class CheckedOutMedia  {
      * @return true if same, otherwise false
      */
     public boolean equals(CheckedOutMedia com) {
-	return true;
+        return true;
     }
 
 }

@@ -48,6 +48,8 @@ public class LibrarianInterface {
             System.out.println("4. Edit media");
             System.out.println("5. Manage reservations");
             System.out.println("6. Renew media");
+            System.out.println("7. Check out media");
+            System.out.println("8. Check in media");
             System.out.println("0. Return to previous menu");
             System.out.print("Type your option: ");
 
@@ -84,6 +86,10 @@ public class LibrarianInterface {
                         if (!renewingModule()) {
                             System.out.println("An error occured!");
                         }
+                        break;
+                    case 7:
+                        break;
+                    case 8:
                         break;
                     case 0:
                         break;
