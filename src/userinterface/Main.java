@@ -1,16 +1,20 @@
 package userinterface;
 
+import java.sql.SQLException;
 import library.account.LoginCollection;
 import library.account.PatronAccount;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import library.account.Login;
 import library.income.IncomeCol;
 import static userinterface.LibrarianInterface.librarianInterface;
 import static userinterface.PatronInterface.patronInterface;
+import library.jdbc.CheckedOutJdbcClass;
 
 public class Main {
 
-    public static final String staffMenu = "\n\n\n=========MENU OPTIONS:=========\n1. Look up Account\n2. Media Managment\n3. Update Account\n4. View Income\n0. Logout";
+    public static final String staffMenu = "\n\n\n=========MENU OPTIONS:=========\n1. Look up Account\n2. Media Managment\n3. Update Account\n4. View Income\n5. Check Media Due Dates\n6. Send Late Notifications\n7. Send Due Date Notificationsn\n0. Logout";
     public static final String patronMenu = "";
     
     
@@ -22,6 +26,7 @@ public class Main {
         Login a;
         PatronAccount p;
         IncomeCol income_collection = new IncomeCol();
+        CheckedOutJdbcClass c1 = new CheckedOutJdbcClass (); 
         
         String user;
         String pass;
@@ -48,7 +53,8 @@ public class Main {
                         login = true;
                          System.out.println("\n\n======== Welcome " + a.getUsername() + " ========");
 
-                        while (login) {
+                        try {
+                         while (login) {
                             
                              System.out.println(staffMenu);
                              System.out.print("Please enter an option: ");
@@ -70,12 +76,24 @@ public class Main {
                                 case 4:
                                     System.out.println(income_collection.view('*').toString());
                                     break;
+                                case 5:
+                                    c1.checkDueDates();       
+                                    break;
+                                case 6:
+                                    c1.SendLateNotification();
+                                    break;
+                                case 7:
+                                    c1.SendDueDateNotification();
+                                    break;
                                 default:
                                     print("Type a valid options");
                                     break;
                             }
                         }
-
+                        }
+                        catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                     break;
 

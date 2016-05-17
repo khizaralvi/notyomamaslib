@@ -162,7 +162,7 @@ public class CheckedOutJdbcClass {
 
         String url = "jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false";
         String user = "root";
-        String password = "rafa2012";
+        String password = "";
 
         try {
             con = DriverManager.getConnection(url, user, password);
@@ -316,7 +316,7 @@ public class CheckedOutJdbcClass {
 	class SocialAuth extends Authenticator {  
         @Override  
         protected PasswordAuthentication getPasswordAuthentication() {  
-            return new PasswordAuthentication("khizex20@gmail.com", "");  
+            return new PasswordAuthentication("notyomamaslib@gmail.com", "notyomamaslib123456");  
         }  
       }
 
