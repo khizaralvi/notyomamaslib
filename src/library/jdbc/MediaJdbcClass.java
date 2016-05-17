@@ -103,13 +103,11 @@ public class MediaJdbcClass {
 
                     rs = statement.executeQuery("select * from media where mediaCode='" + m.getIsbn() + "'");
                     if (rs.next()) {
-                        System.out.println("Book with the given ISBN is already in the system");
+                        System.out.println("Book with the given DOI code is already in the system");
                     } else {
                         prepared.executeUpdate();
 
                         author_list = m.getAuthors();
-
-                        System.out.println("author list size= " + author_list.size());
 
                         for (int i = 0; i < author_list.size(); i++) {
                             //prepared2.setString(1,m.getMediaId());

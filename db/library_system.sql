@@ -31,7 +31,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library_system`.`media` (
   `mediaId` INT(10) NOT NULL AUTO_INCREMENT,
-  `mediaTitle` VARCHAR(45) NULL DEFAULT NULL,
+  `mediaTitle` VARCHAR(300) NULL DEFAULT NULL,
   `mediaYear` VARCHAR(4) NULL DEFAULT NULL,
   `mediaCategory` VARCHAR(20) NULL DEFAULT NULL,
   `mediaCost` DOUBLE NULL DEFAULT NULL,
