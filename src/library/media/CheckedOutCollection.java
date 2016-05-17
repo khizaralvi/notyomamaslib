@@ -11,8 +11,19 @@ import java.util.ArrayList;
  */
 public class CheckedOutCollection {
 
-    private ArrayList<Media> media;
+    private ArrayList<CheckedOutMedia> checkmedia=new ArrayList();
 
+    
+    /**
+     * Default constructor
+     */
+    public CheckedOutCollection()
+    {
+    
+    
+    
+    }
+    
     /**
      * Constructor for CheckedOutCollection
      *
@@ -50,6 +61,7 @@ public class CheckedOutCollection {
      * returned. It is only called when checkIn is true
      *
      * @param deletedCheckedOutMedia Media to be marked as returned
+     * 
      * @return true if this was successful or false otherwise
      */
     public boolean deleteCheckedOutMedia(CheckedOutMedia deletedCheckedOutMedia) {
@@ -75,6 +87,26 @@ public class CheckedOutCollection {
      */
     @Override
     public String toString() {
-        return "";
+        
+        String str="";
+        
+        for(int i=0;i<checkmedia.size();i++)
+        {
+      str+=String.valueOf(checkmedia.get(i).getMediaId())+" "+String.valueOf(checkmedia.get(i).getPatronId())+""
+              +" "+checkmedia.get(i).getBorrowDate().toString()+" "+checkmedia.get(i).getDueDate().toString()+
+              " "+checkmedia.get(i).getPatronEmail()+"\n";
+                    
+      
+        }
+        
+    
+    return str;
+    
     }
+
+    public ArrayList<CheckedOutMedia> getMedia() {
+        return checkmedia;
+    }
+    
+    
 }

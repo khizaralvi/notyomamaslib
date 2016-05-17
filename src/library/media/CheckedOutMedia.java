@@ -1,5 +1,7 @@
 package library.media;
 
+import java.sql.Date;
+
 /**
  * CheckedOutMedia is the class that implements a media that was borrowed by a
  * specific user. It will store state information relevant to this operation.
@@ -9,10 +11,10 @@ package library.media;
  */
 public class CheckedOutMedia  {
 
-    private String mediaId;
-    private String patronId;
-    private String borrowDate;
-    private String dueDate;
+    private int mediaId;
+    private int patronId;
+    private Date borrowDate;
+    private Date dueDate;
     private String patronEmail;
 
     /**
@@ -24,8 +26,15 @@ public class CheckedOutMedia  {
      * @param dueDate date due
      * @param patronEmail Email of Patron
      */
-    public CheckedOutMedia(String mediaId, String patronId, 
-		String borrowDate, String dueDate, String patronEmail) {
+    public CheckedOutMedia(int mediaId, int patronId, 
+		Date borrowDate,Date dueDate, String patronEmail) {
+    
+    this.patronId=patronId;
+   this.mediaId=mediaId;
+   this.borrowDate=borrowDate;
+   this.dueDate=dueDate;
+   this.patronEmail=patronEmail;
+    
     }
 
     /**
@@ -33,7 +42,7 @@ public class CheckedOutMedia  {
      *
      * @return Media unique identifier
      */
-    public String getMediaId() {
+    public int getMediaId() {
         return mediaId;
     }
 
@@ -51,7 +60,7 @@ public class CheckedOutMedia  {
      *
      * @return Patron unique identifier
      */
-    public String getPatronId() {
+    public int getPatronId() {
         return patronId;
     }
 
@@ -68,7 +77,7 @@ public class CheckedOutMedia  {
      *
      * @return borrow date
      */
-    public String getBorrowDate() {
+    public Date getBorrowDate() {
         return borrowDate;
     }
 
@@ -86,7 +95,7 @@ public class CheckedOutMedia  {
      *
      * @return due date
      */
-    public String getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
