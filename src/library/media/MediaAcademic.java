@@ -24,7 +24,7 @@ public class MediaAcademic extends Media {
     private String publisher;
     private String numberOfPages;
     private ArrayList<String> authors;
-    private String ebook_ISBN;
+    private String academicISBN;
 
     /**
      * LATE_FEE is the amount of money charged in cents per late day by the
@@ -74,7 +74,7 @@ public class MediaAcademic extends Media {
         this.authors = author;
         this.publisher = publisher;
         this.numberOfPages = numberOfPages;
-        this.ebook_ISBN = ebook_ISBN;
+        this.academicISBN = ebook_ISBN;
     }
 
     /**
@@ -83,8 +83,8 @@ public class MediaAcademic extends Media {
      * @return publisher name.
      */
     @Override
-    public String get_Ebook_Publisher() {
-        return publisher;
+    public String getAcademicPublisher() {
+        return this.publisher;
     }
 
     /**
@@ -94,8 +94,8 @@ public class MediaAcademic extends Media {
      * @return boolean
      */
     @Override
-    public boolean set_Ebook_Publisher(String publisher) {
-        return true;
+    public void setAcademicPublisher(String publisher) {
+        this.publisher = publisher;
     }
 
     
@@ -116,8 +116,8 @@ public class MediaAcademic extends Media {
      * @return boolean
      */
     @Override
-    public boolean setAuthors_of_Ebook(ArrayList<String> authors) {
-        return true;
+    public void setAuthors(ArrayList<String> authors) {
+        this.authors=authors;
     }
 
     /**
@@ -125,9 +125,17 @@ public class MediaAcademic extends Media {
      * @return ISBN
      */
     @Override
-    public String getEbook_ISBN() {
-        return this.ebook_ISBN;
+    public String getAcademicISBN() {
+        return this.academicISBN;
 
+    }
+    
+    /**
+     * 
+     */
+    public void setAcademicISBN(String isbn)
+    {
+      this.academicISBN=isbn;
     }
 
     /**

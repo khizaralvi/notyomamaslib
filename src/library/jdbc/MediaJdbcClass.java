@@ -72,7 +72,7 @@ public class MediaJdbcClass {
           // First, it must be connected to the database 
 
         // prepared2=con.prepareStatement("insert into mydb.authorbooks values(?,?)");
-        prepared2 = con.prepareStatement("insert into author (auhorname) value(?)");
+        prepared2 = con.prepareStatement("insert into author (authorName) value(?)");
         prepared3 = con.prepareStatement("insert into authorbooks values(?,?)");
 
         try {
@@ -116,14 +116,14 @@ public class MediaJdbcClass {
                             prepared2.setString(1, author_list.get(i));
 
                             // checking if the same author name doesnt exist in the table
-                            rs = statement.executeQuery("select * from author where auhorname='" + author_list.get(i) + "'");
+                            rs = statement.executeQuery("select * from author where authorName='" + author_list.get(i) + "'");
                             if (rs.next()) {
                             } else {
                                 prepared2.executeUpdate();
                             }
                         }
                         for (int i = 0; i < author_list.size(); i++) {
-                            rs = statement.executeQuery("select * from author where auhorname='" + author_list.get(i) + "'");
+                            rs = statement.executeQuery("select * from author where authorName='" + author_list.get(i) + "'");
                             rs.next();
                             prepared3.setString(2, rs.getString("authorID"));
                             rs = statement.executeQuery("select * from media where mediaCode='" + m.getIsbn() + "'");
@@ -158,8 +158,8 @@ public class MediaJdbcClass {
                     prepared.setDouble(4, m.getMediaCost());
                     prepared.setString(5, m.getMediaType());
                     prepared.setInt(6, m.getQuantity());
-                    prepared.setString(7, m.get_Ebook_Publisher());
-                    prepared.setString(8, m.getEbook_ISBN());
+                    prepared.setString(7, m.getAcademicPublisher());
+                    prepared.setString(8, m.getAcademicISBN());
                     prepared.setString(9, null);
                     prepared.setString(10, null);
                     prepared.setString(11, null);
@@ -176,7 +176,7 @@ public class MediaJdbcClass {
                         prepared2.setString(1, author_list.get(i));
 
                         // checking if the same author name doesnt exist in the table
-                        rs = statement.executeQuery("select * from author where auhorname='" + author_list.get(i) + "'");
+                        rs = statement.executeQuery("select * from author where authorName='" + author_list.get(i) + "'");
                         if (rs.next()) {
 
                         } else {
@@ -185,12 +185,12 @@ public class MediaJdbcClass {
                         }
                     }
                     for (int i = 0; i < author_list.size(); i++) {
-                        rs = statement.executeQuery("select * from author where auhorname='" + author_list.get(i) + "'");
+                        rs = statement.executeQuery("select * from author where authorName='" + author_list.get(i) + "'");
                         rs.next();
 
                         prepared3.setString(2, rs.getString("authorID"));
 
-                        rs = statement.executeQuery("select * from media where mediaCode='" + m.getEbook_ISBN() + "'");
+                        rs = statement.executeQuery("select * from media where mediaCode='" + m.getAcademicISBN() + "'");
 
                         rs.next();
 
@@ -285,7 +285,7 @@ public class MediaJdbcClass {
                     prepared.setDouble(4, editedMedia.getMediaCost());
                     prepared.setString(5, editedMedia.getMediaType());
                     prepared.setInt(6, editedMedia.getQuantity());
-                    prepared.setString(7, editedMedia.get_Ebook_Publisher());
+                    prepared.setString(7, editedMedia.getAcademicPublisher());
 
                     prepared.setString(8, null);
                     prepared.setString(9, null);

@@ -164,12 +164,11 @@ public class Media {
     public void setQuantity(int q) {
         this.quantity = q;
     }
-    
+
     public void setCategory(String category) {
         this.mediaCategory = category;
     }
-    
-        
+
     public String getCategory() {
         return this.mediaCategory;
     }
@@ -194,9 +193,8 @@ public class Media {
      * @param isbn ISBN code
      * @return boolean
      */
+    public void setIsbn(String isbn) {
 
-    public boolean setIsbn(String isbn) {
-        return true;
     }
 
     /**
@@ -212,10 +210,9 @@ public class Media {
      * Sets the book edition
      *
      * @param edition book edition
-     * @return true if edition is set successfully or false otherwise
+     * @return boolean
      */
-    public boolean setEdition(int edition) {
-        return true;
+    public void setBookEdition(String volume) {
     }
 
     /**
@@ -233,8 +230,7 @@ public class Media {
      * @param volume book volume
      * @return true if volume is set successfully o false otherwise
      */
-    public boolean setVolume(int volume) {
-        return true;
+    public void setBookVolume(String volume) {
     }
 
     /**
@@ -255,14 +251,13 @@ public class Media {
         return null;
     }
 
-    /**
+            /**
      * Sets the publisher name
      *
      * @param publisher publisher name
-     * @return true if publisher is set or false otherwise
+     * @return boolean
      */
-    public boolean setPublisher(String publisher) {
-        return true;
+    public void setPublisher(String publisher) {
     }
 
     /**
@@ -274,15 +269,6 @@ public class Media {
         return null;
     }
 
-    /**
-     * Sets the authors list for the book.
-     *
-     * @param authors an ArrayList of strings with the name of all authors.
-     * @return true if authors are set successfully or false otherwise
-     */
-    public boolean setAuthors(ArrayList<String> authors) {
-        return true;
-    }
     /**
      * Returns the director name.
      *
@@ -339,20 +325,17 @@ public class Media {
         return true;
     }
 
-    public String get_Ebook_Publisher() {
-        return null;
+    public void setAcademicPublisher(String publisher) {
     }
 
     /**
      * Sets the publisher name.
      *
-     * @param publisher publisher name
-     * @return true if EBook_publisher is set successfully or false otherwise
+     * @return ""
      */
-    public boolean set_Ebook_Publisher(String publisher) {
-        return true;
+    public String getAcademicPublisher() {
+        return "";
     }
-
 
     /**
      * Returns a list with all authors.
@@ -367,19 +350,22 @@ public class Media {
      * Sets authors of academic material.
      *
      * @param authors an ArrayList of strings with the name of all authors.
-     * @return true if authors are set successfully
+     * @return boolean
      */
-    public boolean setAuthors_of_Ebook(ArrayList<String> authors) {
-        return true;
+    public void setAuthors(ArrayList<String> authors) {
+
     }
 
-
-    public String getEbook_ISBN() {
+    public String getAcademicISBN() {
         return null;
     }
 
     public String getMovie_Code() {
         return null;
+    }
+
+    public void setAcademicISBN(String str) {
+
     }
 
 }

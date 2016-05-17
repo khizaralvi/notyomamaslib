@@ -129,8 +129,8 @@ public class MediaCollection {
             }
             if (type.equals("a")) {
                 aggregate += String.valueOf(media.get(i).getMediaId()) + "\t" + media.get(i).getMediaTitle() + "\t\t" + media.get(i).getMediaCost()
-                        + "\t" + media.get(i).getMediaYear() + "\t" + media.get(i).getCategory() + "\t\tEbook\t" + media.get(i).getQuantity() + "\t" + media.get(i).get_Ebook_Publisher()
-                        + "\t\t" + media.get(i).getEbook_ISBN() + "\t*\t*\t*\t*\n";
+                        + "\t" + media.get(i).getMediaYear() + "\t" + media.get(i).getCategory() + "\t\tEbook\t" + media.get(i).getQuantity() + "\t" + media.get(i).getAcademicPublisher()
+                        + "\t\t" + media.get(i).getAcademicISBN() + "\t*\t*\t*\t*\n";
 
             }
 

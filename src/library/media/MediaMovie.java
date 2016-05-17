@@ -110,6 +110,9 @@ public class MediaMovie extends Media {
         this.running_time = running_time;
         return true;
     }
+    
+
+
 
     /**
      * toString method for MediaMovie object.

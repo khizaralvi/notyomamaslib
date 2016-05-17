@@ -98,8 +98,8 @@ public class MediaBook extends Media {
      * @return boolean
      */
     @Override
-    public boolean setIsbn(String isbn) {
-        return true;
+    public void setIsbn(String isbn) {
+        this.bookIsbn = isbn;
     }
 
     /**
@@ -119,8 +119,8 @@ public class MediaBook extends Media {
      * @return boolean
      */
     @Override
-    public boolean setEdition(int edition) {
-        return true;
+    public void setBookEdition(String volume) {
+        this.bookEdition = volume;
     }
 
     /**
@@ -140,8 +140,8 @@ public class MediaBook extends Media {
      * @return boolean
      */
     @Override
-    public boolean setVolume(int volume) {
-        return true;
+    public void setBookVolume(String volume) {
+        this.bookVolume = volume;
     }
 
     /**
@@ -161,8 +161,8 @@ public class MediaBook extends Media {
      * @return boolean
      */
     @Override
-    public boolean setPublisher(String publisher) {
-        return true;
+    public void setPublisher(String publisher) {
+        this.bookPublisher = publisher;
     }
 
     /**
@@ -182,8 +182,8 @@ public class MediaBook extends Media {
      * @return boolean
      */
     @Override
-    public boolean setAuthors(ArrayList<String> authors) {
-        return true;
+    public void setAuthors(ArrayList<String> authors) {
+        this.bookAuthors = authors;
     }
 
     /**
