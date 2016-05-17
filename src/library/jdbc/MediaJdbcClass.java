@@ -9,14 +9,13 @@ import library.media.MediaAcademic;
 import library.media.MediaBook;
 import library.media.MediaCollection;
 import library.media.MediaMovie;
-import library.media.Reservation;
 
 /**
  * The MediaJdbcClass is the bridge between the MediaCollection and the JDBC
  * (database). This class implements all communications with the database
  * related to the functions of MediaCollection.
  *
- * @author <a>Adil Imam</a>
+ * @author Adil Imam
  */
 public class MediaJdbcClass {
 
@@ -87,7 +86,7 @@ public class MediaJdbcClass {
 
             //populate the appropriate fields for each media Subtype   
             switch (str) {
-                case "b": {
+                case "B": {
                     prepared.setString(1, m.getMediaTitle());
                     prepared.setString(2, m.getMediaYear());
                     prepared.setString(3, m.getBookGenre());
@@ -134,24 +133,23 @@ public class MediaJdbcClass {
                     }
                     break;
                 }
-                case "m": {
-                    // prepared.setString(1,m.getMediaId());
+                case "M": {
                     prepared.setString(1, m.getMediaTitle());
                     prepared.setString(2, m.getMediaYear());
                     prepared.setString(3, m.getGenre());
                     prepared.setDouble(4, m.getMediaCost());
                     prepared.setString(5, m.getMediaType());
                     prepared.setInt(6, m.getQuantity());
-                    prepared.setString(7, null);
-                    prepared.setString(8, m.getMovie_Code());
-                    prepared.setString(9, null);
-                    prepared.setString(10, null);
+                    prepared.setString(7, null); // mediaPublisher
+                    prepared.setString(8, null); // bookISBN
+                    prepared.setString(9, null); // bookEdition
+                    prepared.setString(10, null); // bookVolume
                     prepared.setString(11, m.getRunning_time());
                     prepared.setString(12, m.getDirector());
                     prepared.executeUpdate();
                     break;
                 }
-                case "a": {
+                case "A": {
                     // prepared.setString(1,m.getMediaId());
                     prepared.setString(1, m.getMediaTitle());
                     prepared.setString(2, m.getMediaYear());
@@ -230,12 +228,16 @@ public class MediaJdbcClass {
     public boolean editMedia(Media editedMedia) {
 
         String type = editedMedia.getMediaType();
+        System.out.println("Type:" + type);
 
         connect(); // First, it must be connected to the database 
 
         try {
-            prepared = con.prepareStatement("update media set mediaTitle=?,mediaYear=?,mediaCategory=?,mediaCost=?,mediaType=?,mediaQuantity=?,mediaPublisher=?,bookEdition=?,bookVolume=?,runningTime=?,movieDirector=?"
-                    + " where mediaId=?");
+            prepared = con.prepareStatement("insert into media (mediaTitle, "
+                    + "mediaYear, mediaCategory, mediaCost, mediaType, "
+                    + "mediaQuantity, mediaPublisher, mediaCode, bookEdition, "
+                    + "bookVolume, runningTime, movieDirector) values ("
+                    + "?,?,?,?,?,?,?,?,?,?,?,?)");
 
             switch (type) {
                 case "b": {
@@ -265,18 +267,14 @@ public class MediaJdbcClass {
                     prepared.setDouble(4, editedMedia.getMediaCost());
                     prepared.setString(5, editedMedia.getMediaType());
                     prepared.setInt(6, editedMedia.getQuantity());
-                    prepared.setString(7, null);
-
-                    prepared.setString(8, null);
-                    prepared.setString(9, null);
-                    prepared.setString(10, editedMedia.getRunning_time());
-                    prepared.setString(11, editedMedia.getDirector());
-                    prepared.setInt(12, editedMedia.getMediaId());
-
+                    prepared.setString(7, null); // mediaPublisher
+                    prepared.setString(8, null); // bookISBN
+                    prepared.setString(9, null); // bookEdition
+                    prepared.setString(10, null); // bookVolume
+                    prepared.setString(11, editedMedia.getRunning_time());
+                    prepared.setString(12, editedMedia.getDirector());
                     prepared.executeUpdate();
-
                     break;
-
                 }
                 case "a": {
 
@@ -303,9 +301,7 @@ public class MediaJdbcClass {
         } catch (SQLException ex) {
             Logger.getLogger(MediaJdbcClass.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return true;
-
     }
 
     /**

@@ -3,8 +3,8 @@ package library.media;
 import java.util.ArrayList;
 
 /**
- * Media is the base class for all media material existing in the
- * library system.
+ * Media is the base class for all media material existing in the library
+ * system.
  * <p>
  * The Media class encapsulates all state information common among all different
  * types of Media. This state information includes: </p>
@@ -25,15 +25,13 @@ public class Media {
     private double mediaCost;
     private String mediaType; // Media types: A (Academic), B (Book), M (Movie)
     private int quantity;
-    
-    
+
     /**
      * Default Constructor.
      */
     public Media() {
-        
     }
-    
+
     /**
      * Constructor for Media.
      *
@@ -44,16 +42,15 @@ public class Media {
      * @param type Type of Media
      * @param quantity amount of media available
      */
-    public Media(int id,String title, String year, double cost, 
+    public Media(int id, String title, String year, double cost,
             String type, int quantity) {
-        
-        this.mediaId=id;
-        this.mediaTitle=title;
-        this.mediaYear=year;
-        this.mediaType=type;
-        this.quantity=quantity;
-        this.mediaCost=cost;
-        
+
+        this.mediaId = id;
+        this.mediaTitle = title;
+        this.mediaYear = year;
+        this.mediaType = type;
+        this.quantity = quantity;
+        this.mediaCost = cost;
     }
 
     /**
@@ -107,7 +104,7 @@ public class Media {
      * @param year Publication year in format YYYY
      */
     public void setMediaYear(String year) {
-        this.mediaType = year;
+        this.mediaYear = year;
     }
 
     /**
@@ -123,7 +120,7 @@ public class Media {
      * Sets the Media cost
      *
      * @param cost Cost of media in US$
-     * 
+     *
      */
     public void setMediaCost(double cost) {
         this.mediaCost = cost;
@@ -135,38 +132,35 @@ public class Media {
      * @return a char indicating which type of Media is this.
      */
     public String getMediaType() {
-        return mediaType;
+        return this.mediaType;
     }
 
     /**
      * Sets media type. Media types: A (Academic), B (Book), M (Movie)
-     * 
+     *
      * @param mediaType a char indicating which type of Media is this.
-     * @return true when mediaType is set successfully or false otherwise
      */
-    public boolean setMediaType(char mediaType) {
-    return true;
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
-    
+
     /**
      * Returns quantity available for media.
-     * 
+     *
      * @return quantity available.
      */
     public int getQuantity() {
         return quantity;
     }
-    
+
     /**
      * Sets quantity available of Media.
-     * 
+     *
      * @param q available quantity
-     * @return true if quantity is set successfully of false otherwise
      */
-    public boolean setQuantity(int q) {
-        return true;
+    public void setQuantity(int q) {
+        this.quantity = q;
     }
-    
 
     /**
      * toString() method to print Media details
@@ -178,12 +172,10 @@ public class Media {
         return "";
     }
 
-    
-    
-   public String getIsbn()
-   {
-    return null;
-   }
+    public String getIsbn() {
+        return null;
+    }
+
     /**
      * Sets the ISBN code
      *
@@ -191,9 +183,8 @@ public class Media {
      * @return boolean
      */
 
-    public boolean setIsbn(String isbn)
-    {
-    return true;
+    public boolean setIsbn(String isbn) {
+        return true;
     }
 
     /**
@@ -201,24 +192,28 @@ public class Media {
      *
      * @return book edition
      */
-    public String getEdition()
-    {
-      return null;
+    public String getEdition() {
+        return null;
     }
+
     /**
      * Sets the book edition
      *
      * @param edition book edition
      * @return true if edition is set successfully or false otherwise
      */
-    public boolean setEdition(int edition){return true;}
+    public boolean setEdition(int edition) {
+        return true;
+    }
 
     /**
      * Returns the book volume
      *
      * @return book volume
      */
-    public String getVolume(){return null;}
+    public String getVolume() {
+        return null;
+    }
 
     /**
      * Sets the book volume
@@ -226,9 +221,8 @@ public class Media {
      * @param volume book volume
      * @return true if volume is set successfully o false otherwise
      */
-    public boolean setVolume(int volume)
-    {
-    return true;
+    public boolean setVolume(int volume) {
+        return true;
     }
 
     /**
@@ -236,30 +230,27 @@ public class Media {
      *
      * @return number of pages
      */
-    
-     public String getNumOfPages_of_Books()
-     {
-      return null;
-     }
+    public String getNumOfPages_of_Books() {
+        return null;
+    }
 
     /**
      * Returns the publisher name.
      *
      * @return publisher name
      */
-    public String getPublisher()
-    {
-     return null;
+    public String getPublisher() {
+        return null;
     }
+
     /**
      * Sets the publisher name
      *
      * @param publisher publisher name
      * @return true if publisher is set or false otherwise
      */
-    public boolean setPublisher(String publisher)
-    {
-    return true;
+    public boolean setPublisher(String publisher) {
+        return true;
     }
 
     /**
@@ -267,25 +258,23 @@ public class Media {
      *
      * @return an ArrayList of strings with the name of all authors.
      */
-    public  ArrayList<String> getAuthors()
-    {
-    return null;
+    public ArrayList<String> getAuthors() {
+        return null;
     }
+
     /**
      * Sets the authors list for the book.
      *
      * @param authors an ArrayList of strings with the name of all authors.
      * @return true if authors are set successfully or false otherwise
      */
-   public boolean setAuthors(ArrayList<String> authors)
-   {
-       return true;
-   }
+    public boolean setAuthors(ArrayList<String> authors) {
+        return true;
+    }
 
-   public String getGenre()
-   {
-   return null;
-   }
+    public String getGenre() {
+        return null;
+    }
 
     /**
      * Sets genre of movie.
@@ -293,9 +282,8 @@ public class Media {
      * @param genre genre of movie
      * @return true if genre is set successfully or false otherwise
      */
-    public boolean setGenre(String genre)
-    {
-    return true;
+    public boolean setGenre(String genre) {
+        return true;
     }
 
     /**
@@ -303,9 +291,8 @@ public class Media {
      *
      * @return director name
      */
-    public String getDirector()
-    {
-      return null;
+    public String getDirector() {
+        return null;
     }
 
     /**
@@ -313,9 +300,8 @@ public class Media {
      *
      * @param director director name
      */
-    public void setDirector(String director)
-    {
-    
+    public void setDirector(String director) {
+
     }
 
     /**
@@ -323,10 +309,9 @@ public class Media {
      *
      * @return an ArrayList of strings with name of main actors
      */
-   public ArrayList<String> getActors()
-   {
-   return null;
-   }
+    public ArrayList<String> getActors() {
+        return null;
+    }
 
     /**
      * Sets list of main actors.
@@ -334,18 +319,17 @@ public class Media {
      * @param actors an ArrayList of strings with name of main actors
      * @return true if actors are set successfully or false otherwise
      */
-    public boolean setActors(ArrayList<String> actors)
-    {    
-    return false;
+    public boolean setActors(ArrayList<String> actors) {
+        return false;
     }
+
     /**
      * Returns the duration of the movie.
      *
      * @return duration of movie in minutes
      */
-    public String getRunning_time()
-    {
-     return null;
+    public String getRunning_time() {
+        return null;
     }
 
     /**
@@ -354,46 +338,42 @@ public class Media {
      * @param running_time duration of movie in minutes
      * @return true if running_time is set successfully or false otherwise
      */
-    public boolean setRunning_time(String running_time)
-    {
+    public boolean setRunning_time(String running_time) {
         return true;
     }
 
-    
-    public String get_Ebook_Publisher()
-    {
-    return null;
+    public String get_Ebook_Publisher() {
+        return null;
     }
+
     /**
      * Sets the publisher name.
      *
      * @param publisher publisher name
      * @return true if EBook_publisher is set successfully or false otherwise
      */
-   public boolean set_Ebook_Publisher(String publisher)
-   {
-       return true;
-   }
+    public boolean set_Ebook_Publisher(String publisher) {
+        return true;
+    }
 
     /**
      * Returns number of pages.
      *
      * @return number of pages.
      */
-   public String getNumberOfPages_of_Ebook()
-   {
-    return null;
-   }
+    public String getNumberOfPages_of_Ebook() {
+        return null;
+    }
 
     /**
      * Sets number of pages.
      *
      * @param numberOfPages number of pages
-     * @return true if numberOfPages_of_EBook are set successfully or false otherwise
+     * @return true if numberOfPages_of_EBook are set successfully or false
+     * otherwise
      */
-    public boolean setNumberOfPages_of_Ebook(String numberOfPages)
-    {
-    return true;
+    public boolean setNumberOfPages_of_Ebook(String numberOfPages) {
+        return true;
     }
 
     /**
@@ -401,11 +381,9 @@ public class Media {
      *
      * @return an ArrayList of strings with all authors.
      */
-    public ArrayList<String> getAuthors_of_Ebook()
-    {
-      return null;
+    public ArrayList<String> getAuthors_of_Ebook() {
+        return null;
     }
-    
 
     /**
      * Sets authors of academic material.
@@ -413,9 +391,8 @@ public class Media {
      * @param authors an ArrayList of strings with the name of all authors.
      * @return true if authors are set successfully
      */
-    public boolean setAuthors_of_Ebook(ArrayList<String> authors)
-    {
-    return true;
+    public boolean setAuthors_of_Ebook(ArrayList<String> authors) {
+        return true;
     }
 
     /**
@@ -424,9 +401,8 @@ public class Media {
      *
      * @return document type
      */
-    public String getDocumentType()
-    {
-    return null;
+    public String getDocumentType() {
+        return null;
     }
 
     /**
@@ -436,24 +412,20 @@ public class Media {
      * @param documentType type of document
      * @return true if document type is set successfully or false otherwise
      */
-    public boolean setDocumentType(String documentType)
-    {
-    return true;
+    public boolean setDocumentType(String documentType) {
+        return true;
     }
-   
-     public String getBookGenre() {
-     return null;         
-     }
 
-    public String getEbook_ISBN()
-    {
-    return null;
+    public String getBookGenre() {
+        return null;
     }
-     
-    public String getMovie_Code()
-    {
-        
-    return null;
+
+    public String getEbook_ISBN() {
+        return null;
     }
-    
+
+    public String getMovie_Code() {
+        return null;
+    }
+
 }

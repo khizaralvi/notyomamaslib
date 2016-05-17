@@ -1,7 +1,5 @@
 package library.media;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import library.jdbc.ReservationJdbc;
 
@@ -121,7 +119,7 @@ public class ReservationCollection {
      * @return a reservation object
      */
     public Reservation deleteReservation(Reservation reservation) {
-        Reservation r = null;
+        Reservation r;
         r = this.searchReservation(reservation.getMediaId(), reservation.getPatronId());
         return rj.deleteReservation(r.getReservationId());
     }

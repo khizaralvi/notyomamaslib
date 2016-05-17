@@ -103,6 +103,7 @@ public class LibrarianInterface {
 
     public static boolean addingModule() {
         int op = 0;
+        int quantity = 1;
         String field;
         double cost;
         Scanner scan = new Scanner(System.in);
@@ -122,15 +123,16 @@ public class LibrarianInterface {
                 
                 switch (op) {
                     case 1:
+                        academic.setMediaType("a");
                         System.out.print("Type the title and press <ENTER>: ");
-                        field = scan.next();
-                        // academic.setTitle(field);
+                        field = scan.nextLine();
+                        academic.setMediaTitle(field);
                         System.out.print("Type the year of the publication and press <ENTER>: ");
-                        field = scan.next();
-                        // academic.setYear(field);
+                        field = scan.nextLine();
+                        academic.setMediaYear(field);
                         System.out.print("Type the publisher name and press <ENTER>: ");
-                        field = scan.next();
-                        // academic.setPublisher(field);
+                        field = scan.nextLine();
+                        academic.setPublisher(field);
                         System.out.print("Type the type of academic material and press <ENTER>: ");
                         field = scan.next();
                         // academic.setCategory(field);
@@ -147,6 +149,7 @@ public class LibrarianInterface {
                         // academic.addAuthor(field);
                         break;
                     case 2:
+                        book.setMediaType("b");
                         System.out.print("Type the title and press <ENTER>: ");
                         field = scan.next();
                         // book.setTitle(field);
@@ -176,25 +179,28 @@ public class LibrarianInterface {
                         // book.setCost(cost);
                         break;
                     case 3:
+                        movie.setMediaType("M");
+                        System.out.println(movie.getMediaType());
                         System.out.print("Type the title and press <ENTER>: ");
                         field = scan.nextLine();
-                        // skip = scan.nextLine();
                         movie.setMediaTitle(field);
                         System.out.print("Type the year of the movie and press <ENTER>: ");
-                        field = scan.next();
-                        skip = scan.nextLine();
+                        field = scan.nextLine();
                         movie.setMediaYear(field);
+                        System.out.print("Type the movie genre: ");
+                        field = scan.nextLine();
+                        movie.setGenre(field);
                         System.out.print("Type the director name and press <ENTER>: ");
-                        field = scan.next();
-                        skip = scan.nextLine();
+                        field = scan.nextLine();
                         movie.setDirector(field);
                         System.out.print("Type the running time and press <ENTER>: ");
-                        field = scan.next();
-                        skip = scan.nextLine();
+                        field = scan.nextLine();
                         movie.setRunning_time(field);
+                        System.out.print("Type the quantity available of this media and press <ENTER>: ");
+                        quantity = scan.nextInt();
+                        movie.setQuantity(quantity);
                         System.out.print("Type the cost of the material and press <ENTER>: ");
                         cost = scan.nextDouble();
-                        skip = scan.nextLine();
                         movie.setMediaCost(cost);
                         if(!media_jdbc.addMedia(movie)) {
                             return false;
