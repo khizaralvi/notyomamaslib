@@ -72,6 +72,17 @@ public class Main {
                                 case 4:
                                     System.out.println(income_collection.view('*').toString());
                                     break;
+                                    
+                                case 5: 
+                                    System.out.println("Please Insert Patron's Id\n");
+                                    String tempId = scan.next();
+                                    System.out.println("Please enter the type of payment g for donation d for damages l for latapayment\n");
+                                    char typePay = scan.next().charAt(0);
+                                    System.out.println("Please enter the amount being paid\n");
+                                    double amount = scan.nextDouble();
+                                    income_collection.insert(new Income(tempId, typePay, amount, new Date()));
+                                    
+                                    break;
                                 default:
                                     print("Type a valid options");
                                     break;
