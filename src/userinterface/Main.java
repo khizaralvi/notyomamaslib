@@ -6,6 +6,7 @@ import java.util.Scanner;
 import library.account.Login;
 import library.income.IncomeCol;
 import static userinterface.LibrarianInterface.librarianInterface;
+import static userinterface.PatronInterface.patronInterface;
 
 public class Main {
 
@@ -84,7 +85,7 @@ public class Main {
                     System.out.print("Password: ");
                     pass = scan.next();
                     a = LoginCollection.loginStaff(user, pass);
-
+                    
                     if (a == null) {
                         login = false;
                          System.out.println("Could not login!");
@@ -107,7 +108,7 @@ public class Main {
                                     patronAccountInterface(scan, a);
                                     break;
                                 case 2:
-                                    PatronInterface.patronInterface();
+                                    patronInterface(a);
                                     break;
                                 case 3:
                                     break;

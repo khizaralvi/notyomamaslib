@@ -2,6 +2,7 @@ package userinterface;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import library.account.Login;
 import library.jdbc.MediaJdbcClass;
 import library.jdbc.ReservationJdbc;
 import library.media.Reservation;
@@ -21,9 +22,8 @@ public class PatronInterface {
     static Reservation reservation = new Reservation();
     static ReservationJdbc rj = new ReservationJdbc();
     static ReservationCollection rc = new ReservationCollection();
-    static int patronID = 2; // This will be replaced by a PatronAccount object
 
-    public static void patronInterface() {
+    public static void patronInterface(Login user) {
         int option = 0;
         Scanner scan = new Scanner(System.in);
 
@@ -45,12 +45,12 @@ public class PatronInterface {
                         }
                         break;
                     case 2:
-                        if (!checkedOutModule()) {
+                        if (!checkedOutModule(Integer.parseInt(user.getId()))) {
                             System.out.println("An error occured!");
                         }
                         break;
                     case 3:
-                        if (!reservationModule()) {
+                        if (!reservationModule(Integer.parseInt(user.getId()))) {
                             System.out.println("An error occured!");
                         }
                         break;
@@ -68,11 +68,11 @@ public class PatronInterface {
         } while (option != 0);
     }
 
-    public static boolean checkedOutModule() {
+    public static boolean checkedOutModule(int userID) {
         return true;
     }
 
-    public static boolean reservationModule() {
+    public static boolean reservationModule(int userID) {
         int option = 0;
         int mediaID;
         Scanner scan = new Scanner(System.in);
@@ -99,7 +99,7 @@ public class PatronInterface {
                             media.setMediaId(mediaID);
                             
                             // Try to reserve
-                            if (reservation_collection.reserveMedia(media, patronID)) {
+                            if (reservation_collection.reserveMedia(media, userID)) {
                                 System.out.println("Reservation was successful!");
                             } else {
                                 return false;
@@ -108,7 +108,7 @@ public class PatronInterface {
                     }   break;
                 case 2:
                     System.out.println("\n\nYour reservations:");
-                    if (reservation_collection.viewPatronReserveList(patronID).toString().equals("")) {
+                    if (reservation_collection.viewPatronReserveList(userID).toString().equals("")) {
                         System.out.println("No reservations were made");
                     } else {
                         System.out.println(reservation_collection.toString());
@@ -130,7 +130,7 @@ public class PatronInterface {
                     }   break;
                 case 3:
                     System.out.println("\n\nYour reservations:");
-                    if (reservation_collection.viewPatronReserveList(patronID).toString().equals("")) {
+                    if (reservation_collection.viewPatronReserveList(userID).toString().equals("")) {
                         System.out.println("No reservations were made");
                     } else {
                         System.out.println(reservation_collection.toString());
