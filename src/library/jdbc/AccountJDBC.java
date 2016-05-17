@@ -263,6 +263,77 @@ public class AccountJDBC {
 	 	return resultList;
 	 }
          
+         
+         /**
+          * @author Elbin Martinez
+          * apply late fee method-- <BR>
+          * This method applys late fees to all accounts that have late 
+          * media out and have not returned it
+          * @return boolean, to show it was completed or not 
+          */
+         public boolean applyLateFees()
+	{
+		connect();
+		try	{
+			String query = "select * from checkedoutmediacoll";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next())
+			{
+				if (rs.getDate("dueDate").before(new Date()))
+				{
+					String id = rs.getString("patronId");
+					System.out.println(id);
+					updateBalance(id, .10);
+
+				}
+			}
+		}
+		catch(SQLException ex)
+		{
+			ex.printStackTrace();
+		}
+
+		return true;
+	}
+	/**
+	 * 
+	 * @param id
+	 * @param amountToAdd
+	 * @return
+	 */
+	public boolean updateBalance(String id, double amountToAdd)
+	{
+		try{
+			connect();
+			String query = "select * from patron where patronId = ?";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1,id);
+			ResultSet rs = stmt.executeQuery();
+			double current = 0;
+			if (rs.next())
+			{
+			current = rs.getDouble("balance");
+			}
+			current = current + amountToAdd;
+			String query1 = "update patron set balance = ? where patronId = ?";
+			PreparedStatement prestmt = conn.prepareStatement(query1);
+			prestmt.setDouble(1, current);
+			prestmt.setString(2, id);
+			
+			prestmt.executeUpdate();
+			
+			
+		}
+		catch(SQLException ex)
+		{
+			ex.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+         
         
         
 
