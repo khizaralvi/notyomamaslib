@@ -39,7 +39,8 @@ public class LibrarianInterface {
     public static MediaAcademic academic = new MediaAcademic();
     public static MediaBook book = new MediaBook();
     public static MediaMovie movie = new MediaMovie();
-
+ public static Scanner scan = new Scanner(System.in);
+       
     public static void librarianInterface() {
         int option = 0;
         Scanner scan = new Scanner(System.in);
@@ -96,6 +97,10 @@ public class LibrarianInterface {
                         }
                         break;
                     case 8:
+                        if (!checkinMedia()) {
+                            System.out.println("An error occured!");
+                        }
+                        
                         break;
                     case 0:
                         break;
@@ -263,9 +268,36 @@ public class LibrarianInterface {
 
         } while (true);
     }
+    
+    public static boolean checkinMedia()
+    {
+        int patronId=0;
+        int mediaId=0;
+        
+        System.out.println("Enter Patron id");
+        patronId=scan.nextInt();
+        
+        
+        System.out.println("Enter Media id");
+        mediaId=scan.nextInt();
+        
+        CheckedOutJdbcClass check=new CheckedOutJdbcClass();
+        if(!check.deleteCheckedOutMedia(patronId, mediaId)){return false;}
+        else {return true;}
+    
+    }
 
     public static boolean checkoutMedia() {
         
+        int patronId=0;
+        int mediaId=0;
+        
+        System.out.println("Enter Patron id");
+        patronId=scan.nextInt();
+        
+        
+        System.out.println("Enter Media id");
+        mediaId=scan.nextInt();
         
         java.util.Date util_date=new java.util.Date();
         java.util.Date basit=new java.util.Date();
@@ -273,7 +305,7 @@ public class LibrarianInterface {
         Calendar c=Calendar.getInstance();
         c.setTime(basit);
         c.add(Calendar.DATE,7);
-     basit=c.getTime();
+        basit=c.getTime();
         
      
      java.sql.Date borrow_date=new java.sql.Date(util_date.getTime());
@@ -281,12 +313,16 @@ public class LibrarianInterface {
      
      
      
-        CheckedOutMedia ch=new CheckedOutMedia(3,1,borrow_date,due_date,"xxx@hotmail.com");
+        CheckedOutMedia ch=new CheckedOutMedia(mediaId,patronId,borrow_date,due_date,"xxx@hotmail.com");
         
         CheckedOutJdbcClass check=new CheckedOutJdbcClass();
-        check.insertCheckoutMedia(ch);
-        
+        if(!check.insertCheckoutMedia(ch))
+        { return false;
+        }
+        else
+        {
         return true;
+        }
     }
 
     public static boolean deletingModule() {

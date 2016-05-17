@@ -117,12 +117,12 @@ public class CheckedOutJdbcClass {
             prepared.setInt(2, media);
 
             prepared.executeUpdate();
-
+                return true;
         } catch (SQLException se) {
             se.printStackTrace();
         }
 
-        return true;
+        return false;
     }
 
     /**
@@ -157,7 +157,7 @@ public class CheckedOutJdbcClass {
 
         String url = "jdbc:mysql://localhost:3306/library_system?autoReconnect=true&useSSL=false";
         String user = "root";
-        String password = "";
+        String password = "rafa2012";
 
         try {
             con = DriverManager.getConnection(url, user, password);

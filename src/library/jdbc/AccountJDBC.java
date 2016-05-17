@@ -8,7 +8,7 @@ import library.account.*;
 public class AccountJDBC {
     private static String dbUrl = "jdbc:mysql://localhost:3306/library_system";
     private static String dbUsername = "root";
-    private static String dbPassword = "admin";
+    private static String dbPassword = "rafa2012";
     private static Connection myConn = null;
 
     public AccountJDBC() {
