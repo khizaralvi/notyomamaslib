@@ -115,7 +115,7 @@ public class MediaCollection {
 
             if (type.equals("b")) {
                 aggregate += String.valueOf(media.get(i).getMediaId()) + "\t" + media.get(i).getMediaTitle() + "\t"
-                        + media.get(i).getMediaCost() + "\t" + media.get(i).getMediaYear() + "\t" + media.get(i).getBookGenre() + "\t\tBook\t"
+                        + media.get(i).getMediaCost() + "\t" + media.get(i).getMediaYear() + "\t" + media.get(i).getCategory() + "\t\tBook\t"
                         + media.get(i).getQuantity() + "\t" + media.get(i).getPublisher()
                         + "\t" + media.get(i).getIsbn() + "\t" + media.get(i).getEdition() + "\t" + media.get(i).getVolume() + "\t*\t*\n";
 
@@ -123,13 +123,13 @@ public class MediaCollection {
 
             if (type.equals("m")) {
                 aggregate += String.valueOf(media.get(i).getMediaId()) + "\t" + media.get(i).getMediaTitle() + "\t\t" + media.get(i).getMediaCost()
-                        + "\t" + media.get(i).getMediaYear() + "\t" + media.get(i).getGenre() + "\t\tMovie\t" + media.get(i).getQuantity() + "\t*\t\t" + media.get(i).getMovie_Code() + "\t*\t*\t"
+                        + "\t" + media.get(i).getMediaYear() + "\t" + media.get(i).getCategory() + "\t\tMovie\t" + media.get(i).getQuantity() + "\t*\t\t" + media.get(i).getMovie_Code() + "\t*\t*\t"
                         + media.get(i).getRunning_time() + "\t" + media.get(i).getDirector() + "\n";
 
             }
             if (type.equals("a")) {
                 aggregate += String.valueOf(media.get(i).getMediaId()) + "\t" + media.get(i).getMediaTitle() + "\t\t" + media.get(i).getMediaCost()
-                        + "\t" + media.get(i).getMediaYear() + "\t" + media.get(i).getDocumentType() + "\t\tEbook\t" + media.get(i).getQuantity() + "\t" + media.get(i).get_Ebook_Publisher()
+                        + "\t" + media.get(i).getMediaYear() + "\t" + media.get(i).getCategory() + "\t\tEbook\t" + media.get(i).getQuantity() + "\t" + media.get(i).get_Ebook_Publisher()
                         + "\t\t" + media.get(i).getEbook_ISBN() + "\t*\t*\t*\t*\n";
 
             }

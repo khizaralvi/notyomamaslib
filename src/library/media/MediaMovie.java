@@ -20,10 +20,8 @@ import java.util.ArrayList;
  */
 public class MediaMovie extends Media {
 
-    private String Movie_genre;
     private String director;
     private String running_time;
-    private String movie_code;
 
     /**
      * Late fee is the amount of money charged in cents per late day by the
@@ -53,42 +51,17 @@ public class MediaMovie extends Media {
      * @param cost Media cost
      * @param Moviegenre Media genre
      * @param director Director name
-     *
      * @param running_time Duration in minutes
      * @param movie_code unique code for each movie
      * @param quantity amount of media available
      */
     public MediaMovie(int id, String title, String year, double cost,
-            String Moviegenre, String director,
-            String running_time, int quantity, String movie_code) {
-        super(id, title, year, cost, "m", quantity);
-        this.Movie_genre = Moviegenre;
+            String director,
+            String running_time, int quantity,
+            String category) {
+        super(id, title, year, cost, "M", quantity, category);
         this.director = director;
-
         this.running_time = running_time;
-        this.movie_code = movie_code;
-    }
-
-    /**
-     * Returns genre of movie.
-     *
-     * @return genre of movie
-     */
-    @Override
-    public String getGenre() {
-        return Movie_genre;
-    }
-
-    /**
-     * Sets genre of movie.
-     *
-     * @param genre genre of movie
-     * @return boolean
-     */
-    @Override
-    public boolean setGenre(String genre) {
-        this.Movie_genre = genre;
-        return true;
     }
 
     /**
@@ -136,15 +109,6 @@ public class MediaMovie extends Media {
     public boolean setRunning_time(String running_time) {
         this.running_time = running_time;
         return true;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String getMovie_Code() {
-        return this.movie_code;
     }
 
     /**

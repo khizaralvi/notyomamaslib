@@ -36,11 +36,10 @@ public class LibrarianInterface {
     public static MediaAcademic academic = new MediaAcademic();
     public static MediaBook book = new MediaBook();
     public static MediaMovie movie = new MediaMovie();
-
+ 
     public static void librarianInterface() {
         int option = 0;
         Scanner scan = new Scanner(System.in);
-
         do {
             System.out.println("\n\n\n=========MENU OPTIONS:=========");
             System.out.println("1. Search media");
@@ -123,7 +122,7 @@ public class LibrarianInterface {
                 
                 switch (op) {
                     case 1:
-                        academic.setMediaType("a");
+                        academic.setMediaType("A");
                         System.out.print("Type the title and press <ENTER>: ");
                         field = scan.nextLine();
                         academic.setMediaTitle(field);
@@ -149,10 +148,10 @@ public class LibrarianInterface {
                         // academic.addAuthor(field);
                         break;
                     case 2:
-                        book.setMediaType("b");
+                        book.setMediaType("B");
                         System.out.print("Type the title and press <ENTER>: ");
                         field = scan.next();
-                        // book.setTitle(field);
+                        //book.setTitle(field);
                         System.out.print("Type the year of the book and press <ENTER>: ");
                         field = scan.next();
                         // book.setYear(field);
@@ -189,7 +188,7 @@ public class LibrarianInterface {
                         movie.setMediaYear(field);
                         System.out.print("Type the movie genre: ");
                         field = scan.nextLine();
-                        movie.setGenre(field);
+                        movie.setCategory(field);
                         System.out.print("Type the director name and press <ENTER>: ");
                         field = scan.nextLine();
                         movie.setDirector(field);

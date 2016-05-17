@@ -25,6 +25,7 @@ public class Media {
     private double mediaCost;
     private String mediaType; // Media types: A (Academic), B (Book), M (Movie)
     private int quantity;
+    private String mediaCategory;
 
     /**
      * Default Constructor.
@@ -41,9 +42,10 @@ public class Media {
      * @param cost Media cost
      * @param type Type of Media
      * @param quantity amount of media available
+     * @param category
      */
     public Media(int id, String title, String year, double cost,
-            String type, int quantity) {
+            String type, int quantity, String category) {
 
         this.mediaId = id;
         this.mediaTitle = title;
@@ -51,6 +53,7 @@ public class Media {
         this.mediaType = type;
         this.quantity = quantity;
         this.mediaCost = cost;
+        this.mediaCategory = category;
     }
 
     /**
@@ -161,6 +164,15 @@ public class Media {
     public void setQuantity(int q) {
         this.quantity = q;
     }
+    
+    public void setCategory(String category) {
+        this.mediaCategory = category;
+    }
+    
+        
+    public String getCategory() {
+        return this.mediaCategory;
+    }
 
     /**
      * toString() method to print Media details
@@ -230,7 +242,7 @@ public class Media {
      *
      * @return number of pages
      */
-    public String getNumOfPages_of_Books() {
+    public String getNumOfPagesOfBooks() {
         return null;
     }
 
@@ -271,21 +283,6 @@ public class Media {
     public boolean setAuthors(ArrayList<String> authors) {
         return true;
     }
-
-    public String getGenre() {
-        return null;
-    }
-
-    /**
-     * Sets genre of movie.
-     *
-     * @param genre genre of movie
-     * @return true if genre is set successfully or false otherwise
-     */
-    public boolean setGenre(String genre) {
-        return true;
-    }
-
     /**
      * Returns the director name.
      *
@@ -356,25 +353,6 @@ public class Media {
         return true;
     }
 
-    /**
-     * Returns number of pages.
-     *
-     * @return number of pages.
-     */
-    public String getNumberOfPages_of_Ebook() {
-        return null;
-    }
-
-    /**
-     * Sets number of pages.
-     *
-     * @param numberOfPages number of pages
-     * @return true if numberOfPages_of_EBook are set successfully or false
-     * otherwise
-     */
-    public boolean setNumberOfPages_of_Ebook(String numberOfPages) {
-        return true;
-    }
 
     /**
      * Returns a list with all authors.
@@ -395,30 +373,6 @@ public class Media {
         return true;
     }
 
-    /**
-     * Returns the type of academic material. These type could be journal,
-     * these, dissertation.
-     *
-     * @return document type
-     */
-    public String getDocumentType() {
-        return null;
-    }
-
-    /**
-     * Sets the type of academic material. These type could be journal, these,
-     * dissertation.
-     *
-     * @param documentType type of document
-     * @return true if document type is set successfully or false otherwise
-     */
-    public boolean setDocumentType(String documentType) {
-        return true;
-    }
-
-    public String getBookGenre() {
-        return null;
-    }
 
     public String getEbook_ISBN() {
         return null;

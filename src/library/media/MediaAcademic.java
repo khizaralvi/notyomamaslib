@@ -24,7 +24,6 @@ public class MediaAcademic extends Media {
     private String publisher;
     private String numberOfPages;
     private ArrayList<String> authors;
-    private String documentType;
     private String ebook_ISBN;
 
     /**
@@ -64,14 +63,15 @@ public class MediaAcademic extends Media {
      * @param documentType Document type of the journal
      * @param quantity amount of media available
      * @param ebook_ISBN unique EBOOK_ISBN
+     * @param category
      */
     public MediaAcademic(int id, String title, String year, double cost,
             String publisher, ArrayList<String> author,
-            String numberOfPages, String documentType, int quantity, String ebook_ISBN) {
-        super(id, title, year, cost, "a", quantity);
+            String numberOfPages, String documentType, int quantity, String ebook_ISBN,
+            String category) {
+        super(id, title, year, cost, "a", quantity, category);
 
         this.authors = author;
-        this.documentType = documentType;
         this.publisher = publisher;
         this.numberOfPages = numberOfPages;
         this.ebook_ISBN = ebook_ISBN;
@@ -98,27 +98,7 @@ public class MediaAcademic extends Media {
         return true;
     }
 
-    /**
-     * Returns number of pages.
-     *
-     * @return number of pages.
-     */
-    @Override
-    public String getNumberOfPages_of_Ebook() {
-        return numberOfPages;
-    }
-
-    /**
-     * Sets number of pages.
-     *
-     * @param numberOfPages number of pages
-     * @return boolean
-     */
-    @Override
-    public boolean setNumberOfPages_of_Ebook(String numberOfPages) {
-        return true;
-    }
-
+    
     /**
      * Returns a list with all authors.
      *
@@ -137,29 +117,6 @@ public class MediaAcademic extends Media {
      */
     @Override
     public boolean setAuthors_of_Ebook(ArrayList<String> authors) {
-        return true;
-    }
-
-    /**
-     * Returns the type of academic material. These type could be journal,
-     * these, dissertation.
-     *
-     * @return document type
-     */
-    @Override
-    public String getDocumentType() {
-        return documentType;
-    }
-
-    /**
-     * Sets the type of academic material. These type could be journal, these,
-     * dissertation.
-     *
-     * @param documentType type of document
-     * @return boolean
-     */
-    @Override
-    public boolean setDocumentType(String documentType) {
         return true;
     }
 

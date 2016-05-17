@@ -25,7 +25,6 @@ public class MediaBook extends Media {
     private String bookIsbn;
     private String bookEdition;
     private String bookVolume;
-    private String bookPages;
     private String bookPublisher;
     private ArrayList<String> bookAuthors;
     private String bookGenre;
@@ -47,14 +46,13 @@ public class MediaBook extends Media {
      */
     public static int RENEW_TIMES = 2;
 
-    
     /**
      * Default constructor.
      */
     public MediaBook() {
         super();
     }
-    
+
     /**
      * Constructor for MediaBook.
      *
@@ -65,25 +63,22 @@ public class MediaBook extends Media {
      * @param isbn Book ISBN
      * @param edition Book edition as an integer number (1, 2, ...)
      * @param volume Volume of the book
-     * @param pages number of pages of the book
      * @param publisher Book publisher name
      * @param quantity amount of media available
      * @param auth list of authors for the book
-     * @param bookGenre genre of the book
+     * @param category genre of the book
      */
     public MediaBook(int id, String title, String year,
-            String edition, String volume, String pages, String publisher,String isbn,
-            double cost, int quantity, ArrayList<String> auth, String bookGenre) {
-        super(id,title, year, cost,"b", quantity);
-        
-        this.bookEdition=edition;
-        this.bookVolume=volume;
-        this.bookPages=pages;
-        this.bookPublisher=publisher;;
-        this.bookIsbn=isbn;
-        this.bookAuthors=auth;
-        this.bookGenre=bookGenre;
-        
+            String edition, String volume, String publisher, String isbn,
+            double cost, int quantity, ArrayList<String> auth, String category) {
+        super(id, title, year, cost, "b", quantity, category);
+
+        this.bookEdition = edition;
+        this.bookVolume = volume;
+        this.bookPublisher = publisher;;
+        this.bookIsbn = isbn;
+        this.bookAuthors = auth;
+
     }
 
     /**
@@ -104,7 +99,7 @@ public class MediaBook extends Media {
      */
     @Override
     public boolean setIsbn(String isbn) {
-    return true;
+        return true;
     }
 
     /**
@@ -125,7 +120,7 @@ public class MediaBook extends Media {
      */
     @Override
     public boolean setEdition(int edition) {
-    return true;
+        return true;
     }
 
     /**
@@ -146,17 +141,7 @@ public class MediaBook extends Media {
      */
     @Override
     public boolean setVolume(int volume) {
-    return true;
-    }
-
-    /**
-     * Returns the number of pages
-     *
-     * @return number of pages
-     */
-    @Override
-    public String getNumOfPages_of_Books() {
-        return bookPages;
+        return true;
     }
 
     /**
@@ -177,7 +162,7 @@ public class MediaBook extends Media {
      */
     @Override
     public boolean setPublisher(String publisher) {
-    return true;
+        return true;
     }
 
     /**
@@ -198,7 +183,7 @@ public class MediaBook extends Media {
      */
     @Override
     public boolean setAuthors(ArrayList<String> authors) {
-    return true;
+        return true;
     }
 
     /**
@@ -210,12 +195,4 @@ public class MediaBook extends Media {
     public String toString() {
         return "";
     }
-
-    @Override
-    public String getBookGenre() {
-        return bookGenre;
-    }
-
-
-
 }
