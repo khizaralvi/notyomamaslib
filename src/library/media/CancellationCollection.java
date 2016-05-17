@@ -2,7 +2,7 @@ package library.media;
 
 import java.util.ArrayList;
 import library.jdbc.CancellationJDBC;
-import java.land.*;
+import java.lang.*;
 
 /**
  * The CancellationCollection is the class that holds the Cancellation objects 
@@ -47,7 +47,7 @@ public class CancellationCollection {
     public Cancellation deleteCancellation(int cancellationId) {
         Cancellation c;
         c = this.searchReservation(reservation.getMediaId(), reservation.getPatronId());
-        return rj.deleteReservation(r.getReservationId());
+        return cancel.deleteReservation(r.getReservationId());
         Cancellation deletedC = new Cancellation();
         return deletedC;
     }
