@@ -152,7 +152,7 @@ public class LibrarianInterface {
                         cost = scan.nextDouble();
                         skip = scan.nextLine();
                         academic.setMediaCost(cost);
-                        System.out.print("Type the ISBN code: ");
+                        System.out.print("Type the ISBN/DOI code: ");
                         field = scan.nextLine();
                         academic.setAcademicISBN(field);
                         System.out.print("Type the number of authors for the media: ");

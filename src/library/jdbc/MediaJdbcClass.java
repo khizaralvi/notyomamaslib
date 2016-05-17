@@ -68,8 +68,8 @@ public class MediaJdbcClass {
      */
     public boolean addMedia(Media m) throws SQLException {
 
-        connect(); 
-          // First, it must be connected to the database 
+        connect();
+        // First, it must be connected to the database 
 
         // prepared2=con.prepareStatement("insert into mydb.authorbooks values(?,?)");
         prepared2 = con.prepareStatement("insert into author (authorName) value(?)");
@@ -167,7 +167,6 @@ public class MediaJdbcClass {
 
                     author_list = m.getAuthors_of_Ebook();
 
-                    System.out.println("author list size= " + author_list.size());
 
                     for (int i = 0; i < author_list.size(); i++) {
                         //prepared2.setString(1,m.getMediaId());
@@ -315,21 +314,24 @@ public class MediaJdbcClass {
         try {
 
             prepared = con.prepareStatement("delete from media where mediaId=?");
+            prepared2 = con.prepareStatement("delete from authorbooks where mediaId=?");
             prepared.setInt(1, mediaId);
-
+            prepared2.setInt(1, mediaId);
+            
+            // First, delete row(s) in authorbook table
+            int j = prepared2.executeUpdate();
+            
+            // Then, delete row in media table
             int i = prepared.executeUpdate();
             if (i > 0) {
                 return true;
-            } else {
-                return false;  //when it returns false, it means no tuple got deleted
             }
 
-            
-        } catch (SQLException se) {
-            // catch exceptions
+        } catch (SQLException ex) { 
+            Logger.getLogger(MediaJdbcClass.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return true;
+        return false;
     }
 
     /**
