@@ -14,6 +14,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import javax.mail.*;
 import javax.mail.internet.*;
+import javax.activation.*;
 
 /**
  *
@@ -252,7 +253,7 @@ public class CheckedOutJdbcClass {
 		ArrayList<Date> DueDates = new ArrayList<Date>();
 		java.util.Date currentDate = new java.util.Date();
 		//Sender's email ID 
-		String from = "khizex20@gmail.com";
+		String from = "notyomamaslib@gmail.com";
 		//Getting system properties
 		Properties properties = new Properties();
 		//Setup mail server
@@ -279,6 +280,7 @@ public class CheckedOutJdbcClass {
 			int differenceOfDays = Days.daysBetween(new DateTime(DueDates.get(i)), new DateTime(currentDate)).getDays();
 			if (differenceOfDays > 2) {
 			  try {
+                              System.out.println("Khizar");
 				MimeMessage message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(from));
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(PatronEmails.get(i)));
