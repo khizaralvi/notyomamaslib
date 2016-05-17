@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class Main {
 
-    public static final String staffMenu = "\n\n\n=========MENU OPTIONS:=========\n1. Look up Account\n2. Media Managment\n3. Update Account\n4. View Income \n5.Insert Income\n0. Logout";
+    public static final String staffMenu = "\n\n\n=========MENU OPTIONS:=========\n1. Look up Account\n2. Media Managment\n3. Update Account\n4. View Income \n5. Insert Income\n0. Logout";
     public static final String patronMenu = "";
     
     
