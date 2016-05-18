@@ -280,7 +280,6 @@ public class CheckedOutJdbcClass {
 			int differenceOfDays = Days.daysBetween(new DateTime(DueDates.get(i)), new DateTime(currentDate)).getDays();
 			if (differenceOfDays > 2) {
 			  try {
-                              System.out.println("Khizar");
 				MimeMessage message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(from));
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(PatronEmails.get(i)));
@@ -307,7 +306,54 @@ public class CheckedOutJdbcClass {
      * return their media
      * @return returns true on successful delivery of email
      */
-    public boolean SendDueDateNotification() {
+    public boolean SendDueDateNotification() throws SQLException{
+        
+           ArrayList <String> PatronEmails = new ArrayList <String>();
+		ArrayList<Date> DueDates = new ArrayList<Date>();
+		java.util.Date currentDate = new java.util.Date();
+		//Sender's email ID 
+		String from = "notyomamaslib@gmail.com";
+		//Getting system properties
+		Properties properties = new Properties();
+		//Setup mail server
+	        properties.put("mail.smtp.host", "smtp.gmail.com");
+	        properties.put("mail.smtp.auth", "true");  
+                properties.put("mail.debug", "false");  
+                properties.put("mail.smtp.ssl.enable", "true");  
+                properties.put("mail.smtp.starttls.enable", "true");
+        
+                //Starting new session
+	        Session session = Session.getInstance(properties, new SocialAuth());
+
+		connect();//Connecting to retrieve Patron Emails and Due Dates from the Database
+		
+		statement = con.createStatement();
+		ResultSet myRs = statement.executeQuery("Select * from checkedoutmedia");
+		while (myRs.next()) {
+			PatronEmails.add(myRs.getString("patronEmail"));
+			DueDates.add(myRs.getDate("dueDate"));
+		}
+		/**Looping through each Patron Email in the Database, finding the difference of days between their DueDates and Sending 
+		   Email Notifications to those who have missed their due deadlines by 2 days **/
+		for (int i = 0; i < PatronEmails.size(); i++) {
+			int differenceOfDays = Days.daysBetween(new DateTime(DueDates.get(i)), new DateTime(currentDate)).getDays();
+			if (differenceOfDays == -2) {
+			  try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(from));
+				message.addRecipient(Message.RecipientType.TO, new InternetAddress(PatronEmails.get(i)));
+				message.setSubject("Due Date Reminder!");
+				message.setText("Please be advised that Your due date is approaching in two days. Please return your media to the library before the due date or you'll be charged late fee. Thank You!");
+				Transport.send(message);
+				System.out.println("Email sent to " + PatronEmails.get(i) + " successfully!");
+			  }
+			
+			catch (MessagingException mex) {
+				mex.getMessage();
+			}
+		  }
+			
+		}
         return true;
     }
     
